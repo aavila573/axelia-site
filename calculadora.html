@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de ROI — AxelIA</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --bg2: #111118; --card: #16161f; --border: #222230;
+    --text: #e0e0e8; --text2: #8888a0; --accent: #6c5ce7; --accent2: #a78bfa;
+    --green: #00d2a0; --gradient: linear-gradient(135deg, #6c5ce7, #a78bfa);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+  nav {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem; background: rgba(10,10,15,0.9);
+    backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .logo a { text-decoration: none; color: inherit; }
+
+  .container { max-width: 700px; width: 100%; padding: 3rem 1.5rem; }
+
+  .hero { text-align: center; margin-bottom: 2.5rem; }
+  .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .hero p { color: var(--text2); font-size: 1rem; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem;
+  }
+  .card h3 { font-size: 1.1rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+
+  .slider-group { margin-bottom: 2rem; }
+  .slider-group label {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 0.9rem; color: var(--text); margin-bottom: 0.5rem;
+  }
+  .slider-group label span { color: var(--accent2); font-weight: 700; font-size: 1rem; }
+
+  input[type=range] {
+    width: 100%; height: 6px; -webkit-appearance: none;
+    background: var(--border); border-radius: 3px; outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--accent); cursor: pointer;
+    transition: .2s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { background: var(--accent2); transform: scale(1.15); }
+
+  .select-group { margin-bottom: 1.5rem; }
+  .select-group label { font-size: 0.9rem; display: block; margin-bottom: 0.4rem; }
+  select {
+    width: 100%; padding: 0.7rem 1rem; border-radius: 8px;
+    background: var(--bg2); color: var(--text); border: 1px solid var(--border);
+    font-size: 0.95rem; cursor: pointer;
+  }
+
+  .toggles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+  .toggle {
+    display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem;
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; font-size: 0.85rem; transition: .2s;
+  }
+  .toggle.active { border-color: var(--accent); background: rgba(108,92,231,0.1); }
+  .toggle .dot {
+    width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .toggle.active .dot { border-color: var(--accent); background: var(--accent); }
+
+  /* Results */
+  .results { display: none; }
+  .results.active { display: block; }
+
+  .result-card {
+    background: var(--card); border: 1px solid var(--accent);
+    border-radius: 16px; padding: 2rem; text-align: center; margin-bottom: 1.5rem;
+  }
+  .result-card .big-num {
+    font-size: 2.8rem; font-weight: 800;
+    background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .result-card .label { color: var(--text2); font-size: 0.9rem; margin-top: 0.3rem; }
+
+  .result-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .mini-stat {
+    text-align: center; background: var(--bg2); border-radius: 10px;
+    padding: 1rem 0.5rem; border: 1px solid var(--border);
+  }
+  .mini-stat .num { font-size: 1.3rem; font-weight: 700; color: var(--text); }
+  .mini-stat .lbl { font-size: 0.75rem; color: var(--text2); margin-top: 0.2rem; }
+
+  .cta-bar {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem; text-align: center;
+  }
+  .cta-bar p { color: var(--text2); font-size: 0.9rem; margin-bottom: 1rem; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff;
+    padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 1rem; transition: .2s; border: none; cursor: pointer;
+  }
+  .btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  footer { text-align: center; padding: 1.5rem; color: var(--text2); font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo"><a href="/">AxelIA</a></span>
+  <a href="/" style="color:var(--text2);text-decoration:none;font-size:0.9rem;">← Volver al sitio</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>📊 Calculadora de ROI</h1>
+    <p>Descubrí cuánto podrías ahorrar automatizando procesos con agentes de IA.</p>
+  </div>
+
+  <!-- Inputs -->
+  <div class="card">
+    <h3>🏢 Sobre tu empresa</h3>
+
+    <div class="slider-group">
+      <label>Empleados <span id="empVal">15</span></label>
+      <input type="range" id="empleados" min="5" max="200" value="15" step="5">
+    </div>
+
+    <div class="slider-group">
+      <label>Horas perdidas por empleado al mes (procesos manuales) <span id="hrsVal">20</span>h</label>
+      <input type="range" id="horas" min="5" max="80" value="20" step="5">
+    </div>
+
+    <div class="slider-group">
+      <label>Salario promedio mensual (COP) <span id="salVal">$1.800.000</span></label>
+      <input type="range" id="salario" min="1200000" max="5000000" value="1800000" step="100000">
+    </div>
+  </div>
+
+  <!-- Procesos -->
+  <div class="card">
+    <h3>⚙️ Procesos que querés automatizar</h3>
+    <div class="toggles" id="toggles">
+      <div class="toggle active" data-pct="25">📞 Atención al cliente (WhatsApp)</div>
+      <div class="toggle active" data-pct="20">📄 Cotizaciones y presupuestos</div>
+      <div class="toggle" data-pct="15">📧 Seguimiento de clientes</div>
+      <div class="toggle" data-pct="10">🧾 Facturación y cobranza</div>
+      <div class="toggle" data-pct="15">📊 Reportes e informes</div>
+      <div class="toggle" data-pct="15">🗂️ Gestión de inventario</div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <div class="result-card">
+      <div class="big-num" id="ahorro">$0</div>
+      <div class="label">Ahorro estimado mensual</div>
+    </div>
+
+    <div class="result-grid">
+      <div class="mini-stat">
+        <div class="num" id="roi">0%</div>
+        <div class="lbl">ROI estimado</div>
+      </div>
+      <div class="mini-stat">
+        <div class="num" id="payback">0</div>
+        <div class="lbl">Meses para recuperar</div>
+      </div>
+      <div class="mini-stat">
+        <div class="num" id="pack">—</div>
+        <div class="lbl">Pack recomendado</div>
+      </div>
+    </div>
+
+    <div class="cta-bar">
+      <p>Agendá un diagnóstico gratuito y te decimos exactamente qué procesos automatizar.</p>
+      <a class="btn" id="whatsappBtn" href="https://wa.me/573042860980?text=Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro" target="_blank">📱 Hablar por WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2026 AxelIA — axelia.tech</footer>
+
+<script>
+const emp = document.getElementById('empleados');
+const hrs = document.getElementById('horas');
+const sal = document.getElementById('salario');
+
+const fmt = n => '$' + Math.round(n).toLocaleString('es-CO');
+
+function update() {
+  document.getElementById('empVal').textContent = emp.value;
+  document.getElementById('hrsVal').textContent = hrs.value;
+  document.getElementById('salVal').textContent = fmt(sal.value);
+  calc();
+}
+
+function calc() {
+  const e = parseInt(emp.value);
+  const h = parseInt(hrs.value);
+  const s = parseInt(sal.value);
+
+  // Pct automatizable from toggles
+  const active = document.querySelectorAll('.toggle.active');
+  let totalPct = 0;
+  active.forEach(t => totalPct += parseInt(t.dataset.pct));
+  const pct = Math.min(totalPct, 100) / 100;
+
+  // Hourly rate
+  const hourly = s / 160;
+  // Hours saved
+  const savedHrs = e * h * pct * 0.7; // 70% efficiency
+  const ahorro = savedHrs * hourly;
+
+  document.getElementById('ahorro').textContent = fmt(ahorro);
+
+  // ROI & payback
+  const invest = ahorro * 3; // ~3 meses de ahorro como costo
+  const roi = Math.round((ahorro * 12 - invest) / invest * 100);
+  document.getElementById('roi').textContent = roi > 0 ? roi + '%' : '—';
+
+  const payback = Math.round(invest / ahorro);
+  document.getElementById('payback').textContent = payback > 0 ? payback + ' meses' : '—';
+
+  // Pack
+  let pack = 'Inicio';
+  if (ahorro > 8000000) pack = 'Empresarial';
+  else if (ahorro > 3000000) pack = 'Pro';
+  document.getElementById('pack').textContent = pack;
+
+  // Update WhatsApp link
+  const msg = `Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro%3A%20${fmt(ahorro)}%2Fmes%20con%20${e}%20empleados.%20Quiero%20agendar%20diagn%C3%B3stico.`;
+  document.getElementById('whatsappBtn').href = `https://wa.me/573042860980?text=${msg}`;
+
+  document.getElementById('results').classList.add('active');
+}
+
+// Toggle clicks
+document.querySelectorAll('.toggle').forEach(t => {
+  t.addEventListener('click', () => {
+    t.classList.toggle('active');
+    calc();
+  });
+});
+
+// Slider events
+[emp, hrs, sal].forEach(el => {
+  el.addEventListener('input', update);
+});
+
+update();
+</script>
+</body>
+</html>
