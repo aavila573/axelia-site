@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatización Back-Office: Facturación, Inventario y Reportes con IA | AxelIA</title>
+<meta name="description" content="Automatiza facturación, inventario y reportes de tu PYME con agentes de IA. Deja de perder horas en Excel. Implementación en 7-14 días. Diagnóstico gratuito.">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<style>
+  :root { --bg:#0a0a0f; --bg2:#111118; --card:#16161f; --border:#222230; --text:#e0e0e8; --text2:#8888a0; --accent:#6c5ce7; --accent2:#a78bfa; --green:#00d2a0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Georgia,serif; background:var(--bg); color:var(--text); line-height:1.8; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; background:rgba(10,10,15,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); font-family:'Inter',-apple-system,sans-serif; }
+  .logo { font-size:1.5rem; font-weight:800; background:linear-gradient(135deg,#6c5ce7,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .logo a { text-decoration:none; color:inherit; }
+  .nav-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-family:'Inter',-apple-system,sans-serif; }
+  .container { max-width:750px; margin:0 auto; padding:3rem 1.5rem; }
+  h1 { font-size:2rem; font-weight:800; line-height:1.3; margin-bottom:1rem; font-family:'Inter',-apple-system,sans-serif; background:linear-gradient(135deg,#fff,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  h2 { font-size:1.4rem; margin:2rem 0 0.8rem; font-family:'Inter',-apple-system,sans-serif; color:#fff; }
+  p { margin-bottom:1.2rem; font-size:1.1rem; }
+  .meta { color:var(--text2); font-size:0.9rem; margin-bottom:2rem; font-family:'Inter',-apple-system,sans-serif; }
+  table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:0.95rem; }
+  th { text-align:left; padding:0.7rem 1rem; background:var(--bg2); border-bottom:2px solid var(--border); font-family:'Inter',-apple-system,sans-serif; }
+  td { padding:0.7rem 1rem; border-bottom:1px solid var(--border); color:var(--text2); }
+  .green { color:var(--green); font-weight:600; }
+  .highlight { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.8rem; margin:1.5rem 0; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; padding:1rem 2rem; border-radius:8px; text-decoration:none; font-weight:600; font-family:'Inter',-apple-system,sans-serif; margin:1rem 0; }
+  ul, ol { margin:1rem 0 1rem 1.5rem; }
+  li { margin-bottom:0.5rem; }
+  footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--text2); font-size:0.8rem; font-family:'Inter',-apple-system,sans-serif; }
+  @media (max-width:768px){ h1{font-size:1.5rem;} .container{padding:2rem 1rem;} p{font-size:1rem;} }
+</style>
+</head>
+<body>
+<nav>
+  <span class="logo"><a href="/">AxelIA</a></span>
+  <div class="nav-links"><a href="/blog/">← Blog</a><a href="/">← Sitio</a></div>
+</nav>
+<div class="container">
+  <h1>Automatización Back-Office: Facturación, Inventario y Reportes sin Dolor</h1>
+  <p class="meta">📅 8 de agosto, 2026 &nbsp;|&nbsp; ⏱️ 5 min &nbsp;|&nbsp; 🏷️ Back-Office, Facturación, Productividad</p>
+
+  <p>Todo mundo habla de chatbots para WhatsApp. Pero el verdadero dolor de las PYMES colombianas no está en la atención al cliente. Está en el <strong>back-office</strong>: facturación, inventario, reportes. Las tareas que nadie ve pero que consumen horas cada día.</p>
+
+  <h2>¿Qué es el back-office y por qué duele tanto?</h2>
+  <p>El back-office es todo lo que pasa detrás del mostrador. No lo ve el cliente, pero si falla, el negocio se cae:</p>
+  <ul>
+    <li>📄 Generar facturas una por una</li>
+    <li>📦 Actualizar inventario en Excel</li>
+    <li>📊 Hacer reportes de ventas manualmente</li>
+    <li>💰 Conciliar pagos y cuentas por cobrar</li>
+    <li>📧 Enviar recordatorios de pago</li>
+  </ul>
+
+  <h2>El costo real del back-office manual</h2>
+  <table>
+    <tr><th>Tarea</th><th>Horas/semana</th><th>Costo mensual</th></tr>
+    <tr><td>Facturación manual</td><td>8h</td><td>$400.000</td></tr>
+    <tr><td>Actualizar inventario</td><td>5h</td><td>$250.000</td></tr>
+    <tr><td>Reportes de ventas</td><td>4h</td><td>$200.000</td></tr>
+    <tr><td>Conciliación de pagos</td><td>3h</td><td>$150.000</td></tr>
+    <tr><td>Recordatorios de cobro</td><td>2h</td><td>$100.000</td></tr>
+    <tr><td><strong>Total</strong></td><td class="green">22h/sem</td><td class="green">$1.100.000/mes</td></tr>
+  </table>
+
+  <h2>¿Qué puede automatizar un agente de IA en back-office?</h2>
+
+  <div class="highlight">
+    <h3>🧾 Facturación automática</h3>
+    <p>El agente genera facturas desde tu sistema, las envía por WhatsApp o email, y registra los pagos. Sin tocar Excel. Sin errores humanos. Sin olvidos.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>📦 Inventario en tiempo real</h3>
+    <p>Cada venta actualiza el inventario automáticamente. El agente te alerta cuando un producto está por agotarse. Sabes exactamente qué tienes, sin contar cajas.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>📊 Reportes que se hacen solos</h3>
+    <p>Ventas del día, del mes, por producto, por vendedor. El agente genera los reportes y te los envía a tu WhatsApp cada mañana. Tú solo lees y decides.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>💰 Cobranza sin perseguir a nadie</h3>
+    <p>El agente envía recordatorios de pago automáticos por WhatsApp. Cuando el cliente paga, se registra solo. Cuando no, te avisa para que intervengas. Sin llamadas incómodas.</p>
+  </div>
+
+  <h2>¿Necesitas cambiar todo tu sistema?</h2>
+  <p><strong>No.</strong> Los agentes de IA se integran con lo que ya usas: Excel, Google Sheets, tu CRM, tu sistema POS. No tienes que migrar nada. El agente aprende a trabajar con tus herramientas actuales.</p>
+
+  <h2>¿Cuánto cuesta automatizar el back-office?</h2>
+  <p>Una automatización de back-office con 2-3 procesos internos empieza en <strong>$4.000.000 COP</strong>. Incluye desarrollo, integración con tus sistemas, capacitación al equipo y 60 días de soporte.</p>
+  <p>Con un ahorro mensual de $1.100.000 COP, la inversión se recupera en <strong>menos de 4 meses</strong>.</p>
+
+  <h2>El caso real de una distribuidora en Barranquilla</h2>
+  <p>Una distribuidora de insumos con 15 empleados automatizó facturación e inventario con AxelIA. En 3 meses:</p>
+  <ul>
+    <li>⏱️ 22 horas semanales liberadas</li>
+    <li>📉 90% menos errores en facturación</li>
+    <li>📈 15% más ventas (por seguimiento automático de cotizaciones)</li>
+    <li>😊 El equipo dejó de hacer trabajo mecánico</li>
+  </ul>
+
+  <p>La automatización del back-office no es un lujo. Es la diferencia entre trabajar <strong>en</strong> tu negocio y trabajar <strong>para</strong> tu negocio.</p>
+
+  <a href="/calculadora.html" class="btn">📊 Calcular cuánto ahorra tu back-office</a>
+
+  <p style="margin-top:3rem; text-align:center;">———</p>
+  <p style="text-align:center;">¿Listo para liberar a tu equipo del Excel? <a href="https://wa.me/573042860980" style="color:var(--accent2);">Agenda tu diagnóstico gratuito</a></p>
+</div>
+<footer>© 2026 AxelIA — axelia.tech</footer>
+</body>
+</html>
