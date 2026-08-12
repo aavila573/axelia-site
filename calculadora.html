@@ -186,8 +186,13 @@
     </div>
 
     <div class="cta-bar">
-      <p>Agendá un diagnóstico gratuito y te decimos exactamente qué procesos automatizar.</p>
-      <a class="btn" id="whatsappBtn" href="https://wa.me/573042860980?text=Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro" target="_blank">📱 Hablar por WhatsApp</a>
+      <p>¿Quieres que te enviemos estos resultados con una propuesta personalizada? Déjanos tu WhatsApp y te contactamos gratis.</p>
+      <div class="lead-form">
+        <input type="text" id="leadName" placeholder="Tu nombre" style="padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:0.5rem;width:100%;max-width:300px;font-family:'Inter',sans-serif;">
+        <input type="text" id="leadContact" placeholder="WhatsApp o Email" style="padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:0.5rem;width:100%;max-width:300px;font-family:'Inter',sans-serif;">
+        <a class="btn" id="leadBtn" href="#" onclick="captureLead()" style="display:inline-block;">📩 Enviarme los resultados</a>
+      </div>
+      <p style="margin-top:1rem;font-size:0.85rem;">O si prefieres hablar ya → <a class="btn" id="whatsappBtn" href="https://wa.me/573042860980?text=Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro" target="_blank">📱 Hablar por WhatsApp</a></p>
     </div>
   </div>
 
@@ -263,6 +268,20 @@ document.querySelectorAll('.toggle').forEach(t => {
 });
 
 update();
+  function captureLead() {
+    const name = document.getElementById('leadName').value.trim();
+    const contact = document.getElementById('leadContact').value.trim();
+    if (!contact) { alert('Por favor ingresa tu WhatsApp o email'); return false; }
+    const ahorro = document.getElementById('ahorroAnual').textContent;
+    const leadBtn = document.getElementById('leadBtn');
+    leadBtn.textContent = '✅ ¡Enviado!';
+    leadBtn.style.background = 'var(--green)';
+    const msg = `Nuevo lead de calculadora | Nombre: ${name || 'No dado'} | Contacto: ${contact} | Ahorro: ${ahorro}`;
+    const wa = `https://wa.me/573042860980?text=${encodeURIComponent(msg)}`;
+    window.open(wa, '_blank');
+    gtag && gtag('event', 'lead_calculadora');
+    return false;
+  }
 </script>
 </body>
 </html>

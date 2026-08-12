@@ -6,6 +6,31 @@
 <title>AxelIA — Automatización con Agentes de IA para PYMES en Colombia</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="favicon.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+  
+  // Event tracking
+  document.addEventListener('DOMContentLoaded', function() {
+    // WhatsApp clicks
+    document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+      el.addEventListener('click', () => gtag('event', 'click_whatsapp'));
+    });
+    // CTA clicks
+    document.querySelectorAll('a[href="#contacto"]').forEach(el => {
+      el.addEventListener('click', () => gtag('event', 'click_diagnostico'));
+    });
+    // Calculadora link
+    document.querySelectorAll('a[href*="calculadora"]').forEach(el => {
+      el.addEventListener('click', () => gtag('event', 'click_calculadora'));
+    });
+  });
+</script>
 <meta name="google-site-verification" content="sgx74AKd5EXMI-K7cX00E8XuUC6kCh_x65t5p-lLA_I" />
 <meta name="description" content="Automatiza tu PYME con agentes de IA. Atención al cliente 24/7, cotizaciones al instante, reportes automáticos. Precios en COP. Diagnóstico gratuito. Barranquilla, Colombia.">
 <meta name="keywords" content="automatización PYME, agentes IA, WhatsApp Business, chatbot inteligente, atención al cliente 24/7, Barranquilla, Colombia">
