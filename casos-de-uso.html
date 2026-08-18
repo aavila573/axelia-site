@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casos de Uso: Automatización con IA por Industria | AxelIA</title>
-<meta name="description" content="Descubre cómo la automatización con agentes de IA transforma ferreterías, inmobiliarias, restaurantes, comercios y más. Casos ilustrativos por industria.">
+<title>Casos de Uso: Ecosistemas de Agentes IA por Industria | AxelIA</title>
+<meta name="description" content="Descubre cómo un equipo de agentes de IA (ventas, SEO/GEO, contenido, pauta y analítica) transforma ferreterías, inmobiliarias, restaurantes, clínicas, comercios y turismo. Casos por industria.">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="canonical" href="https://axelia.tech/casos-de-uso.html">
 <style>
@@ -18,8 +18,8 @@
   .nav-links a:hover { color:var(--text); }
   .hero { text-align:center; padding:4rem 1.5rem 3rem; }
   .hero h1 { font-size:2.5rem; font-weight:800; background:linear-gradient(135deg,#fff 30%,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:1rem; }
-  .hero p { color:var(--text2); max-width:600px; margin:0 auto; font-size:1.1rem; }
-  .note { background:var(--card); border:1px solid var(--border); padding:0.8rem 1rem; border-radius:8px; font-size:0.85rem; color:var(--text2); max-width:600px; margin:0 auto 2rem; }
+  .hero p { color:var(--text2); max-width:650px; margin:0 auto; font-size:1.1rem; }
+  .note { background:var(--card); border:1px solid var(--border); padding:0.8rem 1rem; border-radius:8px; font-size:0.85rem; color:var(--text2); max-width:650px; margin:0 auto 2rem; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto; padding:2rem 1.5rem 4rem; }
   .case { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem; transition:.2s; }
   .case:hover { border-color:var(--accent); }
@@ -27,6 +27,8 @@
   .case h3 span { font-size:2rem; }
   .case .section { margin:1rem 0; }
   .case .section strong { color:var(--accent2); display:block; margin-bottom:0.3rem; }
+  .case .section li { margin:0.25rem 0 0.25rem 1.2rem; font-size:0.9rem; color:var(--text); list-style:none; }
+  .case .section li::before { content:"→ "; color:var(--green); }
   .case .result { background:rgba(0,210,160,0.08); border-left:3px solid var(--green); padding:1rem; border-radius:0 8px 8px 0; margin-top:1rem; }
   .case .result li { color:var(--green); margin-bottom:0.3rem; font-size:0.9rem; }
   .cta { text-align:center; padding:2rem 1.5rem 5rem; }
@@ -45,8 +47,8 @@
 </nav>
 
 <div class="hero">
-  <h1>Automatización con IA por Industria</h1>
-  <p>Ejemplos ilustrativos de cómo un agente de IA transforma la operación de diferentes tipos de negocio. Estructura: problema real → solución con IA → resultados proyectados.</p>
+  <h1>Tu ecosistema de agentes por industria</h1>
+  <p>Cada rubro recibe su propio <strong>equipo de agentes de IA</strong>: uno atiende y vende, otro posiciona, otro crea contenido, otro pauta. No es un chatbot: es un departamento completo, operado por IA.</p>
   <div class="note" style="margin-top:1.5rem;">⚠️ Los casos son escenarios ilustrativos basados en implementaciones típicas. Resultados reales dependen de cada empresa.</div>
 </div>
 
@@ -54,54 +56,102 @@
   <!-- FERRETERÍA -->
   <div class="case">
     <h3>🔧 Ferretería</h3>
-    <div class="section"><strong>Problema:</strong> Clientes preguntan por disponibilidad y precio de 500+ productos. El vendedor revisa inventario manualmente. Los fines de semana no hay quien responda.</div>
-    <div class="section"><strong>Agente IA:</strong> Conectado al inventario en tiempo real. Responde precios, disponibilidad y ubicación en la tienda. Toma pedidos por WhatsApp.</div>
+    <div class="section"><strong>Problema:</strong> Clientes preguntan por disponibilidad y precio de 500+ productos. El vendedor revisa inventario manualmente y los fines de semana nadie responde. Nadie te encuentra en Google.</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 El vendedor: responde precios y disponibilidad por WhatsApp</li>
+      <li>📡 El de SEO local: te posiciona en Google Maps para "ferretería cerca de mí"</li>
+      <li>🔬 El analista: vigila precios de la competencia y te alerta</li>
+    </div>
     <div class="result"><strong>📊 Proyección:</strong>
-      <li>80% consultas respondidas sin intervención humana</li>
-      <li>Ventas fines de semana: antes 0, ahora activas</li>
-      <li>1 vendedor liberado de tareas repetitivas</li>
+      <li>80% de consultas respondidas sin intervención humana</li>
+      <li>Ventas de fin de semana activas</li>
+      <li>Más clientes que te encuentran en Google</li>
     </div>
   </div>
 
   <!-- INMOBILIARIA -->
   <div class="case">
     <h3>🏠 Inmobiliaria</h3>
-    <div class="section"><strong>Problema:</strong> Agentes reciben 30+ consultas diarias por WhatsApp: "¿sigue disponible?", "¿precio?", "¿puedo visitar?". Responder toma 3-4 horas al día.</div>
-    <div class="section"><strong>Agente IA:</strong> Conectado al catálogo de propiedades. Califica leads automáticamente: ¿presupuesto? ¿zona? ¿urgencia? Agenda visitas solo a leads calificados.</div>
+    <div class="section"><strong>Problema:</strong> 30+ consultas diarias por WhatsApp ("¿sigue disponible?"). Agentes pierden horas con leads no calificados y las propiedades no aparecen en las búsquedas.</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 El calificador: filtra leads por presupuesto, zona y urgencia</li>
+      <li>📡 El de SEO/GEO: posiciona las fichas de propiedades y logra que la IA te recomiende</li>
+      <li>🎬 El de contenido: publica las propiedades en redes con fotos y descripciones</li>
+    </div>
     <div class="result"><strong>📊 Proyección:</strong>
-      <li>Respuesta instantánea 24/7</li>
       <li>Agentes solo hablan con leads calificados</li>
       <li>+30% visitas agendadas</li>
+      <li>Mayor visibilidad en Google y en motores de IA</li>
     </div>
   </div>
 
   <!-- RESTAURANTE -->
   <div class="case">
     <h3>🍽️ Restaurante</h3>
-    <div class="section"><strong>Problema:</strong> WhatsApp explota a la hora del almuerzo. Pedidos, reservas, consultas de menú. El mesero corre entre mesas y el celular. Pedidos se pierden.</div>
-    <div class="section"><strong>Agente IA:</strong> Toma pedidos completos (plato, cantidad, dirección). Confirma automáticamente. Gestiona reservas. Envía menú del día cada mañana.</div>
+    <div class="section"><strong>Problema:</strong> WhatsApp explota a la hora del almuerzo. Pedidos, reservas y consultas de menú se pierden. Las redes están muertas y la pauta de domicilios no rinde.</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 El recepcionista: toma pedidos y reservas 24/7</li>
+      <li>✍️ El de contenido: publica el menú y mantiene las redes activas</li>
+      <li>📣 El de pauta: optimiza tus campañas de domicilios sin quemar plata</li>
+    </div>
     <div class="result"><strong>📊 Proyección:</strong>
       <li>0 pedidos perdidos</li>
-      <li>Meseros enfocados en atención presencial</li>
       <li>+20% pedidos por WhatsApp</li>
+      <li>Pauta de domicilios con mejor retorno</li>
     </div>
   </div>
 
   <!-- COMERCIO MINORISTA -->
   <div class="case">
     <h3>🏪 Comercio minorista</h3>
-    <div class="section"><strong>Problema:</strong> Tienda de ropa/calzado. Clientes preguntan tallas, colores, precios. Empleados responden manualmente. Sin seguimiento post-venta.</div>
-    <div class="section"><strong>Agente IA:</strong> Catálogo completo con fotos y precios. Sugiere productos según consulta del cliente. Envía recordatorio de carrito abandonado. Pide reseña post-compra.</div>
+    <div class="section"><strong>Problema:</strong> Clientes preguntan tallas, colores y precios todo el día. Empleados responden manualmente, no hay seguimiento post-venta ni ofertas que lleguen a tiempo.</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 La vendedora: responde catálogo con fotos y precios al instante</li>
+      <li>🔬 El de seguimiento: recupera carritos abandonados y pide reseñas</li>
+      <li>🎬 El de contenido: publica ofertas y novedades en redes</li>
+    </div>
     <div class="result"><strong>📊 Proyección:</strong>
       <li>+25% recuperación de carritos abandonados</li>
       <li>Respuesta inmediata a consultas de producto</li>
-      <li>Reseñas automáticas → más confianza</li>
+      <li>Redes activas sin esfuerzo del dueño</li>
+    </div>
+  </div>
+
+  <!-- CLÍNICA -->
+  <div class="case">
+    <h3>🏥 Clínica / Consultorio</h3>
+    <div class="section"><strong>Problema:</strong> Llamadas sin contestar, pacientes que no confirman citas, agenda desordenada y nadie encuentra el consultorio en Google cuando busca "médico cerca de mí".</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 La recepcionista: agenda, confirma y reprograma citas por WhatsApp</li>
+      <li>📡 El de SEO local: posiciona el consultorio en Google Maps y reseñas</li>
+      <li>🔬 El de cobranza: recuerda pagos pendientes con tono cordial</li>
+    </div>
+    <div class="result"><strong>📊 Proyección:</strong>
+      <li>Menos inasistencias con recordatorios automáticos</li>
+      <li>+45% citas confirmadas</li>
+      <li>Más pacientes nuevos desde Google</li>
+    </div>
+  </div>
+
+  <!-- TURISMO -->
+  <div class="case">
+    <h3>✈️ Turismo / Agencia</h3>
+    <div class="section"><strong>Problema:</strong> WhatsApp colapsado con turistas que escriben en español, inglés y portugués. Reservas sin confirmar, no-shows y cobros que se atrasan.</div>
+    <div class="section"><strong>El equipo de agentes:</strong>
+      <li>💬 El recepcionista trilingüe: atiende en ES/EN/PT 24/7</li>
+      <li>🔬 El de reservas: confirma, cobra y reduce los no-shows</li>
+      <li>🎬 El de contenido: publica tours y experiencias en redes</li>
+    </div>
+    <div class="result"><strong>📊 Proyección:</strong>
+      <li>Atención inmediata en 3 idiomas</li>
+      <li>Menos reservas perdidas por no-shows</li>
+      <li>Cobros confirmados por adelantado</li>
     </div>
   </div>
 </div>
 
 <div class="cta">
-  <p style="color:var(--text2);margin-bottom:1rem;">¿Tu industria no aparece? Escríbenos. Adaptamos agentes de IA a cualquier sector.</p>
+  <p style="color:var(--text2);margin-bottom:1rem;">¿Tu industria no aparece? Armamos el equipo de agentes a tu medida.</p>
   <a href="https://wa.me/573042860980" class="btn">📱 Consultar por mi industria</a>
   <a href="calculadora.html" class="btn" style="background:transparent;border:1px solid var(--accent);">📊 Calcular ROI</a>
 </div>
