@@ -337,6 +337,7 @@
 <section id="precios">
  <h2 class="section-title">Precios Transparentes</h2>
  <p class="section-sub">Sin "cotice aquí". Lo que ves es lo que pagas. Precios en COP.</p>
+ <p id="tasa-dolar" style="text-align:center;color:var(--text2);font-size:0.75rem;margin-bottom:1.5rem;">Cargando tasa del dólar…</p>
 
  <div class="pricing-grid">
   <!-- Pack Inicio -->
@@ -344,7 +345,7 @@
    <h3>🚀 Pack Inicio</h3>
    <p class="subtitle">1 agente + 1 integración</p>
    <div class="price">$1.500.000 <small>– $2.500.000</small></div>
-   <div class="price-usd">~$375 – $625 USD</div>
+   <div class="price-usd" data-cop-min="1500000" data-cop-max="2500000">~$375 – $625 USD</div>
    <p class="range-info">El precio varía según el nº de integraciones y volumen de consultas.</p>
    <hr class="divider">
    <ul>
@@ -363,7 +364,7 @@
    <h3>⚡ Pack Pro</h3>
    <p class="subtitle">1 agente orquestado + 2-3 integraciones</p>
    <div class="price">$4.000.000 <small>– $7.000.000</small></div>
-   <div class="price-usd">~$1.000 – $1.750 USD</div>
+   <div class="price-usd" data-cop-min="4000000" data-cop-max="7000000">~$1.000 – $1.750 USD</div>
    <p class="range-info">El precio depende del número de integraciones y la complejidad del proceso a automatizar.</p>
    <hr class="divider">
    <ul>
@@ -382,7 +383,7 @@
    <h3>🏢 Pack Empresarial</h3>
    <p class="subtitle">Multi-agente + 5+ integraciones</p>
    <div class="price">$8.000.000 <small>– $12.000.000</small></div>
-   <div class="price-usd">~$2.000 – $3.000 USD</div>
+   <div class="price-usd" data-cop-min="8000000" data-cop-max="12000000">~$2.000 – $3.000 USD</div>
    <p class="range-info">Varía según cantidad de agentes, integraciones y procesos a automatizar.</p>
    <hr class="divider">
    <ul>
@@ -501,7 +502,35 @@
  </div>
  <strong>AxelIA</strong> — Agentes de IA para PYMES Colombianas<br>
  © 2026 AxelIA. Todos los derechos reservados.
-</footer>
+ </footer>
 
-</body>
-</html>
+ <script>
+ // Actualización automática del dólar (COP fijo como fuente de verdad)
+ (function() {
+   function fmt(n) { return Math.round(n).toLocaleString('es-CO'); }
+   function applyRate(rate) {
+     if (!rate || rate <= 0) return;
+     document.querySelectorAll('.price-usd').forEach(function(el) {
+       var min = parseInt(el.getAttribute('data-cop-min'), 10);
+       var max = parseInt(el.getAttribute('data-cop-max'), 10);
+       if (!min || !max) return;
+       el.textContent = '~$' + fmt(min / rate) + ' – $' + fmt(max / rate) + ' USD';
+     });
+     var nota = document.getElementById('tasa-dolar');
+     if (nota) {
+       var hoy = new Date().toLocaleDateString('es-CO', { day: '2-digit', month: 'short', year: 'numeric' });
+       nota.textContent = 'Tasa de referencia: 1 USD ≈ $' + fmt(rate) + ' COP · ' + hoy + ' · el valor en USD se actualiza solo';
+     }
+   }
+   fetch('https://open.er-api.com/v6/latest/USD')
+     .then(function(r) { return r.json(); })
+     .then(function(d) { applyRate(d.rates && d.rates.COP); })
+     .catch(function() {
+       var nota = document.getElementById('tasa-dolar');
+       if (nota) nota.textContent = 'Precios en COP (moneda oficial). El valor en USD es solo de referencia.';
+     });
+ })();
+ </script>
+
+ </body>
+ </html>
