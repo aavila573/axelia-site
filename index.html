@@ -640,9 +640,10 @@
  <h2 class="section-title">¿Listo para contratar tu equipo digital?</h2>
  <p class="section-sub">Déjanos tus datos y te contactamos con un diagnóstico gratuito de 30 minutos. Sin compromiso.</p>
  <div style="max-width:640px; margin:0 auto; text-align:left;">
-  <!-- FORMSPREE: reemplazar FORM_ID_AQUI por el ID real (crear cuenta gratis en formspree.io). Alternativa: endpoint n8n del ecosistema Wynges. -->
-  <form id="lead-form" action="https://formspree.io/f/FORM_ID_AQUI" method="POST" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem;">
-   <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <!-- WEB3FORMS: reemplazar ACCESS_KEY_AQUI por el access key real (web3forms.com -> ingresar email -> recibir key por correo). -->
+  <form id="lead-form" action="https://api.web3forms.com/submit" method="POST" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem;">
+   <input type="hidden" name="access_key" value="ACCESS_KEY_AQUI">
+   <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true">
    <div class="form-group">
     <label for="f-nombre">Nombre *</label>
     <input id="f-nombre" type="text" name="nombre" required placeholder="Tu nombre">
@@ -749,7 +750,7 @@
 </script>
 
  <script>
-// Formulario de captura de leads (AJAX a Formspree)
+// Formulario de captura de leads (AJAX a Web3Forms)
 (function() {
   var form = document.getElementById('lead-form');
   if (!form) return;
@@ -758,8 +759,9 @@
     e.preventDefault();
     var data = new FormData(form);
     fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-      .then(function(r) {
-        if (r.ok) { form.reset(); if (success) success.style.display = 'block'; }
+      .then(function(r) { return r.json().catch(function() { return { success: false }; }); })
+      .then(function(d) {
+        if (d && d.success) { form.reset(); if (success) success.style.display = 'block'; }
         else { alert('Hubo un error. Escríbenos por WhatsApp.'); }
       })
       .catch(function() { alert('Hubo un error de conexión. Escríbenos por WhatsApp.'); });
