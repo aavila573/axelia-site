@@ -37,7 +37,7 @@
 <meta name="author" content="AxelIA">
 <meta property="og:title" content="AxelIA — Agentes de IA para PYMES Colombianas">
 <meta property="og:description" content="Tu equipo de empleados digitales con IA: ventas, SEO/GEO, contenido, redes y pauta. 24/7.">
-<meta property="og:image" content="https://axelia.tech/og-image.jpg">
+<meta property="og:image" content="https://axelia.tech/og-image-1200x630.jpg">
 <meta property="og:image:alt" content="AxelIA - Equipo de empleados digitales con IA para PYMES colombianas">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1080">
@@ -300,6 +300,26 @@
   {"@type":"Question","name":"¿Mis datos están seguros?","acceptedAnswer":{"@type":"Answer","text":"Sí. Trabajamos con medidas de seguridad para proteger tu información y firmamos acuerdos de confidencialidad. Tus datos son tuyos y se quedan tuyos."}},
   {"@type":"Question","name":"¿Qué pasa si algo falla?","acceptedAnswer":{"@type":"Answer","text":"Contamos con cuota de mantenimiento con tiempos de respuesta garantizados. Si algo falla, lo arreglamos, y hacemos revisiones periódicas."}}
  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Service",
+ "name": "Ecosistema de agentes de IA para PYMES",
+ "serviceType": "Equipos de empleados digitales con IA",
+ "provider": {"@type": "ProfessionalService", "name": "AxelIA", "url": "https://axelia.tech/"},
+ "areaServed": {"@type": "Country", "name": "Colombia"},
+ "hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Packs AxelIA",
+  "itemListElement": [
+   {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pack Inicio"}, "priceCurrency": "COP", "price": "1500000", "description": "Agente de ventas y atencion 24/7 con integracion a WhatsApp."},
+   {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pack Pro"}, "priceCurrency": "COP", "price": "4000000", "description": "Equipo completo de agentes: ventas, SEO/GEO, contenido y redes."},
+   {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pack Empresarial"}, "priceCurrency": "COP", "price": "8000000", "description": "Ecosistema de agentes a medida por rubro con analitica y pauta."}
+  ]
+ }
 }
 </script>
 
@@ -706,6 +726,11 @@
     <label for="f-mensaje">¿Qué te gustaría automatizar? (opcional)</label>
     <textarea id="f-mensaje" name="mensaje" rows="3" placeholder="Ej: atención por WhatsApp, aparecer en Google, redes sociales..."></textarea>
    </div>
+   <div class="form-group" style="display:flex; gap:8px; align-items:flex-start;">
+    <input type="checkbox" id="f-datos" name="datos" required style="width:auto; margin-top:4px;">
+    <label for="f-datos" style="margin:0; font-size:0.85rem; color:var(--text2); cursor:pointer;">Autorizo el tratamiento de mis datos personales conforme a la <a href="/privacidad.html" style="color:var(--accent2);">Política de Tratamiento de Datos</a> (Ley 1581 de 2012). *</label>
+   </div>
+
    <button type="submit" class="btn" style="width:100%;">Enviar solicitud</button>
    <div id="form-success" class="form-success">✅ ¡Recibido! Te contactamos en menos de 24 horas.</div>
   </form>
