@@ -194,7 +194,7 @@
         <input type="text" id="leadContact" placeholder="WhatsApp o Email" style="padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:0.5rem;width:100%;max-width:300px;font-family:'Inter',sans-serif;">
         <a class="btn" id="leadBtn" href="#" onclick="captureLead()" style="display:inline-block;">📩 Enviarme los resultados</a>
       </div>
-      <p style="margin-top:1rem;font-size:0.85rem;">O si prefieres hablar ya → <a class="btn" id="whatsappBtn" href="https://wa.me/573024023534?text=Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro" target="_blank">📱 Hablar por WhatsApp</a></p>
+      <p style="margin-top:1rem;font-size:0.85rem;">O si prefieres hablar ya → <a class="btn" id="whatsappBtn" href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro" target="_blank">📱 Hablar por WhatsApp</a></p>
     </div>
   </div>
 
@@ -251,7 +251,7 @@ function calc() {
 
   // Update WhatsApp link
   const msg = `Hola%20AxelIA%2C%20vi%20mi%20estimado%20de%20ahorro%3A%20${fmt(ahorro)}%2Fmes%20con%20${e}%20empleados.%20Quiero%20agendar%20diagn%C3%B3stico.`;
-  document.getElementById('whatsappBtn').href = `https://wa.me/573024023534?text=${msg}`;
+  document.getElementById('whatsappBtn').href = `https://wa.me/573024063534?text=${msg}`;
 
   document.getElementById('results').classList.add('active');
 }
@@ -279,7 +279,7 @@ update();
     leadBtn.textContent = '✅ ¡Enviado!';
     leadBtn.style.background = 'var(--green)';
     const msg = `Nuevo lead de calculadora | Nombre: ${name || 'No dado'} | Contacto: ${contact} | Ahorro: ${ahorro}`;
-    const wa = `https://wa.me/573024023534?text=${encodeURIComponent(msg)}`;
+    const wa = `https://wa.me/573024063534?text=${encodeURIComponent(msg)}`;
     window.open(wa, '_blank');
     gtag && gtag('event', 'lead_calculadora');
     return false;

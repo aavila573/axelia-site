@@ -1,7 +1,7 @@
 // AxelIA Chat — widget de cualificación de leads (demo viva del producto)
 (function () {
   if (document.getElementById('ax-chat-style')) return;
-  var WA = "573024023534";
+  var WA = "573024063534";
   var rubro = null, dolor = null;
 
   var css = [

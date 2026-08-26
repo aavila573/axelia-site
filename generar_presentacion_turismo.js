@@ -104,7 +104,7 @@ s = pres.addSlide();
 s.background = { color: BG };
 s.addText("¿Empezamos con un piloto de 7 días gratis?", { x: 0.8, y: 1.8, w: 8.4, h: 1.2, fontSize: 32, bold: true, color: WHITE, align: "center" });
 s.addText("Montamos el agente de WhatsApp con tus 3 tours más vendidos y ves los resultados en vivo, sin pagar nada.", { x: 0.8, y: 3.0, w: 8.4, h: 0.9, fontSize: 15, color: GRAY, align: "center" });
-s.addText("axelia.tech · WhatsApp +57 302 402 3534", { x: 0.8, y: 4.2, w: 8.4, h: 0.5, fontSize: 14, color: PURPLE2, align: "center" });
+s.addText("axelia.tech · WhatsApp +57 302 406 3534", { x: 0.8, y: 4.2, w: 8.4, h: 0.5, fontSize: 14, color: PURPLE2, align: "center" });
 
 pres.writeFile({ fileName: "C:/Users/alexa/AxelIA_Presentacion_Turismo_v2.pptx" }).then(() => {
   console.log("✅ Presentación corregida: AxelIA_Presentacion_Turismo_v2.pptx");
