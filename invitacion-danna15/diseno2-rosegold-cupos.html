@@ -795,6 +795,7 @@ const EVENT_ID = 'danna-sofia-15';
 const MAX_GUESTS = 2; // 1 principal + 1 acompañante
 
 let companions = [];
+let primaryGuest = { name: '', age: '' };
 
 function openRSVP() {
   companions = [];
@@ -891,6 +892,9 @@ function showReview() {
     if (c.age === '' || c.age < 0 || c.age > 120) { err.textContent = 'Ingresa la edad de todos los acompañantes.'; return; }
   }
 
+  // Save for submitRSVP
+  primaryGuest = { name, age };
+
   const s = rsStyle();
   const form = document.getElementById('rsvpForm');
   const compHtml = companions.length ? companions.map(c => `<div style="font-size:13px;color:#f0e6da;margin-bottom:4px">${c.name} — ${c.age} años</div>`).join('') : '<div style="font-size:12px;color:#8a7a6a">Sin acompañantes</div>';
@@ -915,25 +919,20 @@ function showReview() {
 }
 
 async function submitRSVP() {
-  const name = document.getElementById('rsvpName')?.value?.trim() || document.querySelector('#rsvpForm div:nth-child(5)')?.textContent;
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Enviando...';
   btn.disabled = true;
 
-  const nameEl = document.querySelector('#rsvpForm');
-  const primaryName = nameEl.querySelectorAll('div')[4]?.textContent;
-  const primaryAge = nameEl.querySelectorAll('div')[6]?.textContent?.replace(' años','');
-
-  const allGuests = [{ full_name: primaryName || name, age: +primaryAge || +document.getElementById('rsvpAge')?.value }];
+  const allGuests = [{ full_name: primaryGuest.name, age: +primaryGuest.age || null }];
   companions.forEach(c => { if (c.name?.trim()) allGuests.push({ full_name: c.name.trim(), age: +c.age || null }); });
 
-  const rows = allGuests.map((g, i) => ({
+  const row = {
     event_id: EVENT_ID,
-    full_name: g.full_name,
+    full_name: primaryGuest.name,
     num_guests: allGuests.length,
-    guest_names: allGuests.filter((_,j) => j > 0).map(x => x.full_name),
+    guest_names: companions.filter(c => c.name?.trim()).map(c => c.name.trim()),
     status: 'confirmed'
-  }));
+  };
 
   try {
     const r = await fetch(SUPABASE_URL + '/rest/v1/rsvp_responses', {
@@ -944,7 +943,7 @@ async function submitRSVP() {
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify(rows[0])
+      body: JSON.stringify(row)
     });
     if (r.ok) {
       showSuccess();
