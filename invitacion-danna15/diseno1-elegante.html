@@ -38,11 +38,13 @@ body {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1.2s ease, transform 1.2s ease;
+  pointer-events: none;
 }
 
 .slide.active {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* ── Color Palette: Emerald + Gold ── */
@@ -727,7 +729,7 @@ body {
       <div id="progress" style="background:var(--gold);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
     </div>
   </div>
-  <audio id="bgMusic" preload="auto" autoplay><source src="cancion1.mp3" type="audio/mpeg"></audio>
+  <audio id="bgMusic" preload="auto" autoplay><source src="cancion1.mp3?v=2" type="audio/mpeg"></audio>
 
   <!-- Navigation dots -->
   <div class="nav-dots" id="navDots"></div>

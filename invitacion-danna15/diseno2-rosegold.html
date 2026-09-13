@@ -51,8 +51,9 @@ body {
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 1s ease, transform 1s ease;
+  pointer-events: none;
 }
-.slide.active { opacity: 1; transform: scale(1); }
+.slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
 
 /* ═══ SLIDE 1: Cover ═══ */
 .s1 {
@@ -554,7 +555,7 @@ body {
       <div id="progress" style="background:var(--rose);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
     </div>
   </div>
-  <audio id="bgMusic" preload="auto" autoplay><source src="cancion2.mp3" type="audio/mpeg"></audio>
+  <audio id="bgMusic" preload="auto" autoplay><source src="cancion2.mp3?v=2" type="audio/mpeg"></audio>
 
   <div class="nav-dots" id="dots"></div>
 </div>
