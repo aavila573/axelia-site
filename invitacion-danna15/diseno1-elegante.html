@@ -676,7 +676,7 @@ body {
         Altos de la Metro
       </div>
       <div class="event-time">7:00 PM</div>
-      <a href="https://maps.google.com/?q=Calle+56A+6A-09+Barranquilla" target="_blank" class="location-btn">Ver ubicación</a>
+      <a href="https://maps.app.goo.gl/Cj7ErX4Ej5YgauhFA" target="_blank" class="location-btn">Ver ubicación</a>
     </div>
     <div class="divider" style="background:linear-gradient(90deg,transparent,var(--emerald),transparent);"></div>
     <div class="event-section">
@@ -727,7 +727,7 @@ body {
       <div id="progress" style="background:var(--gold);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
     </div>
   </div>
-  <audio id="bgMusic" preload="auto"><source src="cancion1.mp3" type="audio/mpeg"></audio>
+  <audio id="bgMusic" preload="auto" autoplay><source src="cancion1.mp3" type="audio/mpeg"></audio>
 
   <!-- Navigation dots -->
   <div class="nav-dots" id="navDots"></div>
@@ -806,6 +806,33 @@ const playBtn = document.getElementById('playBtn');
 const audioBar = document.getElementById('audioBar');
 const progressBar = document.getElementById('progress');
 let playing = false;
+
+// Try autoplay on load
+function tryAutoplay() {
+  audio.play().then(() => {
+    playing = true;
+    playBtn.textContent = '❚❚';
+    audioBar.style.display = 'block';
+  }).catch(() => {
+    // Browser blocked autoplay - user must click
+    playing = false;
+  });
+}
+
+// Attempt autoplay after first user interaction
+document.addEventListener('click', function autoStart() {
+  if (!playing) tryAutoplay();
+  document.removeEventListener('click', autoStart);
+}, { once: false });
+
+// Also try on touch
+document.addEventListener('touchstart', function autoStart2() {
+  if (!playing) tryAutoplay();
+  document.removeEventListener('touchstart', autoStart2);
+}, { once: false });
+
+// Direct autoplay attempt
+tryAutoplay();
 
 function togglePlay() {
   if (playing) {

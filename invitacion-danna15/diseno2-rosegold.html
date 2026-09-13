@@ -509,7 +509,7 @@ body {
         Altos de la Metro<br>
         Barranquilla
       </div>
-      <a href="https://maps.google.com/?q=Calle+56A+6A-09+Barranquilla" target="_blank" class="loc-btn">Ver ubicación</a>
+      <a href="https://maps.app.goo.gl/Cj7ErX4Ej5YgauhFA" target="_blank" class="loc-btn">Ver ubicación</a>
     </div>
   </div>
 
@@ -554,7 +554,7 @@ body {
       <div id="progress" style="background:var(--rose);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
     </div>
   </div>
-  <audio id="bgMusic" preload="auto"><source src="cancion2.mp3" type="audio/mpeg"></audio>
+  <audio id="bgMusic" preload="auto" autoplay><source src="cancion2.mp3" type="audio/mpeg"></audio>
 
   <div class="nav-dots" id="dots"></div>
 </div>
@@ -589,6 +589,14 @@ const playBtn = document.getElementById('playBtn');
 const audioBar = document.getElementById('audioBar');
 const progressBar = document.getElementById('progress');
 let playing = false;
+
+function tryAutoplay() {
+  audio.play().then(() => { playing = true; playBtn.textContent = '❚❚'; audioBar.style.display = 'block'; }).catch(() => { playing = false; });
+}
+
+document.addEventListener('click', function aS() { if (!playing) tryAutoplay(); }, { once: true });
+document.addEventListener('touchstart', function aS2() { if (!playing) tryAutoplay(); }, { once: true });
+tryAutoplay();
 
 function togglePlay() {
   if (playing) { audio.pause(); playBtn.textContent = '♫'; audioBar.style.display = 'none'; }
