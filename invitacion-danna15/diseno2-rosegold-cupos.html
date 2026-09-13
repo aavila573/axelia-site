@@ -533,6 +533,15 @@ html, body {
 </head>
 <body>
 
+<!-- Splash: desbloquea audio -->
+<div id="splash" style="position:fixed;inset:0;z-index:9999;background:#1a1410;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity 0.8s;">
+  <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:36px;color:#e4c5a8;letter-spacing:2px;margin-bottom:8px;">Danna Sofía</div>
+  <div style="font-family:'Playfair Display',serif;font-size:72px;color:#c8956c;text-shadow:0 0 40px rgba(200,149,108,0.4);line-height:1;">15</div>
+  <div style="width:80px;height:1px;background:linear-gradient(90deg,transparent,#c8956c,transparent);margin:24px auto;"></div>
+  <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:5px;color:#e4c5a8;text-transform:uppercase;animation:pulse 2s infinite;">Toca para abrir</div>
+  <style>@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}</style>
+</div>
+
 <div class="inv" id="inv">
 
   <!-- S1: Cover -->
@@ -715,19 +724,26 @@ const audio = document.getElementById('bgMusic');
 const playBtn = document.getElementById('playBtn');
 const audioBar = document.getElementById('audioBar');
 const progressBar = document.getElementById('progress');
+const splash = document.getElementById('splash');
 let playing = false;
 
-function tryAutoplay() {
+function startAudio() {
   audio.play().then(() => {
     playing = true;
     playBtn.textContent = '❚❚';
     audioBar.style.display = 'block';
-  }).catch(() => { playing = false; });
+  }).catch(() => {});
 }
 
-document.addEventListener('click', function a() { if (!playing) tryAutoplay(); }, { once: true });
-document.addEventListener('touchstart', function a2() { if (!playing) tryAutoplay(); }, { once: true });
-tryAutoplay();
+// Splash click → hide splash + start audio
+function openInvitation() {
+  splash.style.opacity = '0';
+  setTimeout(() => splash.style.display = 'none', 800);
+  startAudio();
+}
+
+splash.addEventListener('click', openInvitation);
+splash.addEventListener('touchstart', openInvitation, { passive: true });
 
 function togglePlay() {
   if (playing) {
