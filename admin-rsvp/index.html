@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin RSVP – XV Danna Sofía</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a1a2e;color:#e0e0e0;min-height:100vh}
+.header{background:linear-gradient(135deg,#b76e79,#d4a574);padding:20px 30px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-family:Georgia,serif;font-size:22px;color:#fff}
+.header .stats{font-size:13px;color:#fff;opacity:.85}
+.container{max-width:900px;margin:30px auto;padding:0 20px}
+.controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.controls input,.controls select,.controls button{padding:8px 14px;border-radius:6px;border:1px solid #333;background:#16213e;color:#e0e0e0;font-size:13px}
+.controls button{background:#b76e79;border:none;color:#fff;cursor:pointer;font-weight:600}
+.controls button:hover{background:#d4a574}
+table{width:100%;border-collapse:collapse;background:#16213e;border-radius:8px;overflow:hidden}
+th{background:#0f3460;padding:10px 12px;text-align:left;font-size:12px;letter-spacing:.5px;color:#d4a574;text-transform:uppercase}
+td{padding:10px 12px;border-top:1px solid #1a1a2e;font-size:13px}
+tr:hover td{background:#1a2744}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-confirmed{background:#2d6a4f;color:#b7e4c7}
+.badge-cancelled{background:#9b2226;color:#f4a261}
+.empty{text-align:center;padding:40px;color:#666;font-size:14px}
+.loading{text-align:center;padding:40px;color:#888}
+.export{font-size:12px}
+@media(max-width:600px){.header{flex-direction:column;gap:8px;text-align:center}table{font-size:11px}th,td{padding:6px 8px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Admin RSVP – XV Danna Sofía</h1>
+  <div class="stats" id="stats">Cargando...</div>
+</div>
+<div class="container">
+  <div class="controls">
+    <select id="eventFilter" onchange="loadData()">
+      <option value="danna-sofia-15">XV Danna Sofía</option>
+    </select>
+    <select id="statusFilter" onchange="loadData()">
+      <option value="">Todos</option>
+      <option value="confirmed">Confirmados</option>
+      <option value="cancelled">Cancelados</option>
+    </select>
+    <input type="text" id="searchName" placeholder="Buscar nombre..." oninput="renderTable()">
+    <button onclick="loadData()">↻ Actualizar</button>
+    <button class="export" onclick="exportCSV()">📥 Exportar CSV</button>
+  </div>
+  <div id="tableWrap" class="loading">Cargando datos...</div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://hdlktcmhtcqldlmiyzwr.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkbGt0Y21odGNxbGRsbWl5endyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMjUzNTgsImV4cCI6MjEwNDkwMTM1OH0.kjHEfh-IPiI8HKiOVYt04G6MglLi8cz8o8chbxWLJWE';
+
+let allData = [];
+
+const headers = {
+  'apikey': SUPABASE_ANON_KEY,
+  'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+};
+
+async function loadData() {
+  const eventId = document.getElementById('eventFilter').value;
+  const statusFilter = document.getElementById('statusFilter').value;
+  document.getElementById('tableWrap').innerHTML = '<div class="loading">Cargando datos...</div>';
+
+  try {
+    let url = SUPABASE_URL + '/rest/v1/rsvp_responses?select=*&event_id=eq.' + eventId + '&order=created_at.desc';
+    if (statusFilter) url += '&status=eq.' + statusFilter;
+
+    const r = await fetch(url, { headers });
+    if (!r.ok) throw new Error('API error ' + r.status);
+    allData = await r.json();
+    renderTable();
+    updateStats();
+  } catch(e) {
+    document.getElementById('tableWrap').innerHTML = '<div class="empty">Error al cargar: ' + e.message + '</div>';
+  }
+}
+
+function updateStats() {
+  const confirmed = allData.filter(d => d.status === 'confirmed');
+  const totalGuests = confirmed.reduce((sum, d) => sum + (d.num_guests || 1), 0);
+  document.getElementById('stats').textContent =
+    `${allData.length} registros · ${confirmed.length} confirmados · ${totalGuests} personas totales`;
+}
+
+function renderTable() {
+  const search = (document.getElementById('searchName').value || '').toLowerCase();
+  const filtered = search
+    ? allData.filter(d => d.full_name.toLowerCase().includes(search) || (d.guest_names||[]).some(n => n.toLowerCase().includes(search)))
+    : allData;
+
+  if (!filtered.length) {
+    document.getElementById('tableWrap').innerHTML = '<div class="empty">Sin registros</div>';
+    return;
+  }
+
+  let html = '<table><thead><tr>' +
+    '<th>#</th><th>Nombre</th><th>Acompañantes</th><th>Total</th><th>Estado</th><th>Fecha</th>' +
+    '</tr></thead><tbody>';
+
+  filtered.forEach((d, i) => {
+    const guests = (d.guest_names || []).join(', ') || '—';
+    const badge = d.status === 'confirmed'
+      ? '<span class="badge badge-confirmed">Confirmado</span>'
+      : '<span class="badge badge-cancelled">Cancelado</span>';
+    const date = new Date(d.created_at).toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    html += `<tr>
+      <td>${i+1}</td>
+      <td><strong>${esc(d.full_name)}</strong></td>
+      <td>${esc(guests)}</td>
+      <td>${d.num_guests || 1}</td>
+      <td>${badge}</td>
+      <td>${date}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('tableWrap').innerHTML = html;
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function exportCSV() {
+  if (!allData.length) return;
+  const rows = [['#','Nombre','Acompañantes','Total personas','Estado','Teléfono','Email','Mensaje','Fecha']];
+  allData.forEach((d, i) => {
+    rows.push([
+      i+1,
+      d.full_name,
+      (d.guest_names||[]).join('; '),
+      d.num_guests||1,
+      d.status,
+      d.phone||'',
+      d.email||'',
+      d.message||'',
+      new Date(d.created_at).toISOString()
+    ]);
+  });
+  const csv = rows.map(r => r.map(c => '"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob = new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rsvp-danna15-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+loadData();
+</script>
+</body>
+</html>
