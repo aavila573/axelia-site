@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV - Danna Sofía - Diseño 3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Raleway:wght@300;400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #050505;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Raleway', sans-serif;
+}
+
+.inv {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 100px rgba(185, 155, 110, 0.15);
+}
+
+:root {
+  --gold: #b99b6e;
+  --gold-light: #d4bc96;
+  --gold-bright: #e2cc9e;
+  --black: #0a0a0a;
+  --charcoal: #1a1a1a;
+  --cream: #f5f0e8;
+  --warm: #f0e6d6;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 30px;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.slide.active { opacity: 1; }
+
+/* ── SLIDE 1: Dark cinematic cover ── */
+.c1 {
+  background: var(--black);
+}
+
+.c1 .vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 30%, var(--black) 80%);
+  z-index: 2;
+}
+
+.c1 .bg-photo {
+  position: absolute;
+  inset: 0;
+  background: url('Foto-Principal.jpeg') center/cover no-repeat;
+  opacity: 0.35;
+  filter: saturate(0.7);
+}
+
+.c1 .content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.c1 .pre {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 10px;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.c1 .name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 56px;
+  color: var(--gold-bright);
+  text-shadow: 0 0 60px rgba(185, 155, 110, 0.3);
+  margin: 10px 0;
+  opacity: 0;
+  animation: fadeUp 1.2s 1s forwards;
+}
+
+.c1 .xv-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
+  opacity: 0;
+  animation: fadeUp 1s 1.5s forwards;
+}
+
+.c1 .xv-line .num {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.c1 .xv-line .line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.c1 .xv-line .line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.c1 .surname {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 8px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.8s forwards;
+}
+
+.c1 .date-pre {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-top: 25px;
+  opacity: 0;
+  animation: fadeUp 0.8s 2.2s forwards;
+}
+
+/* ── SLIDE 2: Parents ── */
+.c2 {
+  background: var(--charcoal);
+}
+
+.c2 .inner-border {
+  position: absolute;
+  top: 20px; left: 20px; right: 20px; bottom: 20px;
+  border: 1px solid rgba(185, 155, 110, 0.15);
+  border-radius: 12px;
+}
+
+.c2 .heading {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.c2 .pname {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 36px;
+  color: var(--gold-bright);
+}
+
+.c2 .sep {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+  margin: 8px 0;
+  opacity: 0.7;
+}
+
+.c2 .msg {
+  margin-top: 30px;
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.9;
+  max-width: 260px;
+  opacity: 0.8;
+}
+
+/* ── SLIDE 3: Date ── */
+.c3 {
+  background: linear-gradient(180deg, var(--charcoal) 0%, var(--black) 100%);
+}
+
+.c3 .date-card {
+  text-align: center;
+}
+
+.c3 .month {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 10px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.c3 .day-num {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 120px;
+  font-weight: 700;
+  color: var(--gold-bright);
+  text-shadow: 0 0 60px rgba(185, 155, 110, 0.2);
+  line-height: 1;
+}
+
+.c3 .day-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 8px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.c3 .time-ring {
+  width: 100px;
+  height: 100px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.c3 .time-ring::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(185, 155, 110, 0.2);
+  border-radius: 50%;
+}
+
+.c3 .time-text {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 18px;
+  color: var(--gold-bright);
+  letter-spacing: 2px;
+}
+
+.c3 .music {
+  margin-top: 25px;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 18px;
+  color: var(--gold-light);
+  opacity: 0.8;
+}
+
+/* ── SLIDE 4: Location ── */
+.c4 {
+  background: var(--warm);
+}
+
+.c4 .loc-frame {
+  background: white;
+  padding: 30px;
+  border-radius: 2px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+  text-align: center;
+  width: 280px;
+  position: relative;
+}
+
+.c4 .loc-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(185, 155, 110, 0.2);
+}
+
+.c4 .l-icon { font-size: 32px; margin-bottom: 15px; }
+
+.c4 .l-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: #6b5b45;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.c4 .l-addr {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 15px;
+  color: #3d2e22;
+  line-height: 1.7;
+}
+
+.c4 .l-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 28px;
+  background: #6b5b45;
+  color: var(--cream);
+  border-radius: 2px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ── SLIDE 5: Dress + Gifts ── */
+.c5 {
+  background: var(--charcoal);
+}
+
+.c5 .section {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.c5 .s-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.c5 .s-icon { font-size: 28px; margin-bottom: 8px; }
+
+.c5 .s-big {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 34px;
+  color: var(--gold-bright);
+}
+
+.c5 .s-text {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--cream);
+  line-height: 1.8;
+  max-width: 260px;
+  opacity: 0.8;
+}
+
+.c5 .thin-line {
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.3;
+  margin: 20px 0;
+}
+
+/* ── SLIDE 6: RSVP ── */
+.c6 {
+  background: var(--black);
+}
+
+.c6 .rsvp-frame {
+  width: 240px;
+  height: 240px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.c6 .rsvp-frame::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(185, 155, 110, 0.15);
+  border-radius: 50%;
+}
+
+.c6 .rsvp-frame::after {
+  content: '';
+  position: absolute;
+  inset: -24px;
+  border: 1px solid rgba(185, 155, 110, 0.06);
+  border-radius: 50%;
+}
+
+.c6 .rsvp-main {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 30px;
+  color: var(--gold-bright);
+}
+
+.c6 .rsvp-msg {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 260px;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.c6 .rsvp-dl {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.c6 .rsvp-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid var(--gold);
+  color: var(--gold-bright);
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.c6 .rsvp-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ═══ Animations & Nav ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.ndot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.ndot.on {
+  background: var(--gold);
+}
+</style>
+</head>
+<body>
+
+<div class="inv" id="inv">
+  <!-- 1: Cover -->
+  <div class="slide c1 active">
+    <div class="bg-photo"></div>
+    <div class="vignette"></div>
+    <div class="content">
+      <div class="pre">Mis Quince Años</div>
+      <div class="name">Danna Sofía</div>
+      <div class="xv-line">
+        <div class="line"></div>
+        <div class="num">15</div>
+        <div class="line"></div>
+      </div>
+      <div class="surname">Miranda Salcedo</div>
+      <div class="date-pre">17 · 10 · 2026</div>
+    </div>
+  </div>
+
+  <!-- 2: Parents -->
+  <div class="slide c2">
+    <div class="inner-border"></div>
+    <div class="heading">En compañía de mis padres</div>
+    <div class="pname">Freen Miranda</div>
+    <div class="sep">&</div>
+    <div class="pname">Maira Salcedo</div>
+    <div class="msg">
+      Me haría mucha ilusión que me acompañes a celebrar mis XV años. Tu presencia hará que esta noche sea aún más inolvidable.
+    </div>
+  </div>
+
+  <!-- 3: Date -->
+  <div class="slide c3">
+    <div class="date-card">
+      <div class="month">Octubre</div>
+      <div class="day-num">17</div>
+      <div class="day-label">Sábado · 2026</div>
+    </div>
+    <div class="time-ring">
+      <div class="time-text">7 PM</div>
+    </div>
+    <div class="music">🎵 Dale play a tu canción favorita</div>
+  </div>
+
+  <!-- 4: Location -->
+  <div class="slide c4">
+    <div class="loc-frame">
+      <div class="l-icon">🎉</div>
+      <div class="l-title">La Fiesta</div>
+      <div class="l-addr">
+        Calle 56A #6A-09<br>
+        Altos de la Metro<br>
+        Barranquilla
+      </div>
+      <a href="https://maps.google.com/?q=Calle+56A+6A-09+Barranquilla" target="_blank" class="l-btn">Ver ubicación</a>
+    </div>
+  </div>
+
+  <!-- 5: Dress + Gifts -->
+  <div class="slide c5">
+    <div class="section">
+      <div class="s-label">Código de vestimenta</div>
+      <div class="s-icon">👗✨</div>
+      <div class="s-big">Noche Blanca</div>
+    </div>
+    <div class="thin-line"></div>
+    <div class="section">
+      <div class="s-label">Regalos</div>
+      <div class="s-text">
+        Tu presencia es nuestro mejor regalo.<br><br>
+        Si deseas tener un detalle con nosotros, agradeceremos tu aporte en <strong>lluvia de sobres</strong>.<br><br>
+        Quienes deseen adicionar un obsequio, pueden hacerlo libremente.
+      </div>
+      <div style="margin-top:10px;font-size:20px;">🤍</div>
+    </div>
+  </div>
+
+  <!-- 6: RSVP -->
+  <div class="slide c6">
+    <div class="rsvp-frame">
+      <div class="rsvp-main">Confirma</div>
+    </div>
+    <div class="rsvp-msg">
+      ¡Quiero compartir este momento tan esperado contigo!<br>
+      Por favor confirma tu asistencia
+    </div>
+    <div class="rsvp-dl">Hasta el 10 de octubre</div>
+    <a href="#" class="rsvp-btn">💬 Confirmar asistencia</a>
+  </div>
+
+  <!-- Audio Player -->
+  <div style="position:absolute; top:12px; right:12px; z-index:200;">
+    <button id="playBtn" onclick="togglePlay()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(10,10,10,0.7);color:var(--gold-bright);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">♫</button>
+  </div>
+  <div id="audioBar" style="position:absolute;bottom:40px;left:20px;right:20px;z-index:200;display:none;">
+    <div style="font-family:'Pinyon Script',cursive;font-size:14px;color:var(--gold-bright);text-align:center;margin-bottom:4px;">Mi Niña Hermosa - Vals Madre e Hija</div>
+    <div style="background:rgba(255,255,255,0.08);border-radius:4px;height:4px;overflow:hidden;">
+      <div id="progress" style="background:var(--gold);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <audio id="bgMusic" preload="auto"><source src="cancion3.mp3" type="audio/mpeg"></audio>
+
+  <div class="nav" id="nav"></div>
+</div>
+
+<script>
+const S = document.querySelectorAll('.slide');
+const N = document.getElementById('nav');
+let c = 0, t;
+
+S.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'ndot' + (i === 0 ? ' on' : '');
+  d.onclick = () => go(i);
+  N.appendChild(d);
+});
+
+function go(i) {
+  S[c].classList.remove('active');
+  N.children[c].classList.remove('on');
+  c = i;
+  S[c].classList.add('active');
+  N.children[c].classList.add('on');
+  clearInterval(t);
+  t = setInterval(() => go((c + 1) % S.length), 5500);
+}
+
+t = setInterval(() => go((c + 1) % S.length), 5500);
+
+// Audio player
+const audio = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+const audioBar = document.getElementById('audioBar');
+const progressBar = document.getElementById('progress');
+let playing = false;
+
+function togglePlay() {
+  if (playing) { audio.pause(); playBtn.textContent = '♫'; audioBar.style.display = 'none'; }
+  else { audio.play().catch(()=>{}); playBtn.textContent = '❚❚'; audioBar.style.display = 'block'; }
+  playing = !playing;
+}
+
+audio.addEventListener('timeupdate', () => { if (audio.duration) progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%'; });
+audio.addEventListener('ended', () => { playing = false; playBtn.textContent = '♫'; audioBar.style.display = 'none'; });
+
+let sx = 0;
+const el = document.getElementById('inv');
+el.addEventListener('touchstart', e => sx = e.touches[0].clientX);
+el.addEventListener('touchend', e => {
+  const d = sx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 50) d > 0 ? go((c+1)%S.length) : go((c-1+S.length)%S.length);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go((c+1)%S.length);
+  if (e.key === 'ArrowLeft') go((c-1+S.length)%S.length);
+});
+</script>
+</body>
+</html>

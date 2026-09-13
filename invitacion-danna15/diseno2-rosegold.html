@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV - Danna Sofía - Diseño 2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0d0d0d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.invitation {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 0 80px rgba(200, 149, 108, 0.25);
+}
+
+/* ── Palette: Blush + Rose Gold + Emerald accent ── */
+:root {
+  --rose: #c8956c;
+  --rose-light: #e4c5a8;
+  --rose-dark: #a67448;
+  --blush: #f8ede4;
+  --blush-dark: #e8d5c4;
+  --emerald-accent: #1a6b4a;
+  --ivory: #fdfaf6;
+  --text: #3d2e22;
+  --text-light: #fdfaf6;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.slide.active { opacity: 1; transform: scale(1); }
+
+/* ═══ SLIDE 1: Cover ═══ */
+.s1 {
+  background: url('Foto-Principal.jpeg') center/cover no-repeat;
+}
+.s1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(61,46,34,0.7) 0%, rgba(61,46,34,0.3) 40%, rgba(61,46,34,0.8) 100%);
+}
+
+.s1-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.s1 .tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  color: var(--rose-light);
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.s1 .big-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 58px;
+  color: var(--rose-light);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  line-height: 1.1;
+  opacity: 0;
+  animation: fadeUp 1s 0.8s forwards;
+}
+
+.s1 .xv-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--rose);
+  text-shadow: 0 0 40px rgba(200, 149, 108, 0.6);
+  margin: 10px 0;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+.s1 .date-line {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: var(--rose-light);
+  opacity: 0;
+  animation: fadeUp 0.8s 1.6s forwards;
+}
+
+.s1 .ornament {
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  margin: 20px auto;
+  opacity: 0;
+  animation: fadeUp 0.8s 1s forwards;
+}
+
+/* ═══ SLIDE 2: Parents + Message ═══ */
+.s2 {
+  background: var(--ivory);
+}
+
+.s2 .corner-ornament {
+  position: absolute;
+  top: 25px; left: 25px; right: 25px; bottom: 25px;
+  border: 1px solid var(--rose-light);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.s2 .corner-ornament::before,
+.s2 .corner-ornament::after {
+  content: '✦';
+  position: absolute;
+  color: var(--rose);
+  font-size: 14px;
+}
+.s2 .corner-ornament::before { top: -8px; left: 50%; transform: translateX(-50%); }
+.s2 .corner-ornament::after { bottom: -8px; left: 50%; transform: translateX(-50%); }
+
+.s2 .heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.s2 .parent-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 32px;
+  color: var(--text);
+}
+
+.s2 .ampersand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--rose);
+  margin: 5px 0;
+}
+
+.s2 .message-box {
+  margin-top: 25px;
+  padding: 20px;
+  background: var(--blush-dark);
+  border-radius: 12px;
+  max-width: 280px;
+}
+
+.s2 .message-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ═══ SLIDE 3: Calendar ═══ */
+.s3 {
+  background: linear-gradient(135deg, var(--blush) 0%, var(--ivory) 100%);
+}
+
+.s3 .calendar-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  width: 290px;
+}
+
+.s3 .cal-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--rose-dark);
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.s3 .cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+}
+
+.s3 .cal-dh {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  color: var(--rose);
+  letter-spacing: 1px;
+  padding: 4px 0;
+}
+
+.s3 .cal-d {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  color: #999;
+  padding: 5px 0;
+  border-radius: 50%;
+  width: 28px;
+  margin: 0 auto;
+}
+
+.s3 .cal-d.hl {
+  background: var(--rose);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 3px 12px rgba(200, 149, 108, 0.4);
+}
+
+.s3 .time-badge {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 25px;
+  background: var(--rose);
+  color: white;
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.s3 .music-note {
+  margin-top: 20px;
+  font-family: 'Alex Brush', cursive;
+  font-size: 18px;
+  color: var(--rose-dark);
+}
+
+/* ═══ SLIDE 4: Location ═══ */
+.s4 {
+  background: var(--ivory);
+}
+
+.s4 .polaroid {
+  width: 140px;
+  padding: 8px 8px 30px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transform: rotate(-5deg);
+  margin-bottom: 20px;
+}
+
+.s4 .polaroid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.s4 .loc-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  width: 290px;
+  text-align: center;
+}
+
+.s4 .loc-icon { font-size: 36px; margin-bottom: 10px; }
+
+.s4 .loc-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.s4 .loc-addr {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.s4 .loc-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 24px;
+  background: var(--rose);
+  color: white;
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ═══ SLIDE 5: Dress + Gifts ═══ */
+.s5 {
+  background: linear-gradient(180deg, var(--blush) 0%, white 50%, var(--blush) 100%);
+}
+
+.s5 .card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.05);
+  width: 280px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.s5 .card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.s5 .card-icon { font-size: 32px; margin-bottom: 8px; }
+
+.s5 .card-big {
+  font-family: 'Alex Brush', cursive;
+  font-size: 32px;
+  color: var(--text);
+}
+
+.s5 .card-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ═══ SLIDE 6: RSVP ═══ */
+.s6 {
+  background: linear-gradient(180deg, #3d2e22 0%, #2a1f17 100%);
+}
+
+.s6 .rsvp-circle {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--rose);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.s6 .rsvp-circle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(200, 149, 108, 0.3);
+  border-radius: 50%;
+}
+
+.s6 .rsvp-label {
+  font-family: 'Alex Brush', cursive;
+  font-size: 28px;
+  color: var(--rose-light);
+}
+
+.s6 .rsvp-sub {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--rose-light);
+  opacity: 0.8;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 260px;
+  margin-bottom: 15px;
+}
+
+.s6 .rsvp-deadline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.s6 .rsvp-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1.5px solid var(--rose);
+  color: var(--rose-light);
+  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ═══ Shared ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-dots {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(200,149,108,0.3);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.nav-dot.active {
+  background: var(--rose);
+  transform: scale(1.4);
+}
+</style>
+</head>
+<body>
+
+<div class="invitation" id="inv">
+  <!-- S1: Cover -->
+  <div class="slide s1 active">
+    <div class="s1-content">
+      <div class="tag">Mis Quince Años</div>
+      <div class="ornament"></div>
+      <div class="big-name">Danna Sofía</div>
+      <div class="xv-num">15</div>
+      <div class="ornament"></div>
+      <div class="date-line">17 · 10 · 2026</div>
+    </div>
+  </div>
+
+  <!-- S2: Parents + Message -->
+  <div class="slide s2">
+    <div class="corner-ornament"></div>
+    <div class="heading">En compañía de mis padres</div>
+    <div class="parent-name">Freen Miranda</div>
+    <div class="ampersand">&</div>
+    <div class="parent-name">Maira Salcedo</div>
+    <div class="message-box">
+      <div class="message-text">
+        Me haría mucha ilusión que me acompañes a celebrar mis XV años. Tu presencia hará que esta noche sea aún más inolvidable.
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: Calendar -->
+  <div class="slide s3">
+    <div class="calendar-card">
+      <div class="cal-header">Octubre 2026</div>
+      <div class="cal-grid">
+        <div class="cal-dh">D</div><div class="cal-dh">L</div><div class="cal-dh">M</div><div class="cal-dh">M</div><div class="cal-dh">J</div><div class="cal-dh">V</div><div class="cal-dh">S</div>
+        <div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d">1</div><div class="cal-d">2</div><div class="cal-d">3</div>
+        <div class="cal-d">4</div><div class="cal-d">5</div><div class="cal-d">6</div><div class="cal-d">7</div><div class="cal-d">8</div><div class="cal-d">9</div><div class="cal-d">10</div>
+        <div class="cal-d">11</div><div class="cal-d">12</div><div class="cal-d">13</div><div class="cal-d">14</div><div class="cal-d">15</div><div class="cal-d">16</div><div class="cal-d hl">17</div>
+        <div class="cal-d">18</div><div class="cal-d">19</div><div class="cal-d">20</div><div class="cal-d">21</div><div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d">24</div>
+        <div class="cal-d">25</div><div class="cal-d">26</div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d">30</div><div class="cal-d">31</div>
+      </div>
+    </div>
+    <div class="time-badge">7:00 PM</div>
+    <div class="music-note">🎵 Dale play a tu canción favorita</div>
+  </div>
+
+  <!-- S4: Location -->
+  <div class="slide s4">
+    <div class="loc-card">
+      <div class="loc-icon">🎉</div>
+      <div class="loc-title">La Fiesta</div>
+      <div class="loc-addr">
+        Calle 56A #6A-09<br>
+        Altos de la Metro<br>
+        Barranquilla
+      </div>
+      <a href="https://maps.google.com/?q=Calle+56A+6A-09+Barranquilla" target="_blank" class="loc-btn">Ver ubicación</a>
+    </div>
+  </div>
+
+  <!-- S5: Dress + Gifts -->
+  <div class="slide s5">
+    <div class="card">
+      <div class="card-title">Código de vestimenta</div>
+      <div class="card-icon">👗✨</div>
+      <div class="card-big">Noche Blanca</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Regalos</div>
+      <div class="card-text">
+        Tu presencia es nuestro mejor regalo.<br><br>
+        Si deseas tener un detalle con nosotros, agradeceremos tu aporte en <strong>lluvia de sobres</strong>.<br><br>
+        Quienes deseen adicionar un obsequio, pueden hacerlo libremente.
+      </div>
+      <div style="margin-top:10px; font-size:24px;">🤍</div>
+    </div>
+  </div>
+
+  <!-- S6: RSVP -->
+  <div class="slide s6">
+    <div class="rsvp-circle">
+      <div class="rsvp-label">RSVP</div>
+    </div>
+    <div class="rsvp-sub">
+      ¡Quiero compartir este momento tan esperado contigo!<br>
+      Por favor confirma tu asistencia
+    </div>
+    <div class="rsvp-deadline">Hasta el 10 de octubre</div>
+    <a href="#" class="rsvp-btn">💬 Confirmar asistencia</a>
+  </div>
+
+  <!-- Audio Player -->
+  <div style="position:absolute; top:12px; right:12px; z-index:200;">
+    <button id="playBtn" onclick="togglePlay()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--rose);background:rgba(61,46,34,0.7);color:var(--rose-light);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">♫</button>
+  </div>
+  <div id="audioBar" style="position:absolute;bottom:40px;left:20px;right:20px;z-index:200;display:none;">
+    <div style="font-family:'Alex Brush',cursive;font-size:13px;color:var(--rose-light);text-align:center;margin-bottom:4px;">De Niña a Mujer</div>
+    <div style="background:rgba(255,255,255,0.1);border-radius:4px;height:4px;overflow:hidden;">
+      <div id="progress" style="background:var(--rose);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <audio id="bgMusic" preload="auto"><source src="cancion2.mp3" type="audio/mpeg"></audio>
+
+  <div class="nav-dots" id="dots"></div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dots = document.getElementById('dots');
+let cur = 0, timer;
+
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => go(i);
+  dots.appendChild(d);
+});
+
+function go(i) {
+  slides[cur].classList.remove('active');
+  dots.children[cur].classList.remove('active');
+  cur = i;
+  slides[cur].classList.add('active');
+  dots.children[cur].classList.add('active');
+  clearInterval(timer);
+  timer = setInterval(() => go((cur + 1) % slides.length), 5000);
+}
+
+timer = setInterval(() => go((cur + 1) % slides.length), 5000);
+
+// Audio player
+const audio = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+const audioBar = document.getElementById('audioBar');
+const progressBar = document.getElementById('progress');
+let playing = false;
+
+function togglePlay() {
+  if (playing) { audio.pause(); playBtn.textContent = '♫'; audioBar.style.display = 'none'; }
+  else { audio.play().catch(()=>{}); playBtn.textContent = '❚❚'; audioBar.style.display = 'block'; }
+  playing = !playing;
+}
+
+audio.addEventListener('timeupdate', () => { if (audio.duration) progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%'; });
+audio.addEventListener('ended', () => { playing = false; playBtn.textContent = '♫'; audioBar.style.display = 'none'; });
+
+let sx = 0;
+const el = document.getElementById('inv');
+el.addEventListener('touchstart', e => sx = e.touches[0].clientX);
+el.addEventListener('touchend', e => {
+  const d = sx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 50) d > 0 ? go((cur+1)%slides.length) : go((cur-1+slides.length)%slides.length);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go((cur+1)%slides.length);
+  if (e.key === 'ArrowLeft') go((cur-1+slides.length)%slides.length);
+});
+</script>
+</body>
+</html>

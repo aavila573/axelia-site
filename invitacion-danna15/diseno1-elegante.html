@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis XV - Danna Sofía</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.invitation {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Color Palette: Emerald + Gold ── */
+:root {
+  --emerald: #0a3d2e;
+  --emerald-light: #1a6b4a;
+  --emerald-dark: #052118;
+  --gold: #d4af37;
+  --gold-light: #e8d48b;
+  --gold-dark: #b8941f;
+  --ivory: #faf6f0;
+  --cream: #f5efe3;
+  --blush: #e8d5c4;
+  --text-dark: #2a2a2a;
+  --text-light: #faf6f0;
+}
+
+/* ═══ SLIDE 1: Portada ═══ */
+.slide-1 {
+  background: radial-gradient(ellipse at 50% 30%, var(--emerald-light) 0%, var(--emerald-dark) 60%, #021510 100%);
+}
+
+.flourish-top, .flourish-bottom {
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  opacity: 0.6;
+}
+
+.flourish-top { top: 30px; }
+.flourish-bottom { bottom: 30px; }
+
+.slide-1 .title-xv {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  letter-spacing: 8px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.slide-1 .title-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: var(--gold-light);
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  margin-bottom: 5px;
+  opacity: 0;
+  animation: fadeUp 1s 1s forwards;
+}
+
+.slide-1 .title-mis {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: var(--gold);
+  opacity: 0;
+  animation: fadeUp 1s 1.3s forwards;
+}
+
+.slide-1 .photo-frame {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  margin: 25px 0;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  animation: fadeUp 1s 1.6s forwards;
+  position: relative;
+}
+
+.slide-1 .photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-1 .subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 5px;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1s 2s forwards;
+}
+
+/* ═══ SLIDE 2: Padres ═══ */
+.slide-2 {
+  background: linear-gradient(180deg, var(--emerald-dark) 0%, var(--emerald) 40%, var(--emerald-dark) 100%);
+}
+
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.name-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 34px;
+  color: var(--gold-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.name-y {
+  font-family: 'Great Vibes', cursive;
+  font-size: 22px;
+  color: var(--gold);
+  margin: 5px 0;
+}
+
+.divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 30px 0;
+}
+
+/* ═══ SLIDE 3: Mensaje emotivo ═══ */
+.slide-3 {
+  background: var(--ivory);
+}
+
+.envelope-container {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.envelope {
+  width: 280px;
+  height: 180px;
+  background: linear-gradient(135deg, var(--blush) 0%, #dcc5b0 100%);
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.envelope-flap {
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 90px solid #c9a98e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.wax-seal {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, var(--gold-light) 0%, var(--gold-dark) 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Great Vibes', cursive;
+  color: var(--emerald-dark);
+  font-size: 22px;
+}
+
+.letter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: white;
+  border-radius: 2px;
+  z-index: 1;
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.slide-3 .music-prompt {
+  font-family: 'Great Vibes', cursive;
+  font-size: 18px;
+  color: var(--emerald);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.slide-3 .song-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--gold-dark);
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+/* ═══ SLIDE 4: Fecha ═══ */
+.slide-4 {
+  background: linear-gradient(180deg, var(--emerald-dark) 0%, #021510 100%);
+}
+
+.calendar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+}
+
+.calendar-month {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.calendar-day-header {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  color: var(--gold-light);
+  opacity: 0.7;
+  padding: 4px 0;
+}
+
+.calendar-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  padding: 5px 0;
+  border-radius: 50%;
+}
+
+.calendar-day.highlight {
+  background: var(--gold);
+  color: var(--emerald-dark);
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* ═══ SLIDE 5: Ubicación ═══ */
+.slide-5 {
+  background: var(--ivory);
+}
+
+.event-section {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.event-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--emerald);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.event-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.event-time {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  color: var(--gold-dark);
+  margin: 6px 0;
+  letter-spacing: 2px;
+}
+
+.location-btn {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--emerald);
+  color: var(--gold-light);
+  border-radius: 30px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(10, 61, 46, 0.3);
+}
+
+/* ═══ SLIDE 6: Vestimenta & Regalos ═══ */
+.slide-6 {
+  background: linear-gradient(180deg, var(--emerald-dark) 0%, var(--emerald) 100%);
+}
+
+.dress-code-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.dress-label {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.dress-desc {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--gold-light);
+  margin-bottom: 25px;
+}
+
+.gift-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--ivory);
+  text-align: center;
+  line-height: 1.8;
+  max-width: 280px;
+  opacity: 0.9;
+}
+
+.gift-icon {
+  font-size: 30px;
+  margin-top: 15px;
+  opacity: 0.7;
+}
+
+/* ═══ SLIDE 7: RSVP ═══ */
+.slide-7 {
+  background: linear-gradient(180deg, var(--emerald) 0%, var(--emerald-dark) 50%, #021510 100%);
+}
+
+.rsvp-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 38px;
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  margin-bottom: 15px;
+}
+
+.rsvp-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ivory);
+  text-align: center;
+  line-height: 1.8;
+  max-width: 280px;
+  margin-bottom: 20px;
+}
+
+.rsvp-deadline {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.rsvp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border: 2px solid var(--gold);
+  color: var(--gold-light);
+  border-radius: 30px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  margin: 5px;
+}
+
+.rsvp-btn:hover {
+  background: var(--gold);
+  color: var(--emerald-dark);
+}
+
+/* ═══ Animations ═══ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Sparkle particles */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: shimmer 2s infinite;
+}
+
+/* Navigation dots */
+.nav-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  transform: scale(1.3);
+}
+
+/* Butterfly */
+.butterfly {
+  position: absolute;
+  bottom: 80px;
+  right: 30px;
+  font-size: 28px;
+  animation: float 4s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+/* Gold dust */
+.gold-dust {
+  position: absolute;
+  bottom: 50px;
+  left: 20%;
+  right: 10%;
+  height: 60px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.15) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: shimmer 3s infinite;
+}
+</style>
+</head>
+<body>
+
+<div class="invitation" id="invitation">
+
+  <!-- SLIDE 1: Portada -->
+  <div class="slide slide-1 active" data-slide="0">
+    <div class="sparkles" id="sparkles1"></div>
+    <div class="title-xv">✦ MIS QUINCE AÑOS ✦</div>
+    <div class="title-name">Danna Sofía</div>
+    <div class="title-mis">Miranda Salcedo</div>
+    <div class="photo-frame">
+      <img src="Foto-Principal.jpeg" alt="Danna Sofía">
+    </div>
+    <div class="subtitle">17 de octubre del 2026</div>
+    <div class="gold-dust"></div>
+    <div class="butterfly">🦋</div>
+  </div>
+
+  <!-- SLIDE 2: Padres -->
+  <div class="slide slide-2" data-slide="1">
+    <div class="sparkles" id="sparkles2"></div>
+    <div class="section-heading">En compañía de mis padres</div>
+    <div class="name-script">Freen Miranda</div>
+    <div class="name-y">&</div>
+    <div class="name-script">Maira Salcedo</div>
+    <div class="divider"></div>
+    <div class="section-heading" style="font-size:11px; letter-spacing:5px;">Mis XV años</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--ivory); text-align:center; line-height:1.8; max-width:260px; opacity:0.85; margin-top:20px; font-style:italic;">
+      Me haría mucha ilusión que me acompañes a celebrar este momento tan especial para mí. Tu presencia hará que esta noche sea aún más inolvidable.
+    </div>
+    <div class="gold-dust"></div>
+  </div>
+
+  <!-- SLIDE 3: Mensaje + Canción -->
+  <div class="slide slide-3" data-slide="2">
+    <div class="envelope-container">
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="letter">
+          <div class="letter-text">
+            Me haría mucha ilusión que me acompañes a celebrar mis XV años. Es un momento especial para mí y me encantaría compartirlo con las personas que más quiero.
+          </div>
+        </div>
+        <div class="wax-seal">D</div>
+      </div>
+    </div>
+    <div class="music-prompt">Dale play a mi canción favorita 🎵</div>
+    <div class="song-title">✦ Tu canción preferida ✦</div>
+  </div>
+
+  <!-- SLIDE 4: Calendario / Fecha -->
+  <div class="slide slide-4" data-slide="3">
+    <div class="sparkles" id="sparkles4"></div>
+    <div class="section-heading" style="margin-bottom:25px;">Fecha del evento</div>
+    <div class="calendar">
+      <div class="calendar-month">Octubre 2026</div>
+      <div class="calendar-grid">
+        <div class="calendar-day-header">D</div>
+        <div class="calendar-day-header">L</div>
+        <div class="calendar-day-header">M</div>
+        <div class="calendar-day-header">M</div>
+        <div class="calendar-day-header">J</div>
+        <div class="calendar-day-header">V</div>
+        <div class="calendar-day-header">S</div>
+        <!-- Row 1 -->
+        <div class="calendar-day"></div>
+        <div class="calendar-day"></div>
+        <div class="calendar-day"></div>
+        <div class="calendar-day"></div>
+        <div class="calendar-day">1</div>
+        <div class="calendar-day">2</div>
+        <div class="calendar-day">3</div>
+        <!-- Row 2 -->
+        <div class="calendar-day">4</div>
+        <div class="calendar-day">5</div>
+        <div class="calendar-day">6</div>
+        <div class="calendar-day">7</div>
+        <div class="calendar-day">8</div>
+        <div class="calendar-day">9</div>
+        <div class="calendar-day">10</div>
+        <!-- Row 3 -->
+        <div class="calendar-day">11</div>
+        <div class="calendar-day">12</div>
+        <div class="calendar-day">13</div>
+        <div class="calendar-day">14</div>
+        <div class="calendar-day">15</div>
+        <div class="calendar-day">16</div>
+        <div class="calendar-day highlight">17</div>
+        <!-- Row 4 -->
+        <div class="calendar-day">18</div>
+        <div class="calendar-day">19</div>
+        <div class="calendar-day">20</div>
+        <div class="calendar-day">21</div>
+        <div class="calendar-day">22</div>
+        <div class="calendar-day">23</div>
+        <div class="calendar-day">24</div>
+        <!-- Row 5 -->
+        <div class="calendar-day">25</div>
+        <div class="calendar-day">26</div>
+        <div class="calendar-day">27</div>
+        <div class="calendar-day">28</div>
+        <div class="calendar-day">29</div>
+        <div class="calendar-day">30</div>
+        <div class="calendar-day">31</div>
+      </div>
+    </div>
+    <div style="font-family:'Cinzel',serif; font-size:22px; color:var(--gold); letter-spacing:3px; margin-top:25px;">7:00 PM</div>
+    <div class="gold-dust"></div>
+  </div>
+
+  <!-- SLIDE 5: Ubicación -->
+  <div class="slide slide-5" data-slide="4">
+    <div class="section-heading" style="color:var(--emerald);">¿Cuándo y Dónde?</div>
+    <div class="event-section">
+      <div class="event-icon">🎉</div>
+      <div class="event-title">Fiesta</div>
+      <div class="event-detail">
+        Calle 56A #6A-09<br>
+        Altos de la Metro
+      </div>
+      <div class="event-time">7:00 PM</div>
+      <a href="https://maps.google.com/?q=Calle+56A+6A-09+Barranquilla" target="_blank" class="location-btn">Ver ubicación</a>
+    </div>
+    <div class="divider" style="background:linear-gradient(90deg,transparent,var(--emerald),transparent);"></div>
+    <div class="event-section">
+      <div class="event-icon">📅</div>
+      <div class="event-title">Fecha</div>
+      <div class="event-detail">Sábado 17 de octubre<br>del 2026</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Vestimenta & Regalos -->
+  <div class="slide slide-6" data-slide="5">
+    <div class="sparkles" id="sparkles6"></div>
+    <div class="dress-label">Código de vestimenta</div>
+    <div class="dress-code-icon">👗✨</div>
+    <div class="dress-desc">Noche Blanca</div>
+    <div class="divider"></div>
+    <div class="dress-label">Regalos</div>
+    <div class="gift-text">
+      Tu presencia es nuestro mejor regalo.<br><br>
+      Si deseas tener un detalle con nosotros, agradeceremos tu aporte en <strong>lluvia de sobres</strong>.<br><br>
+      Quienes deseen adicionar un obsequio, pueden hacerlo libremente.
+    </div>
+    <div class="gift-icon">🤍</div>
+    <div class="gold-dust"></div>
+  </div>
+
+  <!-- SLIDE 7: RSVP -->
+  <div class="slide slide-7" data-slide="6">
+    <div class="sparkles" id="sparkles7"></div>
+    <div class="rsvp-title">Confirma tu asistencia</div>
+    <div class="rsvp-text">
+      ¡Quiero compartir este momento tan esperado contigo!<br>
+      Por favor ayúdanos confirmando tu asistencia
+    </div>
+    <div class="rsvp-deadline">Hasta el 10 de octubre</div>
+    <a href="#" class="rsvp-btn">💬 Confirmar asistencia</a>
+    <div class="butterfly" style="bottom:40px; right:40px; font-size:20px;">🦋</div>
+    <div class="gold-dust"></div>
+  </div>
+
+  <!-- Audio Player -->
+  <div style="position:absolute; top:12px; right:12px; z-index:200;">
+    <button id="playBtn" onclick="togglePlay()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(10,61,46,0.7);color:var(--gold);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">♫</button>
+  </div>
+  <div id="audioBar" style="position:absolute;bottom:40px;left:20px;right:20px;z-index:200;display:none;">
+    <div style="font-family:'Great Vibes',cursive;font-size:12px;color:var(--gold-light);text-align:center;margin-bottom:4px;">Chayanne - Tiempo De Vals</div>
+    <div style="background:rgba(255,255,255,0.1);border-radius:4px;height:4px;overflow:hidden;">
+      <div id="progress" style="background:var(--gold);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <audio id="bgMusic" preload="auto"><source src="cancion1.mp3" type="audio/mpeg"></audio>
+
+  <!-- Navigation dots -->
+  <div class="nav-dots" id="navDots"></div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const navDots = document.getElementById('navDots');
+let current = 0;
+let autoTimer;
+
+// Create nav dots
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i));
+  navDots.appendChild(dot);
+});
+
+function goTo(index) {
+  slides[current].classList.remove('active');
+  document.querySelectorAll('.nav-dot')[current].classList.remove('active');
+  current = index;
+  slides[current].classList.add('active');
+  document.querySelectorAll('.nav-dot')[current].classList.add('active');
+  
+  // Open envelope on slide 3
+  if (current === 2) {
+    setTimeout(() => document.getElementById('envelope')?.classList.add('open'), 600);
+  }
+  
+  resetAuto();
+}
+
+function next() { goTo((current + 1) % slides.length); }
+function prev() { goTo((current - 1 + slides.length) % slides.length); }
+
+function resetAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(next, 5000);
+}
+
+// Touch swipe
+let startX = 0;
+const inv = document.getElementById('invitation');
+inv.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+inv.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+});
+
+// Create sparkles
+function createSparkles(containerId, count = 20) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    s.style.width = s.style.height = (2 + Math.random() * 3) + 'px';
+    container.appendChild(s);
+  }
+}
+
+createSparkles('sparkles1', 25);
+createSparkles('sparkles2', 15);
+createSparkles('sparkles4', 15);
+createSparkles('sparkles6', 15);
+createSparkles('sparkles7', 20);
+
+// Audio player
+const audio = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playBtn');
+const audioBar = document.getElementById('audioBar');
+const progressBar = document.getElementById('progress');
+let playing = false;
+
+function togglePlay() {
+  if (playing) {
+    audio.pause();
+    playBtn.textContent = '♫';
+    audioBar.style.display = 'none';
+  } else {
+    audio.play().catch(() => {});
+    playBtn.textContent = '❚❚';
+    audioBar.style.display = 'block';
+  }
+  playing = !playing;
+}
+
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) {
+    progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  }
+});
+
+audio.addEventListener('ended', () => {
+  playing = false;
+  playBtn.textContent = '♫';
+  audioBar.style.display = 'none';
+});
+
+// Auto-advance
+autoTimer = setInterval(next, 5000);
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') next();
+  if (e.key === 'ArrowLeft') prev();
+});
+</script>
+
+</body>
+</html>
