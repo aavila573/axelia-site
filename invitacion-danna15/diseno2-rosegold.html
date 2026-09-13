@@ -640,7 +640,14 @@ html, body {
         ¡Quiero compartir este momento tan esperado contigo!
       </div>
       <div class="r-deadline">Hasta el 10 de octubre</div>
-      <a href="#" class="r-btn">Confirmar asistencia</a>
+      <button class="r-btn" onclick="openRSVP()">Confirmar asistencia</button>
+    </div>
+  </div>
+
+  <!-- RSVP Modal -->
+  <div id="rsvpModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(26,20,16,0.85);align-items:center;justify-content:center;padding:20px;overflow-y:auto;">
+    <div style="background:#1a1410;border:1px solid rgba(200,149,108,0.3);max-width:420px;width:100%;margin:auto;padding:32px 24px;border-radius:0;max-height:90vh;overflow-y:auto;" id="rsvpForm">
+      <!-- Filled by JS -->
     </div>
   </div>
 
@@ -776,7 +783,205 @@ el.addEventListener('touchend', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') go((cur+1)%S.length);
   if (e.key === 'ArrowLeft') go((cur-1+S.length)%S.length);
+  if (e.key === 'Escape') closeRSVP();
 });
+
+// ── RSVP ──
+const SUPABASE_URL = 'https://hdlktcmhtcqldlmiyzwr.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkbGt0Y21odGNxbGRsbWl5endyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMjUzNTgsImV4cCI6MjEwNDkwMTM1OH0.kjHEfh-IPiI8HKiOVYt04G6MglLi8cz8o8chbxWLJWE';
+const EVENT_ID = 'danna-sofia-15';
+const MAX_GUESTS = null; // null = sin límite
+
+let companions = [];
+
+function openRSVP() {
+  companions = [];
+  renderRSVPStep1();
+  document.getElementById('rsvpModal').style.display = 'flex';
+}
+
+function closeRSVP() {
+  document.getElementById('rsvpModal').style.display = 'none';
+}
+
+document.getElementById('rsvpModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeRSVP(); });
+
+function rsStyle() {
+  return {
+    label: 'font-family:Montserrat,sans-serif;font-size:9px;letter-spacing:3px;color:#e4c5a8;text-transform:uppercase;margin-bottom:6px',
+    input: 'width:100%;padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(200,149,108,0.3);color:#f0e6da;font-family:Montserrat,sans-serif;font-size:14px;outline:none;margin-bottom:16px;border-radius:0',
+    btn: 'width:100%;padding:14px;background:#c8956c;color:#1a1410;border:none;font-family:Montserrat,sans-serif;font-size:12px;letter-spacing:3px;cursor:pointer;text-transform:uppercase;border-radius:0;transition:background .2s',
+    btnSec: 'width:100%;padding:12px;background:transparent;border:1px solid rgba(200,149,108,0.3);color:#e4c5a8;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;border-radius:0;margin-bottom:10px',
+    title: 'font-family:Cormorant Garamond,serif;font-size:22px;color:#e4c5a8;margin-bottom:4px;text-align:center',
+    subtitle: 'font-family:Montserrat,sans-serif;font-size:11px;color:#a07050;text-align:center;margin-bottom:24px;letter-spacing:1px',
+    divider: 'width:60px;height:1px;background:linear-gradient(90deg,transparent,#c8956c,transparent);margin:16px auto',
+    error: 'color:#e57373;font-size:12px;margin-bottom:12px;text-align:center',
+    card: 'background:rgba(255,255,255,0.03);border:1px solid rgba(200,149,108,0.15);padding:14px;margin-bottom:12px;position:relative'
+  };
+}
+
+function renderRSVPStep1() {
+  const s = rsStyle();
+  const form = document.getElementById('rsvpForm');
+  let html = `<div style="${s.title}">Confirmar Asistencia</div>
+    <div style="${s.subtitle}">Nos encantará compartir este momento contigo.</div>
+    <div style="${s.divider}"></div>
+    <div style="${s.label}">Invitado Principal</div>
+    <input type="text" id="rsvpName" placeholder="Escribe tu nombre completo" style="${s.input}">
+    <div style="${s.label}">Edad</div>
+    <input type="number" id="rsvpAge" placeholder="Edad" min="0" max="120" style="${s.input}">
+    <div style="${s.divider}"></div>
+    <div style="${s.label}">Acompañantes</div>`;
+
+  if (MAX_GUESTS !== null) {
+    html += `<div style="font-size:11px;color:#a07050;margin-bottom:12px;letter-spacing:0.5px">Esta invitación incluye ${MAX_GUESTS} cupos.</div>`;
+  }
+
+  html += `<div id="compList"></div>`;
+
+  if (MAX_GUESTS === null || companions.length < MAX_GUESTS - 1) {
+    html += `<button onclick="addCompanion()" style="${s.btnSec}">+ Agregar acompañante</button>`;
+  }
+
+  html += `<div style="${s.divider}"></div>
+    <div id="rsvpError" style="${s.error}"></div>
+    <button onclick="showReview()" style="${s.btn}">Confirmar asistencia</button>
+    <button onclick="closeRSVP()" style="width:100%;padding:10px;background:transparent;border:none;color:#8a7a6a;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;margin-top:8px">Volver</button>`;
+
+  form.innerHTML = html;
+  renderCompanions();
+}
+
+function renderCompanions() {
+  const s = rsStyle();
+  const list = document.getElementById('compList');
+  if (!list) return;
+  if (companions.length === 0) { list.innerHTML = '<div style="font-size:12px;color:#8a7a6a;margin-bottom:12px">Sin acompañantes</div>'; return; }
+  list.innerHTML = companions.map((c, i) => `
+    <div style="${s.card}">
+      <div style="font-size:9px;letter-spacing:2px;color:#e4c5a8;text-transform:uppercase;margin-bottom:8px">Acompañante ${i+1}</div>
+      <input type="text" value="${c.name}" onchange="companions[${i}].name=this.value" placeholder="Nombre completo" style="${s.input};margin-bottom:8px">
+      <input type="number" value="${c.age||''}" onchange="companions[${i}].age=this.value" placeholder="Edad" min="0" max="120" style="${s.input};margin-bottom:0">
+      <button onclick="removeCompanion(${i})" style="position:absolute;top:8px;right:8px;background:none;border:none;color:#8a7a6a;cursor:pointer;font-size:16px">×</button>
+    </div>
+  `).join('');
+}
+
+function addCompanion() {
+  if (MAX_GUESTS !== null && companions.length >= MAX_GUESTS - 1) return;
+  companions.push({ name: '', age: '' });
+  renderRSVPStep1();
+}
+
+function removeCompanion(i) {
+  companions.splice(i, 1);
+  renderRSVPStep1();
+}
+
+function showReview() {
+  const name = document.getElementById('rsvpName')?.value?.trim();
+  const age = document.getElementById('rsvpAge')?.value;
+  const err = document.getElementById('rsvpError');
+  if (!name) { err.textContent = 'Escribe tu nombre.'; return; }
+  if (!age || age < 0 || age > 120) { err.textContent = 'Ingresa una edad válida.'; return; }
+  for (const c of companions) {
+    if (!c.name?.trim()) { err.textContent = 'Escribe el nombre de todos los acompañantes.'; return; }
+    if (c.age === '' || c.age < 0 || c.age > 120) { err.textContent = 'Ingresa la edad de todos los acompañantes.'; return; }
+  }
+
+  const s = rsStyle();
+  const form = document.getElementById('rsvpForm');
+  const compHtml = companions.length ? companions.map(c => `<div style="font-size:13px;color:#f0e6da;margin-bottom:4px">${c.name} — ${c.age} años</div>`).join('') : '<div style="font-size:12px;color:#8a7a6a">Sin acompañantes</div>';
+  const total = 1 + companions.length;
+
+  form.innerHTML = `
+    <div style="${s.title}">Tu Confirmación</div>
+    <div style="${s.divider}"></div>
+    <div style="${s.label}">Invitado principal</div>
+    <div style="font-size:15px;color:#f0e6da;margin-bottom:12px">${name}</div>
+    <div style="${s.label}">Edad</div>
+    <div style="font-size:15px;color:#f0e6da;margin-bottom:12px">${age} años</div>
+    <div style="${s.label}">Acompañantes</div>
+    <div style="margin-bottom:12px">${compHtml}</div>
+    <div style="${s.label}">Total</div>
+    <div style="font-size:15px;color:#e4c5a8;margin-bottom:4px">${total} personas</div>
+    <div style="${s.divider}"></div>
+    <div id="rsvpError" style="${s.error}"></div>
+    <button onclick="submitRSVP()" style="${s.btn}" id="submitBtn">Confirmar asistencia</button>
+    <button onclick="renderRSVPStep1()" style="${s.btnSec};margin-top:8px">Volver</button>
+  `;
+}
+
+async function submitRSVP() {
+  const name = document.getElementById('rsvpName')?.value?.trim() || document.querySelector('#rsvpForm div:nth-child(5)')?.textContent;
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  // Collect data from the form
+  const nameEl = document.querySelector('#rsvpForm');
+  const primaryName = nameEl.querySelectorAll('div')[4]?.textContent;
+  const primaryAge = nameEl.querySelectorAll('div')[6]?.textContent?.replace(' años','');
+
+  const allGuests = [{ full_name: primaryName || name, age: +primaryAge || +document.getElementById('rsvpAge')?.value }];
+  companions.forEach(c => { if (c.name?.trim()) allGuests.push({ full_name: c.name.trim(), age: +c.age || null }); });
+
+  // Insert each guest as a row in Supabase
+  const rows = allGuests.map((g, i) => ({
+    event_id: EVENT_ID,
+    full_name: g.full_name,
+    num_guests: allGuests.length,
+    guest_names: allGuests.filter((_,j) => j > 0).map(x => x.full_name),
+    status: 'confirmed'
+  }));
+
+  try {
+    // Insert primary guest (Supabase REST API)
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rsvp_responses', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(rows[0])
+    });
+    if (r.ok) {
+      showSuccess();
+    } else {
+      const err = await r.json();
+      const msg = err.message || '';
+      if (msg.includes('duplicate key') || msg.includes('unique') || r.status === 409) {
+        document.getElementById('rsvpError').textContent = 'Este nombre ya está registrado.';
+      } else {
+        document.getElementById('rsvpError').textContent = 'No pudimos registrar tu confirmación. Intenta nuevamente.';
+      }
+      btn.textContent = 'Confirmar asistencia';
+      btn.disabled = false;
+    }
+  } catch(e) {
+    document.getElementById('rsvpError').textContent = 'No pudimos registrar tu confirmación. Intenta nuevamente.';
+    btn.textContent = 'Confirmar asistencia';
+    btn.disabled = false;
+  }
+}
+
+function showSuccess() {
+  const s = rsStyle();
+  document.getElementById('rsvpForm').innerHTML = `
+    <div style="text-align:center;padding:20px 0">
+      <div style="font-family:Cormorant Garamond,serif;font-size:26px;color:#e4c5a8;margin-bottom:8px">¡Asistencia Confirmada! ✨</div>
+      <div style="${s.divider}"></div>
+      <div style="font-size:13px;color:#f0e6da;line-height:1.7;margin:16px 0">Gracias por acompañar a Danna Sofía en este momento tan especial.</div>
+      <div style="font-size:12px;color:#a07050;letter-spacing:1px">Nos vemos el 17 de octubre</div>
+      <div style="font-size:11px;color:#8a7a6a;margin-top:4px">7:00 PM</div>
+      <div style="${s.divider}"></div>
+      <button onclick="closeRSVP()" style="${s.btn};margin-top:8px">Cerrar</button>
+    </div>
+  `;
+}
+
 </script>
 </body>
 </html>
