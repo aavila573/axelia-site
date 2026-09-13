@@ -2,60 +2,72 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mis XV - Danna Sofía - Diseño 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mis XV — Danna Sofía</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap');
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: #0d0d0d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.invitation {
-  width: 390px;
-  height: 844px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 0 80px rgba(200, 149, 108, 0.25);
-}
-
-/* ── Palette: Blush + Rose Gold + Emerald accent ── */
 :root {
   --rose: #c8956c;
   --rose-light: #e4c5a8;
   --rose-dark: #a67448;
+  --rose-muted: rgba(200,149,108,0.15);
   --blush: #f8ede4;
   --blush-dark: #e8d5c4;
-  --emerald-accent: #1a6b4a;
   --ivory: #fdfaf6;
   --text: #3d2e22;
-  --text-light: #fdfaf6;
+  --text-soft: #7a6b5f;
+  --dark: #2a1f17;
+  --dark-deep: #1a1410;
 }
 
-.slide {
+html, body {
+  width: 100%; height: 100%;
+  background: var(--dark-deep);
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inv {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--dark-deep);
+}
+
+@media (min-width: 500px) {
+  .inv {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 100px rgba(200,149,108,0.15);
+    inset: unset;
+  }
+  body { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+}
+
+/* ── Slides ── */
+.s {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 28px;
+  padding: 48px 32px;
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 1.2s ease;
   pointer-events: none;
 }
-.slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.s.on { opacity: 1; pointer-events: auto; }
 
-/* ═══ SLIDE 1: Cover ═══ */
+/* ── S1: Cover ── */
 .s1 {
   background: url('Foto-Principal.jpeg') center/cover no-repeat;
 }
@@ -63,528 +75,634 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(61,46,34,0.7) 0%, rgba(61,46,34,0.3) 40%, rgba(61,46,34,0.8) 100%);
+  background: linear-gradient(180deg,
+    rgba(26,20,16,0.55) 0%,
+    rgba(26,20,16,0.25) 35%,
+    rgba(26,20,16,0.5) 65%,
+    rgba(26,20,16,0.85) 100%
+  );
 }
+.s1-c { position: relative; z-index: 2; text-align: center; }
 
-.s1-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.s1 .tag {
-  font-family: 'Montserrat', sans-serif;
+.s1 .pre {
   font-size: 10px;
   letter-spacing: 8px;
   color: var(--rose-light);
   text-transform: uppercase;
-  margin-bottom: 15px;
   opacity: 0;
-  animation: fadeUp 0.8s 0.3s forwards;
+  animation: fu 0.8s 0.4s forwards;
 }
 
-.s1 .big-name {
-  font-family: 'Alex Brush', cursive;
-  font-size: 58px;
+.s1 .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 44px;
   color: var(--rose-light);
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-  line-height: 1.1;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  margin: 12px 0 4px;
   opacity: 0;
-  animation: fadeUp 1s 0.8s forwards;
+  animation: fu 1s 0.9s forwards;
 }
 
-.s1 .xv-num {
+.s1 .xv {
   font-family: 'Playfair Display', serif;
-  font-size: 80px;
   font-weight: 700;
+  font-size: 96px;
   color: var(--rose);
-  text-shadow: 0 0 40px rgba(200, 149, 108, 0.6);
-  margin: 10px 0;
+  text-shadow: 0 0 60px rgba(200,149,108,0.4);
+  line-height: 1;
+  margin: 0;
   opacity: 0;
-  animation: fadeUp 1s 1.2s forwards;
+  animation: fu 1.2s 1.3s forwards;
 }
 
-.s1 .date-line {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  letter-spacing: 5px;
+.s1 .line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose-light), transparent);
+  margin: 18px auto;
+  opacity: 0;
+  animation: fu 0.6s 1.1s forwards;
+}
+
+.s1 .date-sm {
+  font-size: 11px;
+  letter-spacing: 6px;
   color: var(--rose-light);
   opacity: 0;
-  animation: fadeUp 0.8s 1.6s forwards;
+  animation: fu 0.8s 1.7s forwards;
 }
 
-.s1 .ornament {
-  width: 160px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--rose), transparent);
-  margin: 20px auto;
-  opacity: 0;
-  animation: fadeUp 0.8s 1s forwards;
+/* ── S2: Bienvenida + Padres ── */
+.s2 { background: var(--ivory); }
+
+.s2 .inner {
+  max-width: 280px;
+  text-align: center;
 }
 
-/* ═══ SLIDE 2: Parents + Message ═══ */
-.s2 {
-  background: var(--ivory);
+.s2 .quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 28px;
 }
 
-.s2 .corner-ornament {
-  position: absolute;
-  top: 25px; left: 25px; right: 25px; bottom: 25px;
-  border: 1px solid var(--rose-light);
-  border-radius: 8px;
-  pointer-events: none;
+.s2 .sep {
+  width: 60px;
+  height: 1px;
+  background: var(--rose);
+  margin: 0 auto 24px;
 }
 
-.s2 .corner-ornament::before,
-.s2 .corner-ornament::after {
-  content: '✦';
-  position: absolute;
+.s2 .label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.s2 .parent {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.s2 .amp {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
   color: var(--rose);
-  font-size: 14px;
+  margin: 2px 0;
 }
-.s2 .corner-ornament::before { top: -8px; left: 50%; transform: translateX(-50%); }
-.s2 .corner-ornament::after { bottom: -8px; left: 50%; transform: translateX(-50%); }
 
-.s2 .heading {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+/* ── S3: Countdown ── */
+.s3 {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
+}
+
+.s3 .top-label {
+  font-size: 9px;
+  letter-spacing: 7px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.s3 .cd-grid {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.s3 .cd-unit {
+  text-align: center;
+  min-width: 56px;
+}
+
+.s3 .cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: var(--rose-light);
+  line-height: 1;
+}
+
+.s3 .cd-lbl {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.s3 .cd-dot {
+  width: 3px;
+  height: 3px;
+  background: var(--rose);
+  border-radius: 50%;
+  margin-top: 18px;
+}
+
+.s3 .today-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--rose-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.s3 .event-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: var(--rose-light);
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* ── S4: Ubicación ── */
+.s4 { background: var(--ivory); }
+
+.s4 .inner {
+  max-width: 280px;
+  text-align: center;
+}
+
+.s4 .loc-label {
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.s4 .loc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.s4 .loc-addr {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.s4 .loc-time {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--rose-dark);
+  margin: 16px 0;
+}
+
+.s4 .loc-btn {
+  display: inline-block;
+  padding: 11px 28px;
+  border: 1px solid var(--rose);
+  color: var(--rose-dark);
+  border-radius: 0;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.s4 .loc-btn:active { background: var(--rose); color: white; }
+
+/* ── S5: Dress Code ── */
+.s5 { background: white; }
+
+.s5 .inner {
+  max-width: 260px;
+  text-align: center;
+}
+
+.s5 .dc-label {
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.s5 .dc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.s5 .dc-line {
+  width: 40px;
+  height: 1px;
+  background: var(--rose);
+  margin: 0 auto 24px;
+}
+
+/* ── S6: Regalos ── */
+.s6 { background: var(--blush); }
+
+.s6 .inner {
+  max-width: 270px;
+  text-align: center;
+}
+
+.s6 .g-label {
+  font-size: 9px;
   letter-spacing: 6px;
   color: var(--rose-dark);
   text-transform: uppercase;
   margin-bottom: 18px;
 }
 
-.s2 .parent-name {
-  font-family: 'Alex Brush', cursive;
-  font-size: 32px;
+.s6 .g-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
   color: var(--text);
+  line-height: 1.9;
 }
 
-.s2 .ampersand {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 24px;
-  color: var(--rose);
-  margin: 5px 0;
-}
-
-.s2 .message-box {
-  margin-top: 25px;
-  padding: 20px;
-  background: var(--blush-dark);
-  border-radius: 12px;
-  max-width: 280px;
-}
-
-.s2 .message-text {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--text);
-  text-align: center;
-  line-height: 1.8;
-}
-
-/* ═══ SLIDE 3: Calendar ═══ */
-.s3 {
-  background: linear-gradient(135deg, var(--blush) 0%, var(--ivory) 100%);
-}
-
-.s3 .calendar-card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-  width: 290px;
-}
-
-.s3 .cal-header {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  color: var(--rose-dark);
-  text-align: center;
-  letter-spacing: 3px;
-  margin-bottom: 15px;
-}
-
-.s3 .cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-  text-align: center;
-}
-
-.s3 .cal-dh {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 9px;
-  color: var(--rose);
-  letter-spacing: 1px;
-  padding: 4px 0;
-}
-
-.s3 .cal-d {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  color: #999;
-  padding: 5px 0;
-  border-radius: 50%;
-  width: 28px;
-  margin: 0 auto;
-}
-
-.s3 .cal-d.hl {
-  background: var(--rose);
-  color: white;
+.s6 .g-text strong {
   font-weight: 600;
-  box-shadow: 0 3px 12px rgba(200, 149, 108, 0.4);
+  color: var(--text);
 }
 
-.s3 .time-badge {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 8px 25px;
+/* ── S7: Música / Cierre ── */
+.s7 {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
+}
+
+.s7 .inner {
+  max-width: 260px;
+  text-align: center;
+}
+
+.s7 .m-line {
+  width: 50px;
+  height: 1px;
   background: var(--rose);
-  color: white;
-  border-radius: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  letter-spacing: 3px;
+  margin: 0 auto 20px;
 }
 
-.s3 .music-note {
-  margin-top: 20px;
-  font-family: 'Alex Brush', cursive;
+.s7 .m-phrase {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
   font-size: 18px;
-  color: var(--rose-dark);
-}
-
-/* ═══ SLIDE 4: Location ═══ */
-.s4 {
-  background: var(--ivory);
-}
-
-.s4 .polaroid {
-  width: 140px;
-  padding: 8px 8px 30px;
-  background: white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transform: rotate(-5deg);
+  color: var(--rose-light);
+  line-height: 1.6;
   margin-bottom: 20px;
 }
 
-.s4 .polaroid img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-
-.s4 .loc-card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-  width: 290px;
-  text-align: center;
-}
-
-.s4 .loc-icon { font-size: 36px; margin-bottom: 10px; }
-
-.s4 .loc-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: var(--rose-dark);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.s4 .loc-addr {
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  color: var(--text);
-  line-height: 1.6;
-}
-
-.s4 .loc-btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 24px;
-  background: var(--rose);
-  color: white;
-  border-radius: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-/* ═══ SLIDE 5: Dress + Gifts ═══ */
-.s5 {
-  background: linear-gradient(180deg, var(--blush) 0%, white 50%, var(--blush) 100%);
-}
-
-.s5 .card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.05);
-  width: 280px;
-  text-align: center;
-  margin: 8px 0;
-}
-
-.s5 .card-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: var(--rose-dark);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.s5 .card-icon { font-size: 32px; margin-bottom: 8px; }
-
-.s5 .card-big {
-  font-family: 'Alex Brush', cursive;
-  font-size: 32px;
-  color: var(--text);
-}
-
-.s5 .card-text {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.7;
-}
-
-/* ═══ SLIDE 6: RSVP ═══ */
-.s6 {
-  background: linear-gradient(180deg, #3d2e22 0%, #2a1f17 100%);
-}
-
-.s6 .rsvp-circle {
-  width: 200px;
-  height: 200px;
-  border: 2px solid var(--rose);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  position: relative;
-}
-
-.s6 .rsvp-circle::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border: 1px solid rgba(200, 149, 108, 0.3);
-  border-radius: 50%;
-}
-
-.s6 .rsvp-label {
-  font-family: 'Alex Brush', cursive;
-  font-size: 28px;
-  color: var(--rose-light);
-}
-
-.s6 .rsvp-sub {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--rose-light);
-  opacity: 0.8;
-  text-align: center;
-  line-height: 1.6;
-  max-width: 260px;
-  margin-bottom: 15px;
-}
-
-.s6 .rsvp-deadline {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 5px;
+.s7 .m-song {
+  font-size: 9px;
+  letter-spacing: 4px;
   color: var(--rose);
   text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.s7 .m-artist {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--rose-light);
+  opacity: 0.7;
+}
+
+/* ── S8: RSVP ── */
+.s8 { background: var(--ivory); }
+
+.s8 .inner {
+  max-width: 260px;
+  text-align: center;
+}
+
+.s8 .r-label {
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--rose-dark);
+  text-transform: uppercase;
   margin-bottom: 20px;
 }
 
-.s6 .rsvp-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  border: 1.5px solid var(--rose);
-  color: var(--rose-light);
-  border-radius: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
+.s8 .r-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
 
-/* ═══ Shared ═══ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
+.s8 .r-deadline {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.s8 .r-btn {
+  display: inline-block;
+  padding: 13px 36px;
+  background: var(--rose);
+  color: white;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.s8 .r-btn:active { background: var(--rose-dark); }
+
+/* ── Shared Animations ── */
+@keyframes fu {
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-dots {
+/* ── Navigation ── */
+.nav {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
   z-index: 100;
 }
-
-.nav-dot {
-  width: 6px; height: 6px;
+.nav i {
+  width: 5px; height: 5px;
   border-radius: 50%;
-  background: rgba(200,149,108,0.3);
-  cursor: pointer;
+  background: rgba(200,149,108,0.25);
   transition: 0.3s;
 }
-.nav-dot.active {
+.nav i.on {
   background: var(--rose);
-  transform: scale(1.4);
+  transform: scale(1.5);
+}
+
+/* ── Audio ── */
+.audio-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 200;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,149,108,0.4);
+  background: rgba(26,20,16,0.6);
+  color: var(--rose-light);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: 0.3s;
+}
+
+.audio-bar {
+  position: absolute;
+  bottom: 44px;
+  left: 28px; right: 28px;
+  z-index: 200;
+  display: none;
+  text-align: center;
+}
+.audio-bar .ab-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  color: var(--rose-light);
+  opacity: 0.6;
+  margin-bottom: 4px;
+}
+.audio-bar .ab-track {
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.audio-bar .ab-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--rose);
+  border-radius: 2px;
+  transition: width 0.3s;
 }
 </style>
 </head>
 <body>
 
-<div class="invitation" id="inv">
+<div class="inv" id="inv">
+
   <!-- S1: Cover -->
-  <div class="slide s1 active">
-    <div class="s1-content">
-      <div class="tag">Mis Quince Años</div>
-      <div class="ornament"></div>
-      <div class="big-name">Danna Sofía</div>
-      <div class="xv-num">15</div>
-      <div class="ornament"></div>
-      <div class="date-line">17 · 10 · 2026</div>
+  <div class="s s1 on">
+    <div class="s1-c">
+      <div class="pre">Mis Quince Años</div>
+      <div class="name">Danna Sofía</div>
+      <div class="line"></div>
+      <div class="xv">15</div>
+      <div class="line"></div>
+      <div class="date-sm">17 · 10 · 2026</div>
     </div>
   </div>
 
-  <!-- S2: Parents + Message -->
-  <div class="slide s2">
-    <div class="corner-ornament"></div>
-    <div class="heading">En compañía de mis padres</div>
-    <div class="parent-name">Freen Miranda</div>
-    <div class="ampersand">&</div>
-    <div class="parent-name">Maira Salcedo</div>
-    <div class="message-box">
-      <div class="message-text">
-        Me haría mucha ilusión que me acompañes a celebrar mis XV años. Tu presencia hará que esta noche sea aún más inolvidable.
+  <!-- S2: Bienvenida + Padres -->
+  <div class="s s2">
+    <div class="inner">
+      <div class="quote">
+        Me haría mucha ilusión que me acompañes a celebrar mis XV años.<br>
+        Tu presencia hará que esta noche sea aún más inolvidable.
       </div>
+      <div class="sep"></div>
+      <div class="label">En compañía de mis padres</div>
+      <div class="parent">Freen Miranda</div>
+      <div class="amp">&</div>
+      <div class="parent">Maira Salcedo</div>
     </div>
   </div>
 
-  <!-- S3: Calendar -->
-  <div class="slide s3">
-    <div class="calendar-card">
-      <div class="cal-header">Octubre 2026</div>
-      <div class="cal-grid">
-        <div class="cal-dh">D</div><div class="cal-dh">L</div><div class="cal-dh">M</div><div class="cal-dh">M</div><div class="cal-dh">J</div><div class="cal-dh">V</div><div class="cal-dh">S</div>
-        <div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d">1</div><div class="cal-d">2</div><div class="cal-d">3</div>
-        <div class="cal-d">4</div><div class="cal-d">5</div><div class="cal-d">6</div><div class="cal-d">7</div><div class="cal-d">8</div><div class="cal-d">9</div><div class="cal-d">10</div>
-        <div class="cal-d">11</div><div class="cal-d">12</div><div class="cal-d">13</div><div class="cal-d">14</div><div class="cal-d">15</div><div class="cal-d">16</div><div class="cal-d hl">17</div>
-        <div class="cal-d">18</div><div class="cal-d">19</div><div class="cal-d">20</div><div class="cal-d">21</div><div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d">24</div>
-        <div class="cal-d">25</div><div class="cal-d">26</div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d">29</div><div class="cal-d">30</div><div class="cal-d">31</div>
-      </div>
+  <!-- S3: Countdown -->
+  <div class="s s3">
+    <div class="top-label">Faltan</div>
+    <div class="cd-grid" id="cdGrid">
+      <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">Días</div></div>
+      <div class="cd-dot"></div>
+      <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">Horas</div></div>
+      <div class="cd-dot"></div>
+      <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">Min</div></div>
+      <div class="cd-dot"></div>
+      <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-lbl">Seg</div></div>
     </div>
-    <div class="time-badge">7:00 PM</div>
-    <div class="music-note">🎵 Dale play a tu canción favorita</div>
+    <div class="today-msg" id="todayMsg" style="display:none;">✨ Hoy es el gran día ✨</div>
+    <div class="event-date">17 · Octubre · 2026</div>
   </div>
 
-  <!-- S4: Location -->
-  <div class="slide s4">
-    <div class="loc-card">
-      <div class="loc-icon">🎉</div>
-      <div class="loc-title">La Fiesta</div>
+  <!-- S4: Ubicación -->
+  <div class="s s4">
+    <div class="inner">
+      <div class="loc-label">La Celebración</div>
+      <div class="loc-name">Altos de la Metro</div>
       <div class="loc-addr">
         Calle 56A #6A-09<br>
-        Altos de la Metro<br>
-        Barranquilla
+        Soledad
       </div>
+      <div class="loc-time">7:00 PM · COT (UTC−5)</div>
       <a href="https://maps.app.goo.gl/Cj7ErX4Ej5YgauhFA" target="_blank" class="loc-btn">Ver ubicación</a>
     </div>
   </div>
 
-  <!-- S5: Dress + Gifts -->
-  <div class="slide s5">
-    <div class="card">
-      <div class="card-title">Código de vestimenta</div>
-      <div class="card-icon">👗✨</div>
-      <div class="card-big">Noche Blanca</div>
+  <!-- S5: Dress Code -->
+  <div class="s s5">
+    <div class="inner">
+      <div class="dc-label">Dress Code</div>
+      <div class="dc-name">Noche Blanca</div>
+      <div class="dc-line"></div>
     </div>
-    <div class="card">
-      <div class="card-title">Regalos</div>
-      <div class="card-text">
+  </div>
+
+  <!-- S6: Regalos -->
+  <div class="s s6">
+    <div class="inner">
+      <div class="g-label">Regalos</div>
+      <div class="g-text">
         Tu presencia es nuestro mejor regalo.<br><br>
-        Si deseas tener un detalle con nosotros, agradeceremos tu aporte en <strong>lluvia de sobres</strong>.<br><br>
-        Quienes deseen adicionar un obsequio, pueden hacerlo libremente.
+        Si deseas tener un detalle con Danna, agradeceremos tu aporte en <strong>lluvia de sobres</strong>.
       </div>
-      <div style="margin-top:10px; font-size:24px;">🤍</div>
     </div>
   </div>
 
-  <!-- S6: RSVP -->
-  <div class="slide s6">
-    <div class="rsvp-circle">
-      <div class="rsvp-label">RSVP</div>
+  <!-- S7: Música / Cierre -->
+  <div class="s s7">
+    <div class="inner">
+      <div class="m-line"></div>
+      <div class="m-phrase">Una canción para esta nueva etapa</div>
+      <div class="m-song">Cree y Atrévete</div>
+      <div class="m-artist">Ha*Ash</div>
+      <div class="m-line" style="margin-top:20px;"></div>
     </div>
-    <div class="rsvp-sub">
-      ¡Quiero compartir este momento tan esperado contigo!<br>
-      Por favor confirma tu asistencia
-    </div>
-    <div class="rsvp-deadline">Hasta el 10 de octubre</div>
-    <a href="#" class="rsvp-btn">💬 Confirmar asistencia</a>
   </div>
 
-  <!-- Audio Player -->
-  <div style="position:absolute; top:12px; right:12px; z-index:200;">
-    <button id="playBtn" onclick="togglePlay()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid var(--rose);background:rgba(61,46,34,0.7);color:var(--rose-light);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">♫</button>
-  </div>
-  <div id="audioBar" style="position:absolute;bottom:40px;left:20px;right:20px;z-index:200;display:none;">
-    <div style="font-family:'Alex Brush',cursive;font-size:13px;color:var(--rose-light);text-align:center;margin-bottom:4px;">De Niña a Mujer</div>
-    <div style="background:rgba(255,255,255,0.1);border-radius:4px;height:4px;overflow:hidden;">
-      <div id="progress" style="background:var(--rose);height:100%;width:0%;border-radius:4px;transition:width 0.3s;"></div>
+  <!-- S8: RSVP -->
+  <div class="s s8">
+    <div class="inner">
+      <div class="r-label">Confirmar Asistencia</div>
+      <div class="r-text">
+        ¡Quiero compartir este momento tan esperado contigo!
+      </div>
+      <div class="r-deadline">Hasta el 10 de octubre</div>
+      <a href="#" class="r-btn">Confirmar asistencia</a>
     </div>
   </div>
-  <audio id="bgMusic" preload="auto" autoplay><source src="cancion2.mp3?v=2" type="audio/mpeg"></audio>
 
-  <div class="nav-dots" id="dots"></div>
+  <!-- Audio -->
+  <button class="audio-btn" id="playBtn" onclick="togglePlay()">♫</button>
+  <div class="audio-bar" id="audioBar">
+    <div class="ab-title">Ha*Ash — Cree y Atrévete</div>
+    <div class="ab-track"><div class="ab-fill" id="progress"></div></div>
+  </div>
+  <audio id="bgMusic" preload="auto"><source src="cancion2.mp3?v=3" type="audio/mpeg"></audio>
+
+  <!-- Nav -->
+  <div class="nav" id="nav"></div>
 </div>
 
 <script>
-const slides = document.querySelectorAll('.slide');
-const dots = document.getElementById('dots');
+// ── Slides ──
+const S = document.querySelectorAll('.s');
+const nav = document.getElementById('nav');
 let cur = 0, timer;
 
-slides.forEach((_, i) => {
-  const d = document.createElement('div');
-  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+S.forEach((_, i) => {
+  const d = document.createElement('i');
+  if (i === 0) d.classList.add('on');
   d.onclick = () => go(i);
-  dots.appendChild(d);
+  nav.appendChild(d);
 });
 
 function go(i) {
-  slides[cur].classList.remove('active');
-  dots.children[cur].classList.remove('active');
+  S[cur].classList.remove('on');
+  nav.children[cur].classList.remove('on');
   cur = i;
-  slides[cur].classList.add('active');
-  dots.children[cur].classList.add('active');
+  S[cur].classList.add('on');
+  nav.children[cur].classList.add('on');
   clearInterval(timer);
-  timer = setInterval(() => go((cur + 1) % slides.length), 5000);
+  timer = setInterval(() => go((cur + 1) % S.length), 6000);
 }
 
-timer = setInterval(() => go((cur + 1) % slides.length), 5000);
+timer = setInterval(() => go((cur + 1) % S.length), 6000);
 
-// Audio player
+// ── Countdown ──
+// Target: 2026-10-17 19:00:00 America/Bogota (UTC-5)
+// UTC target = 2026-10-17 24:00:00 UTC = 2026-10-18T00:00:00Z
+const TARGET = new Date('2026-10-18T00:00:00Z').getTime();
+
+const cdD = document.getElementById('cdD');
+const cdH = document.getElementById('cdH');
+const cdM = document.getElementById('cdM');
+const cdS = document.getElementById('cdS');
+const cdGrid = document.getElementById('cdGrid');
+const todayMsg = document.getElementById('todayMsg');
+
+function updateCD() {
+  const now = Date.now();
+  let diff = TARGET - now;
+
+  if (diff <= 0) {
+    cdGrid.style.display = 'none';
+    todayMsg.style.display = 'block';
+    return;
+  }
+
+  const d = Math.floor(diff / 86400000); diff %= 86400000;
+  const h = Math.floor(diff / 3600000); diff %= 3600000;
+  const m = Math.floor(diff / 60000); diff %= 60000;
+  const s = Math.floor(diff / 1000);
+
+  cdD.textContent = String(d).padStart(2, '0');
+  cdH.textContent = String(h).padStart(2, '0');
+  cdM.textContent = String(m).padStart(2, '0');
+  cdS.textContent = String(s).padStart(2, '0');
+}
+
+updateCD();
+setInterval(updateCD, 1000);
+
+// ── Audio ──
 const audio = document.getElementById('bgMusic');
 const playBtn = document.getElementById('playBtn');
 const audioBar = document.getElementById('audioBar');
@@ -592,32 +710,50 @@ const progressBar = document.getElementById('progress');
 let playing = false;
 
 function tryAutoplay() {
-  audio.play().then(() => { playing = true; playBtn.textContent = '❚❚'; audioBar.style.display = 'block'; }).catch(() => { playing = false; });
+  audio.play().then(() => {
+    playing = true;
+    playBtn.textContent = '❚❚';
+    audioBar.style.display = 'block';
+  }).catch(() => { playing = false; });
 }
 
-document.addEventListener('click', function aS() { if (!playing) tryAutoplay(); }, { once: true });
-document.addEventListener('touchstart', function aS2() { if (!playing) tryAutoplay(); }, { once: true });
+document.addEventListener('click', function a() { if (!playing) tryAutoplay(); }, { once: true });
+document.addEventListener('touchstart', function a2() { if (!playing) tryAutoplay(); }, { once: true });
 tryAutoplay();
 
 function togglePlay() {
-  if (playing) { audio.pause(); playBtn.textContent = '♫'; audioBar.style.display = 'none'; }
-  else { audio.play().catch(()=>{}); playBtn.textContent = '❚❚'; audioBar.style.display = 'block'; }
+  if (playing) {
+    audio.pause();
+    playBtn.textContent = '♫';
+    audioBar.style.display = 'none';
+  } else {
+    audio.play().catch(() => {});
+    playBtn.textContent = '❚❚';
+    audioBar.style.display = 'block';
+  }
   playing = !playing;
 }
 
-audio.addEventListener('timeupdate', () => { if (audio.duration) progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%'; });
-audio.addEventListener('ended', () => { playing = false; playBtn.textContent = '♫'; audioBar.style.display = 'none'; });
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+});
+audio.addEventListener('ended', () => {
+  playing = false;
+  playBtn.textContent = '♫';
+  audioBar.style.display = 'none';
+});
 
+// ── Swipe ──
 let sx = 0;
 const el = document.getElementById('inv');
 el.addEventListener('touchstart', e => sx = e.touches[0].clientX);
 el.addEventListener('touchend', e => {
   const d = sx - e.changedTouches[0].clientX;
-  if (Math.abs(d) > 50) d > 0 ? go((cur+1)%slides.length) : go((cur-1+slides.length)%slides.length);
+  if (Math.abs(d) > 50) d > 0 ? go((cur+1)%S.length) : go((cur-1+S.length)%S.length);
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') go((cur+1)%slides.length);
-  if (e.key === 'ArrowLeft') go((cur-1+slides.length)%slides.length);
+  if (e.key === 'ArrowRight') go((cur+1)%S.length);
+  if (e.key === 'ArrowLeft') go((cur-1+S.length)%S.length);
 });
 </script>
 </body>
