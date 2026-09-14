@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Rifa Set de Cocina Belwer — $10.000 el número</title>
+<meta name="description" content="Números del 1 al 100. Recaudando fondos para una buena causa 💛 ¡Elige tu número de la suerte!">
+<meta property="og:title" content="🎁 Rifa Set de Cocina Belwer">
+<meta property="og:description" content="Sandwichera + Hervidor + Horno eléctrico + Exprimidor. Números del 1 al 100 — $10.000 el número. 💛 Recaudando fondos para una buena causa.">
+<meta property="og:image" content="https://axelia.tech/rifa-belwer/og-rifa.jpg">
+<meta property="og:url" content="https://axelia.tech/rifa-belwer/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#c1793f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+<style>
+  :root{
+    --bg:#f7f3ee;
+    --card:#ffffff;
+    --ink:#2b2621;
+    --muted:#8a8078;
+    --line:#e6ddd2;
+    --accent:#c1793f;
+    --accent-dark:#9c5c2a;
+    --sold:#d9534f;
+    --sold-bg:#fdecea;
+    --free:#3f8f5f;
+    --free-bg:#eaf6ee;
+    --res:#a06312;
+    --res-bg:#fff4e0;
+    --wa:#25d366;
+    --wa-dark:#1da851;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:
+      radial-gradient(1200px 400px at 50% -100px, #f3e4d3 0%, rgba(243,228,211,0) 70%),
+      var(--bg);
+    color:var(--ink);
+    padding:16px 14px 120px;
+  }
+  .wrap{max-width:640px;margin:0 auto;}
+
+  /* ---------- header ---------- */
+  header{text-align:center;padding:10px 0 4px;}
+  .kicker{font-size:.7rem;letter-spacing:3px;color:var(--accent-dark);font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+  h1{font-size:1.65rem;line-height:1.2;margin:0 0 8px;letter-spacing:.2px;font-weight:800;}
+  .sub{color:var(--muted);font-size:.95rem;margin:0 0 14px;line-height:1.45;}
+  .cause{
+    display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:8px 18px;font-size:.88rem;color:var(--ink);box-shadow:0 1px 3px rgba(43,38,33,.05);
+  }
+
+  /* ---------- stats ---------- */
+  .stats{display:flex;justify-content:center;gap:10px;margin:18px 0;flex-wrap:wrap;}
+  .stat{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:10px 18px;text-align:center;min-width:96px;box-shadow:0 1px 3px rgba(43,38,33,.05);
+  }
+  .stat .n{font-size:1.35rem;font-weight:800;color:var(--accent-dark);}
+  .stat .l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+  /* ---------- cards ---------- */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:18px;margin-bottom:16px;box-shadow:0 2px 10px rgba(43,38,33,.04);
+  }
+  .prize-label{font-size:.7rem;letter-spacing:3px;color:var(--accent-dark);font-weight:700;text-transform:uppercase;margin-bottom:6px;}
+  .card h2{font-size:1.3rem;margin:0 0 6px;}
+  .prize-desc{color:var(--muted);font-size:.95rem;line-height:1.5;margin:0 0 14px;}
+  .prize-items{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .chip{
+    background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 12px;
+    font-size:.85rem;font-weight:600;
+  }
+  .priceline{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+    border-top:1px dashed var(--line);padding-top:12px;
+  }
+  .priceline .price{font-size:1.25rem;font-weight:800;color:var(--accent-dark);}
+  .priceline .drawdate{font-size:.85rem;color:var(--muted);}
+  .priceline .drawdate b{color:var(--ink);}
+
+  /* ---------- countdown sorteo ---------- */
+  .cd{
+    background:linear-gradient(135deg,#9c5c2a 0%,#c1793f 100%);
+    border:none;color:#fff;text-align:center;
+    box-shadow:0 6px 20px rgba(156,92,42,.25);
+  }
+  .cd .cd-kicker{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;opacity:.85;font-weight:700;}
+  .cd .cd-title{font-size:1.25rem;font-weight:800;margin:6px 0 2px;}
+  .cd .cd-date{font-size:.85rem;opacity:.92;margin-bottom:14px;}
+  .cd .cd-timer{display:flex;gap:8px;justify-content:center;}
+  .cd .cd-box{
+    flex:1;max-width:84px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;padding:9px 4px 7px;
+  }
+  .cd .cd-box b{display:block;font-size:1.45rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+  .cd .cd-box span{font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;}
+  .cd .cd-live{font-size:1.15rem;font-weight:800;padding:6px 0;}
+
+  /* ---------- grid ---------- */
+  .cardhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+  .cardhead h3{margin:0;font-size:1.05rem;}
+  .legend{display:flex;gap:12px;font-size:.72rem;color:var(--muted);flex-wrap:wrap;}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;}
+  .num{
+    aspect-ratio:1/1;border-radius:9px;border:1px solid #cfe8d8;
+    background:var(--free-bg);color:var(--free);
+    font-weight:700;font-size:.78rem;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:transform .08s ease, box-shadow .12s ease;
+    user-select:none;position:relative;
+  }
+  .num.sel{
+    background:var(--accent);color:#fff;border-color:var(--accent-dark);
+    transform:scale(1.06);box-shadow:0 3px 8px rgba(193,121,63,.4);z-index:1;
+  }
+  .num.reserved{background:var(--res-bg);color:var(--res);border-color:#f0d9a8;}
+  .num.paid{background:var(--sold-bg);color:var(--sold);border-color:#f3c9c6;}
+  .num.paid::after{content:'✓';position:absolute;top:2px;right:3px;font-size:.55rem;opacity:.8;}
+  .num:active{transform:scale(.94);}
+  .num.sel:active{transform:scale(1.0);}
+  .hint{color:var(--muted);font-size:.78rem;text-align:center;margin-top:12px;line-height:1.5;}
+
+  /* ---------- sticky bar ---------- */
+  .selbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    transform:translateY(110%);transition:transform .25s ease;
+    box-shadow:0 -4px 20px rgba(43,38,33,.08);
+  }
+  .selbar.show{transform:translateY(0);}
+  .selbar-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+  .selinfo{flex:1;min-width:0;}
+  .selinfo .nums{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .selinfo .nums b{color:var(--ink);}
+  .selinfo .total{font-size:1.05rem;font-weight:800;color:var(--accent-dark);}
+  .btn{
+    border:none;border-radius:12px;padding:14px 22px;font-size:.95rem;font-weight:700;
+    background:var(--accent);color:#fff;cursor:pointer;font-family:inherit;
+    transition:background .15s ease, transform .08s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn:hover{background:var(--accent-dark);}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  .btn.ghost:hover{background:var(--bg);}
+  .btn.wa{background:var(--wa);text-align:center;display:block;text-decoration:none;color:#fff;}
+  .btn.wa:hover{background:var(--wa-dark);}
+  .btn.block{width:100%;display:block;}
+
+  /* ---------- modals ---------- */
+  .modal-bg{
+    position:fixed;inset:0;background:rgba(30,24,18,.55);z-index:100;
+    display:none;align-items:flex-end;justify-content:center;padding:0;
+  }
+  .modal-bg.show{display:flex;}
+  .modal{
+    background:var(--card);border-radius:22px 22px 0 0;padding:22px 20px calc(20px + env(safe-area-inset-bottom));
+    width:100%;max-width:520px;max-height:92vh;overflow-y:auto;
+    animation:slideUp .28s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+  @media(min-width:560px){
+    .modal-bg{align-items:center;padding:20px;}
+    .modal{border-radius:22px;}
+  }
+  .modal h3{margin:0 0 4px;font-size:1.2rem;}
+  .modal .msub{color:var(--muted);font-size:.85rem;margin:0 0 16px;line-height:1.45;}
+  label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin:12px 0 6px;}
+  input[type=text],input[type=tel],input[type=number]{
+    width:100%;padding:13px 14px;border-radius:11px;border:1px solid var(--line);
+    font-size:1rem;font-family:inherit;background:#fdfbf9;color:var(--ink);outline:none;
+  }
+  input:focus{border-color:var(--accent);}
+  .resume{
+    background:var(--bg);border:1px dashed var(--line);border-radius:12px;
+    padding:12px 14px;margin:16px 0 4px;font-size:.9rem;line-height:1.6;
+  }
+  .resume b{color:var(--accent-dark);}
+  .err{color:var(--sold);font-size:.85rem;margin:10px 0 0;min-height:1em;text-align:center;}
+  .count{
+    text-align:center;font-size:1.05rem;font-weight:800;color:var(--res);
+    background:var(--res-bg);border:1px solid #f0d9a8;border-radius:12px;
+    padding:10px;margin:12px 0;
+  }
+  .count.low{color:var(--sold);background:var(--sold-bg);border-color:#f3c9c6;}
+  .steps{margin:0 0 4px;padding-left:0;list-style:none;counter-reset:st;}
+  .steps li{
+    counter-increment:st;position:relative;padding:0 0 12px 34px;font-size:.9rem;line-height:1.5;
+  }
+  .steps li::before{
+    content:counter(st);position:absolute;left:0;top:0;
+    width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+    font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .payamt{
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--bg);border-radius:12px;padding:12px 14px;margin:8px 0 14px;
+    font-size:.9rem;
+  }
+  .payamt b{font-size:1.2rem;color:var(--accent-dark);}
+  .qrbox{text-align:center;margin-bottom:10px;}
+  .qrbox img{
+    width:min(72vw,300px);border-radius:16px;border:1px solid var(--line);
+    box-shadow:0 4px 16px rgba(43,38,33,.1);
+  }
+  .llave{text-align:center;font-size:.9rem;color:var(--muted);margin-bottom:16px;line-height:1.5;}
+  .llave b{color:var(--ink);font-size:1rem;}
+  .ticket-link{
+    display:block;text-align:center;margin-top:12px;color:var(--accent-dark);
+    font-weight:700;font-size:.9rem;text-decoration:none;
+  }
+  .note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5;}
+  .ok-title{text-align:center;font-size:1.3rem;font-weight:800;margin:6px 0 2px;}
+  .ok-sub{text-align:center;color:var(--muted);font-size:.9rem;margin:0 0 10px;}
+
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);
+    background:#2b2621;color:#fff;padding:11px 18px;border-radius:12px;font-size:.85rem;
+    opacity:0;pointer-events:none;transition:all .25s ease;z-index:200;max-width:90vw;text-align:center;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- banner estados ---------- */
+  .banner{
+    border-radius:16px;padding:16px;text-align:center;margin-bottom:16px;
+    font-weight:700;font-size:1rem;display:none;
+  }
+  .banner.final{background:#2b2621;color:#f7f3ee;}
+  .banner .winner{display:block;font-size:1.6rem;margin-top:8px;}
+  footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:18px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Rifa Solidaria</div>
+    <h1 id="mainTitle">🎁 Set de Cocina Belwer</h1>
+    <p class="sub" id="mainSub">Sandwichera · Hervidor · Horno eléctrico · Exprimidor de cítricos</p>
+    <div class="cause">💛 Recaudando fondos para una buena causa</div>
+  </header>
+
+  <section class="card cd" id="countdownCard" style="display:none">
+    <div class="cd-kicker">🎰 Sorteo en vivo</div>
+    <div class="cd-title">Lotería Sinuano Noche</div>
+    <div class="cd-date" id="cdDate">miércoles 16 de septiembre · 10:30 p.m.</div>
+    <div class="cd-timer" id="cdTimer">
+      <div class="cd-box"><b id="cdD">00</b><span>Días</span></div>
+      <div class="cd-box"><b id="cdH">00</b><span>Horas</span></div>
+      <div class="cd-box"><b id="cdM">00</b><span>Min</span></div>
+      <div class="cd-box"><b id="cdS">00</b><span>Seg</span></div>
+    </div>
+  </section>
+
+  <div id="statusBanner" class="banner final"></div>
+
+  <section class="stats">
+    <div class="stat"><div class="n" id="st-sold">–</div><div class="l">Vendidos</div></div>
+    <div class="stat"><div class="n" id="st-res">–</div><div class="l">Apartados</div></div>
+    <div class="stat"><div class="n" id="st-free">–</div><div class="l">Disponibles</div></div>
+    <div class="stat"><div class="n" id="st-total">–</div><div class="l">Recaudado</div></div>
+  </section>
+
+  <section class="card">
+    <div class="prize-label">🏆 El premio</div>
+    <h2 id="prizeTitle">Set de Cocina Belwer</h2>
+    <div class="prize-items">
+      <span class="chip">🥪 Sandwichera</span>
+      <span class="chip">🫖 Hervidor</span>
+      <span class="chip">🔥 Horno eléctrico</span>
+      <span class="chip">🍊 Exprimidor de cítricos</span>
+    </div>
+    <div class="priceline">
+      <div><span class="price" id="priceLabel">$10.000</span> <span style="color:var(--muted);font-size:.85rem">por número</span></div>
+      <div class="drawdate" id="drawDate"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="cardhead">
+      <h3>Elegí tus números de la suerte</h3>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--free)"></span>Disponible</span>
+      <span><span class="dot" style="background:var(--res)"></span>Apartado</span>
+      <span><span class="dot" style="background:var(--sold)"></span>Vendido</span>
+      <span><span class="dot" style="background:var(--accent)"></span>Tu selección</span>
+    </div>
+    <div style="height:12px"></div>
+    <div class="grid" id="grid"></div>
+    <div class="hint">Toca un número disponible para seleccionarlo. Puedes elegir varios.<br>Los números se actualizan solos cada pocos segundos.</div>
+  </section>
+
+  <footer>
+    Rifa Set de Cocina Belwer · Números del 1 al 100<br>
+    Al apartar tus números tendrás <b id="footMins">15</b> minutos para pagar por Bre-B. 💛
+  </footer>
+</div>
+
+<!-- barra de selección -->
+<div class="selbar" id="selbar">
+  <div class="selbar-inner">
+    <div class="selinfo">
+      <div class="nums" id="selNums">Ninguno</div>
+      <div class="total" id="selTotal">$0</div>
+    </div>
+    <button class="btn" id="btnReserve">Apartar →</button>
+  </div>
+</div>
+
+<!-- modal datos -->
+<div class="modal-bg" id="formModal">
+  <div class="modal">
+    <h3>Tus datos</h3>
+    <p class="msub">Los pedimos solo para identificar tu pago. Nada de spam ✋</p>
+    <label for="fName">Nombre completo *</label>
+    <input type="text" id="fName" placeholder="Ej: Paula Mondul" autocomplete="name">
+    <label for="fPhone">WhatsApp *</label>
+    <input type="tel" id="fPhone" placeholder="Ej: 300 123 4567" autocomplete="tel" inputmode="tel">
+    <label for="fCity">Ciudad (opcional)</label>
+    <input type="text" id="fCity" placeholder="Ej: Barranquilla" autocomplete="address-level2">
+    <div class="resume" id="formResume"></div>
+    <div class="err" id="formErr"></div>
+    <div style="height:12px"></div>
+    <button class="btn block" id="btnConfirm">Confirmar apartado</button>
+    <div style="height:8px"></div>
+    <button class="btn ghost block" id="btnCloseForm">Volver</button>
+  </div>
+</div>
+
+<!-- modal pago -->
+<div class="modal-bg" id="payModal">
+  <div class="modal">
+    <div class="ok-title">¡Números apartados! 🎉</div>
+    <p class="ok-sub">Ahora paga por Bre-B y envía el comprobante.</p>
+    <div class="count" id="payCountdown">–:––</div>
+    <ol class="steps">
+      <li>Paga el total con el <b>QR Bre-B</b> de abajo (o a la llave).</li>
+      <li>Toca <b>“Enviar comprobante por WhatsApp”</b> y mándale el pantallazo del pago a Paula.</li>
+      <li>Paula confirma tu pago y tus números quedan <b>fijos</b>. ✅</li>
+    </ol>
+    <div class="payamt"><span>Total a pagar</span><b id="payTotal">$0</b></div>
+    <div class="qrbox"><img src="qr-pago.png" alt="QR de pago Bre-B — Paula Mondul"></div>
+    <div class="llave">Llave Bre-B: <b>324 241 4073</b><br>Paula Mondul</div>
+    <a class="btn wa" id="waBtn" target="_blank" rel="noopener">📲 Enviar comprobante por WhatsApp</a>
+    <a class="ticket-link" id="ticketLink" href="#">🧾 Ver mi cartón digital →</a>
+    <div class="note">Si el pago no se realiza dentro del tiempo, los números se liberan automáticamente para que otros puedan participar.</div>
+    <div style="height:10px"></div>
+    <button class="btn ghost block" id="btnDone">Listo</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const SUPA_URL = 'https://hdlktcmhtcqldlmiyzwr.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkbGt0Y21odGNxbGRsbWl5endyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMjUzNTgsImV4cCI6MjEwNDkwMTM1OH0.kjHEfh-IPiI8HKiOVYt04G6MglLi8cz8o8chbxWLJWE';
+const SLUG = 'belwer';
+const WA_CONFIRM = '573114193383';
+const LLAVE_TXT = '324 241 4073';
+
+let raffle = null;
+let numStatus = {};     // {number: 'AVAILABLE'|'RESERVED'|'PAID'}
+let selected = new Set();
+let reservation = null; // respuesta del RPC
+let countdownTimer = null;
+let pollTimer = null;
+
+const $ = id => document.getElementById(id);
+const cop = v => '$' + Number(v||0).toLocaleString('es-CO');
+
+const headers = {
+  'apikey': SUPA_KEY,
+  'Authorization': 'Bearer ' + SUPA_KEY,
+  'Content-Type': 'application/json'
+};
+
+async function rpc(fn, body){
+  const r = await fetch(SUPA_URL + '/rest/v1/rpc/' + fn, { method:'POST', headers, body: JSON.stringify(body) });
+  return r.json();
+}
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+/* ---------------- carga ---------------- */
+async function loadRaffle(){
+  const r = await fetch(SUPA_URL + '/rest/v1/raffle_public?slug=eq.' + SLUG, { headers });
+  const rows = await r.json();
+  if (!rows.length) { toast('No pudimos cargar la rifa'); return; }
+  raffle = rows[0];
+  $('mainTitle').textContent = '🎁 ' + (raffle.prize_title || raffle.name);
+  $('prizeTitle').textContent = raffle.prize_title || raffle.name;
+  $('priceLabel').textContent = cop(raffle.ticket_price);
+  $('footMins').textContent = raffle.reservation_minutes;
+  if (raffle.draw_date){
+    const d = new Date(raffle.draw_date);
+    $('drawDate').innerHTML = '🎰 Sorteo: <b>' + d.toLocaleDateString('es-CO',{day:'2-digit',month:'long',year:'numeric'}) + '</b>';
+  }
+  startDrawCountdown(raffle.draw_date);
+  if (raffle.status === 'DRAWN'){
+    let html = '🏆 RIFA FINALIZADA — Número ganador: ' + raffle.winner_number;
+    html += '<span class="winner">' + (raffle.winner_name ? '🎉 ' + escapeHtml(raffle.winner_name) : '') + '</span>';
+    $('statusBanner').innerHTML = html;
+    $('statusBanner').style.display = 'block';
+  } else if (raffle.status === 'CLOSED'){
+    $('statusBanner').innerHTML = '🔒 La rifa está cerrada. ¡Gracias a todos por participar!';
+    $('statusBanner').style.display = 'block';
+  }
+}
+
+async function loadNumbers(){
+  const r = await fetch(SUPA_URL + '/rest/v1/raffle_numbers_public?raffle_id=eq.' + raffle.id + '&select=number,status&order=number.asc', { headers });
+  const rows = await r.json();
+  numStatus = {};
+  rows.forEach(x => numStatus[x.number] = x.status);
+  // limpiar selección si algún número se ocupó
+  for (const n of Array.from(selected)){
+    if (numStatus[n] && numStatus[n] !== 'AVAILABLE'){ selected.delete(n); toast('El número ' + n + ' acaba de ocuparse 😕'); }
+  }
+  renderGrid();
+  renderStats();
+  updateSelBar();
+}
+
+function renderGrid(){
+  const g = $('grid');
+  if (!g.dataset.built){
+    let html = '';
+    for (let i=1;i<=raffle.total_numbers;i++) html += '<div class="num" data-num="'+i+'">'+i+'</div>';
+    g.innerHTML = html;
+    g.dataset.built = '1';
+    g.addEventListener('click', e => {
+      const el = e.target.closest('.num'); if (!el) return;
+      tapNum(parseInt(el.dataset.num));
+    });
+  }
+  const kids = g.children;
+  for (let i=1;i<=raffle.total_numbers;i++){
+    const el = kids[i-1];
+    const st = numStatus[i] || 'AVAILABLE';
+    el.classList.toggle('sel', selected.has(i));
+    el.classList.toggle('reserved', st === 'RESERVED' && !selected.has(i));
+    el.classList.toggle('paid', st === 'PAID' && !selected.has(i));
+  }
+}
+
+function renderStats(){
+  let sold=0, free=0, res=0;
+  for (let i=1;i<=raffle.total_numbers;i++){
+    const st = numStatus[i] || 'AVAILABLE';
+    if (st === 'PAID') sold++;
+    else if (st === 'RESERVED') res++;
+    else free++;
+  }
+  $('st-sold').textContent = sold;
+  $('st-res').textContent = res;
+  $('st-free').textContent = free;
+  $('st-total').textContent = cop(sold * raffle.ticket_price);
+  if (free === 0 && (raffle.status === 'ACTIVE')){
+    $('statusBanner').innerHTML = '🎉 ¡Se agotaron los ' + raffle.total_numbers + ' números! Pronto anunciaremos al ganador.';
+    $('statusBanner').style.display = 'block';
+  }
+}
+
+function tapNum(n){
+  const st = numStatus[n] || 'AVAILABLE';
+  if (selected.has(n)){ selected.delete(n); }
+  else if (st === 'AVAILABLE'){
+    if (raffle.status !== 'ACTIVE'){ toast('La rifa no está activa'); return; }
+    if (selected.size >= 20){ toast('Máximo 20 números por persona'); return; }
+    selected.add(n);
+  }
+  else if (st === 'RESERVED'){ toast('El número '+n+' está apartado. Si no se paga, se libera solo 😉'); }
+  else { toast('El número '+n+' ya fue vendido'); }
+  renderGrid();
+  updateSelBar();
+}
+
+function updateSelBar(){
+  const bar = $('selbar');
+  if (selected.size === 0){ bar.classList.remove('show'); return; }
+  const nums = Array.from(selected).sort((a,b)=>a-b);
+  $('selNums').innerHTML = 'Seleccionados: <b>' + nums.join(', ') + '</b>';
+  $('selTotal').textContent = 'Total: ' + cop(nums.length * raffle.ticket_price);
+  bar.classList.add('show');
+}
+
+/* ---------------- reserva ---------------- */
+$('btnReserve').addEventListener('click', () => {
+  if (!selected.size) return;
+  const nums = Array.from(selected).sort((a,b)=>a-b);
+  $('formResume').innerHTML =
+    'Números: <b>' + nums.join(', ') + '</b><br>' +
+    'Cantidad: <b>' + nums.length + '</b><br>' +
+    'Total: <b>' + cop(nums.length * raffle.ticket_price) + '</b>';
+  $('formErr').textContent = '';
+  $('formModal').classList.add('show');
+});
+$('btnCloseForm').addEventListener('click', () => $('formModal').classList.remove('show'));
+$('formModal').addEventListener('click', e => { if (e.target === $('formModal')) $('formModal').classList.remove('show'); });
+
+$('btnConfirm').addEventListener('click', async () => {
+  const name = $('fName').value.trim();
+  const phone = $('fPhone').value.trim();
+  const city = $('fCity').value.trim();
+  const err = $('formErr');
+  if (name.length < 3){ err.textContent = 'Escribe tu nombre completo.'; return; }
+  if (phone.replace(/\D/g,'').length < 7){ err.textContent = 'Escribe un WhatsApp válido.'; return; }
+
+  const btn = $('btnConfirm');
+  btn.disabled = true; btn.textContent = 'Apartando…';
+
+  try{
+    const res = await rpc('raffle_reserve', {
+      p_slug: SLUG, p_name: name, p_phone: phone, p_city: city,
+      p_numbers: Array.from(selected).sort((a,b)=>a-b)
+    });
+    if (!res.ok){
+      err.textContent = res.error || 'No pudimos apartar los números.';
+      if (res.taken){ selected.clear(); await loadNumbers(); }
+    } else {
+      reservation = res;
+      reservation.name = name;
+      $('formModal').classList.remove('show');
+      selected.clear();
+      await loadNumbers();
+      showPay();
+    }
+  } catch(e){
+    err.textContent = 'Sin conexión. Intenta de nuevo.';
+  }
+  btn.disabled = false; btn.textContent = 'Confirmar apartado';
+});
+
+function showPay(){
+  const nums = reservation.numbers.join(', ');
+  $('payTotal').textContent = cop(reservation.total);
+  const msg = '¡Hola! Acabo de apartar mis números en la *Rifa Set de Cocina Belwer* 🎁\n\n' +
+    '🔢 Números: ' + nums + '\n' +
+    '💰 Total: ' + cop(reservation.total) + '\n' +
+    '🙋 A nombre de: ' + reservation.name + '\n\n' +
+    'Te envío el comprobante de pago. ¡Gracias!';
+  $('waBtn').href = 'https://wa.me/' + WA_CONFIRM + '?text=' + encodeURIComponent(msg);
+  $('ticketLink').href = 'carton.html?t=' + reservation.token;
+  startCountdown(new Date(reservation.expires_at));
+  $('payModal').classList.add('show');
+}
+
+function startCountdown(expiresAt){
+  if (countdownTimer) clearInterval(countdownTimer);
+  const el = $('payCountdown');
+  const tick = () => {
+    const ms = expiresAt - new Date();
+    if (ms <= 0){ el.textContent = '⏰ Tiempo agotado — los números se liberaron'; el.classList.add('low'); clearInterval(countdownTimer); return; }
+    const m = Math.floor(ms/60000), s = Math.floor((ms%60000)/1000);
+    el.textContent = '⏳ Paga dentro de: ' + m + ':' + String(s).padStart(2,'0');
+    el.classList.toggle('low', ms < 120000);
+  };
+  tick();
+  countdownTimer = setInterval(tick, 1000);
+}
+/* ---------------- countdown del sorteo ---------------- */
+let drawCdTimer = null;
+function startDrawCountdown(drawDate){
+  const card = $('countdownCard');
+  if (!drawDate || raffle.status === 'DRAWN' || raffle.status === 'CLOSED'){ card.style.display = 'none'; return; }
+  const target = new Date(drawDate);
+  $('cdDate').textContent =
+    target.toLocaleDateString('es-CO',{weekday:'long', day:'numeric', month:'long', timeZone:'America/Bogota'}) +
+    ' · ' + target.toLocaleTimeString('es-CO',{hour:'numeric', minute:'2-digit', timeZone:'America/Bogota'});
+  card.style.display = 'block';
+  if (drawCdTimer) clearInterval(drawCdTimer);
+  const tick = () => {
+    const ms = target - new Date();
+    if (ms <= 0){
+      $('cdTimer').innerHTML = '<div class="cd-live">¡El sorteo es hoy! 🍀 Mucha suerte a todos</div>';
+      clearInterval(drawCdTimer); return;
+    }
+    const d = Math.floor(ms/86400000), h = Math.floor(ms/3600000)%24, m = Math.floor(ms/60000)%60, s = Math.floor(ms/1000)%60;
+    $('cdD').textContent = String(d).padStart(2,'0');
+    $('cdH').textContent = String(h).padStart(2,'0');
+    $('cdM').textContent = String(m).padStart(2,'0');
+    $('cdS').textContent = String(s).padStart(2,'0');
+  };
+  tick();
+  drawCdTimer = setInterval(tick, 1000);
+}
+
+$('btnDone').addEventListener('click', () => $('payModal').classList.remove('show'));
+$('payModal').addEventListener('click', e => { if (e.target === $('payModal')) $('payModal').classList.remove('show'); });
+
+function escapeHtml(s){
+  const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+}
+
+/* ---------------- init ---------------- */
+(async function init(){
+  await loadRaffle();
+  if (raffle){ await loadNumbers(); }
+  pollTimer = setInterval(() => { if (raffle && !document.hidden) loadNumbers().catch(()=>{}); }, 20000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && raffle) loadNumbers().catch(()=>{}); });
+})();
+</script>
+</body>
+</html>

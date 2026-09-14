@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cartón · Rifa Set de Cocina Belwer</title>
+<meta name="theme-color" content="#c1793f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+<style>
+  :root{
+    --bg:#f7f3ee; --card:#ffffff; --ink:#2b2621; --muted:#8a8078; --line:#e6ddd2;
+    --accent:#c1793f; --accent-dark:#9c5c2a;
+    --sold:#d9534f; --sold-bg:#fdecea; --free:#3f8f5f; --free-bg:#eaf6ee;
+    --res:#a06312; --res-bg:#fff4e0; --wa:#25d366; --wa-dark:#1da851;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(1000px 380px at 50% -80px,#f3e4d3 0%,rgba(243,228,211,0) 70%),var(--bg);
+    color:var(--ink);padding:18px 14px 40px;
+  }
+  .wrap{max-width:520px;margin:0 auto;}
+  .top{text-align:center;margin-bottom:14px;}
+  .top .kicker{font-size:.68rem;letter-spacing:3px;color:var(--accent-dark);font-weight:700;text-transform:uppercase;}
+  .top h1{font-size:1.25rem;margin:6px 0 0;}
+
+  .ticket{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    overflow:hidden;box-shadow:0 6px 24px rgba(43,38,33,.08);
+  }
+  .ticket-head{
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);
+    color:#fff;padding:18px 20px;text-align:center;
+  }
+  .ticket-head .label{font-size:.68rem;letter-spacing:3px;opacity:.85;text-transform:uppercase;}
+  .ticket-head .title{font-size:1.15rem;font-weight:800;margin-top:4px;}
+  .ticket-head .folio{font-size:.8rem;opacity:.9;margin-top:6px;font-family:Consolas,monospace;letter-spacing:1px;}
+  .badge-row{text-align:center;margin-top:-16px;position:relative;z-index:2;}
+  .badge{
+    display:inline-block;padding:8px 20px;border-radius:999px;font-size:.85rem;font-weight:800;
+    border:2px solid #fff;box-shadow:0 3px 10px rgba(43,38,33,.15);background:var(--res-bg);color:var(--res);
+  }
+  .badge.paid{background:var(--free-bg);color:var(--free);}
+  .badge.expired,.badge.cancelled{background:var(--sold-bg);color:var(--sold);}
+
+  .ticket-body{padding:22px 20px 20px;}
+  .buyer{text-align:center;margin-bottom:16px;}
+  .buyer .lbl{font-size:.68rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+  .buyer .name{font-size:1.2rem;font-weight:800;margin-top:3px;}
+  .sep{border-top:2px dashed var(--line);margin:16px -20px;position:relative;}
+  .sep::before,.sep::after{
+    content:'';position:absolute;top:-11px;width:22px;height:22px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--line);
+  }
+  .sep::before{left:-11px;}
+  .sep::after{right:-11px;}
+  .nums-lbl{font-size:.68rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:10px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .chip{
+    min-width:52px;text-align:center;padding:10px 12px;border-radius:12px;
+    background:var(--free-bg);border:1px solid #cfe8d8;color:var(--free);
+    font-weight:800;font-size:1.05rem;
+  }
+  .chip.paid{background:var(--free-bg);border-color:#b9dfc7;}
+  .totrow{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:6px;}
+  .totrow.total{font-size:1.15rem;font-weight:800;color:var(--accent-dark);}
+  .totrow .m{color:var(--muted);}
+
+  .count{
+    text-align:center;font-size:1rem;font-weight:800;color:var(--res);
+    background:var(--res-bg);border:1px solid #f0d9a8;border-radius:12px;padding:11px;margin:18px 0 4px;
+  }
+  .count.low{color:var(--sold);background:var(--sold-bg);border-color:#f3c9c6;}
+
+  .pay-zone{margin-top:18px;}
+  .pay-zone h3{font-size:.95rem;margin:0 0 10px;text-align:center;}
+  .qrbox{text-align:center;margin-bottom:8px;}
+  .qrbox img{width:min(64vw,260px);border-radius:14px;border:1px solid var(--line);}
+  .llave{text-align:center;font-size:.88rem;color:var(--muted);line-height:1.5;margin-bottom:14px;}
+  .llave b{color:var(--ink);}
+  .btn{
+    border:none;border-radius:12px;padding:15px 20px;font-size:.95rem;font-weight:700;
+    background:var(--accent);color:#fff;cursor:pointer;font-family:inherit;display:block;width:100%;
+    text-align:center;text-decoration:none;
+  }
+  .btn.wa{background:var(--wa);}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);}
+  .btn + .btn{margin-top:10px;}
+  .note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.55;}
+
+  .big-status{text-align:center;padding:8px 0 2px;}
+  .big-status .icon{font-size:2.6rem;}
+  .big-status .t{font-size:1.2rem;font-weight:800;margin:8px 0 4px;}
+  .big-status .s{color:var(--muted);font-size:.9rem;line-height:1.55;}
+
+  footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:18px;line-height:1.6;}
+  #toast{
+    position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+    background:#2b2621;color:#fff;padding:11px 18px;border-radius:12px;font-size:.85rem;
+    opacity:0;pointer-events:none;transition:all .25s ease;z-index:200;max-width:90vw;text-align:center;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .loading{text-align:center;padding:60px 0;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="kicker">Rifa Solidaria</div>
+    <h1>🎁 Set de Cocina Belwer</h1>
+  </div>
+
+  <div id="content"><div class="loading">Cargando tu cartón…</div></div>
+
+  <footer id="foot" style="display:none">
+    Cartón digital · Rifa Set de Cocina Belwer<br>💛 Gracias por participar
+  </footer>
+</div>
+<div id="toast"></div>
+
+<script>
+const SUPA_URL = 'https://hdlktcmhtcqldlmiyzwr.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkbGt0Y21odGNxbGRsbWl5endyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMjUzNTgsImV4cCI6MjEwNDkwMTM1OH0.kjHEfh-IPiI8HKiOVYt04G6MglLi8cz8o8chbxWLJWE';
+const WA_CONFIRM = '573114193383';
+
+const $ = id => document.getElementById(id);
+const cop = v => '$' + Number(v||0).toLocaleString('es-CO');
+const headers = { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': 'application/json' };
+
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+const token = new URLSearchParams(location.search).get('t');
+let countdownTimer = null;
+let pollTimer = null;
+
+async function rpc(fn, body){
+  const r = await fetch(SUPA_URL + '/rest/v1/rpc/' + fn, { method:'POST', headers, body: JSON.stringify(body) });
+  return r.json();
+}
+
+function badgeFor(status){
+  const map = {
+    'RESERVED': ['⌛', 'Apartado — pago pendiente', ''],
+    'PAID':     ['✅', 'Pagado — ¡estás participando!', 'paid'],
+    'EXPIRED':  ['😕', 'Reserva vencida', 'expired'],
+    'CANCELLED':['✖️', 'Reserva cancelada', 'cancelled']
+  };
+  return map[status] || ['❔', status, ''];
+}
+
+function render(d){
+  const folio = 'CARTÓN N° ' + (d.token || '').slice(-8).toUpperCase();
+  const nums = (d.numbers || []).slice().sort((a,b)=>a-b);
+  const chips = nums.map(n => '<span class="chip' + (d.status==='PAID'?' paid':'') + '">' + String(n).padStart(2,'0') + '</span>').join('');
+  const [icon, label, cls] = badgeFor(d.status);
+  const created = d.created_at ? new Date(d.created_at).toLocaleDateString('es-CO',{day:'2-digit',month:'long',year:'numeric'}) : '';
+
+  let drawRow = '';
+  if (d.raffle && d.raffle.draw_date){
+    const dr = new Date(d.raffle.draw_date);
+    const dtxt = dr.toLocaleDateString('es-CO',{day:'2-digit',month:'short',timeZone:'America/Bogota'}) + ' · ' +
+                 dr.toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit',timeZone:'America/Bogota'}) + ' · Sinuano Noche';
+    drawRow = '<div class="totrow"><span class="m">Sorteo</span><span>🎰 ' + dtxt + '</span></div>';
+  }
+
+  let body = '';
+
+  if (d.status === 'RESERVED'){
+    body = `
+      <div class="count" id="cd">⏳ –:––</div>
+      <div class="pay-zone">
+        <h3>Completa tu pago por Bre-B</h3>
+        <div class="qrbox"><img src="qr-pago.png" alt="QR de pago Bre-B — Paula Mondul"></div>
+        <div class="llave">Llave Bre-B: <b>324 241 4073</b><br>Paula Mondul</div>
+        <a class="btn wa" id="waBtn" target="_blank" rel="noopener">📲 Enviar comprobante por WhatsApp</a>
+        <div class="note">Cuando Paula confirme tu pago, este cartón se actualizará automáticamente a <b>PAGADO</b> ✅</div>
+      </div>`;
+  } else if (d.status === 'PAID'){
+    body = `
+      <div class="big-status">
+        <div class="icon">🍀</div>
+        <div class="t">¡Pago confirmado!</div>
+        <div class="s">Ya estás participando en la rifa.<br>Mucha suerte — ¡el premio puede ser tuyo!<br><br>
+        <b>Guardá este cartón.</b> Es tu comprobante digital.</div>
+      </div>`;
+  } else if (d.status === 'EXPIRED'){
+    body = `
+      <div class="big-status">
+        <div class="icon">⏰</div>
+        <div class="t">La reserva venció</div>
+        <div class="s">Tus números se liberaron y otros pueden tomarlos.<br>Si aún quieres participar, aparta de nuevo:</div>
+        <div style="height:14px"></div>
+        <a class="btn" href="index.html">Elegir números otra vez →</a>
+      </div>`;
+  } else {
+    body = `
+      <div class="big-status">
+        <div class="icon">✖️</div>
+        <div class="t">Reserva cancelada</div>
+        <div class="s">Esta reserva fue cancelada. Si querés participar de nuevo:</div>
+        <div style="height:14px"></div>
+        <a class="btn" href="index.html">Elegir números →</a>
+      </div>`;
+  }
+
+  $('content').innerHTML = `
+    <div class="ticket">
+      <div class="ticket-head">
+        <div class="label">${escapeHtml(d.raffle && d.raffle.name || 'Rifa Belwer')}</div>
+        <div class="title">🎁 ${escapeHtml(d.raffle && d.raffle.prize_title || 'Set de Cocina Belwer')}</div>
+        <div class="folio">${folio}</div>
+      </div>
+      <div class="badge-row"><span class="badge ${cls}">${icon} ${label}</span></div>
+      <div class="ticket-body">
+        <div class="buyer">
+          <div class="lbl">A nombre de</div>
+          <div class="name">${escapeHtml(d.buyer && d.buyer.name || '—')}</div>
+        </div>
+        <div class="sep"></div>
+        <div class="nums-lbl">Tus números</div>
+        <div class="chips">${chips}</div>
+        <div class="totrow"><span class="m">Cantidad</span><span><b>${nums.length}</b> número${nums.length!==1?'s':''}</span></div>
+        <div class="totrow"><span class="m">Fecha</span><span>${created}</span></div>
+        ${drawRow}
+        <div class="totrow total"><span>Total</span><span>${cop(d.total)}</span></div>
+        ${body}
+      </div>
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn ghost" id="shareBtn">🔗 Compartir este cartón</button>`;
+
+  if (d.status === 'RESERVED'){
+    startCountdown(new Date(d.expires_at));
+    const msg = '¡Hola! Te comparto mi comprobante de pago de la *Rifa Set de Cocina Belwer* 🎁\n\n' +
+      '🔢 Números: ' + nums.join(', ') + '\n' +
+      '💰 Total: ' + cop(d.total) + '\n' +
+      '🙋 A nombre de: ' + (d.buyer ? d.buyer.name : '') + '\n\n' +
+      '¡Gracias!';
+    $('waBtn').href = 'https://wa.me/' + WA_CONFIRM + '?text=' + encodeURIComponent(msg);
+  }
+
+  $('shareBtn').addEventListener('click', async () => {
+    const url = location.href;
+    try{
+      if (navigator.share){ await navigator.share({ title: 'Mi cartón — Rifa Belwer', url }); }
+      else { await navigator.clipboard.writeText(url); toast('Link copiado ✅'); }
+    }catch(e){ try{ await navigator.clipboard.writeText(url); toast('Link copiado ✅'); }catch(_){ } }
+  });
+  $('foot').style.display = 'block';
+}
+
+function startCountdown(expiresAt){
+  if (countdownTimer) clearInterval(countdownTimer);
+  const el = $('cd');
+  if (!el) return;
+  const tick = () => {
+    const ms = expiresAt - new Date();
+    if (ms <= 0){ el.textContent = '⏰ Tiempo agotado — actualizando…'; el.classList.add('low'); clearInterval(countdownTimer); setTimeout(load, 1500); return; }
+    const m = Math.floor(ms/60000), s = Math.floor((ms%60000)/1000);
+    el.textContent = '⏳ Paga dentro de: ' + m + ':' + String(s).padStart(2,'0');
+    el.classList.toggle('low', ms < 120000);
+  };
+  tick();
+  countdownTimer = setInterval(tick, 1000);
+}
+
+async function load(){
+  if (!token){ $('content').innerHTML = '<div class="loading">Este link no tiene un cartón válido.<br><br><a href="index.html">Ir a la rifa →</a></div>'; return; }
+  try{
+    const d = await rpc('raffle_ticket', { p_token: token });
+    if (!d.ok){ $('content').innerHTML = '<div class="loading">' + escapeHtml(d.error || 'Cartón no encontrado') + '<br><br><a href="index.html">Ir a la rifa →</a></div>'; return; }
+    render(d);
+  }catch(e){
+    $('content').innerHTML = '<div class="loading">Sin conexión. Recarga la página.</div>';
+  }
+}
+
+load();
+pollTimer = setInterval(() => { if (!document.hidden) load(); }, 30000);
+</script>
+</body>
+</html>
