@@ -185,6 +185,18 @@
     padding:12px 14px;margin:16px 0 4px;font-size:.9rem;line-height:1.6;
   }
   .resume b{color:var(--accent-dark);}
+  .paymode{display:flex;gap:8px;margin-top:2px;}
+  .pm{
+    flex:1;padding:11px 10px;border-radius:11px;border:1px solid var(--line);background:#fdfbf9;
+    font-family:inherit;font-size:.85rem;font-weight:700;color:var(--muted);cursor:pointer;text-align:center;line-height:1.3;
+  }
+  .pm small{display:block;font-size:.68rem;font-weight:600;opacity:.8;margin-top:2px;}
+  .pm.on{background:var(--accent);border-color:var(--accent-dark);color:#fff;}
+  .pm.on small{opacity:.9;}
+  .pmquick{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+  .qm{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:700;color:var(--accent-dark);cursor:pointer;font-family:inherit;}
+  .qm:hover{background:var(--bg);}
+  .hint3{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.45;}
   .err{color:var(--sold);font-size:.85rem;margin:10px 0 0;min-height:1em;text-align:center;}
   .count{
     text-align:center;font-size:1.05rem;font-weight:800;color:var(--res);
@@ -329,6 +341,16 @@
     <input type="tel" id="fPhone" placeholder="Ej: 300 123 4567" autocomplete="tel" inputmode="tel">
     <label for="fCity">Ciudad (opcional)</label>
     <input type="text" id="fCity" placeholder="Ej: Barranquilla" autocomplete="address-level2">
+    <label>¿Cuándo vas a pagar? *</label>
+    <div class="paymode">
+      <button type="button" class="pm on" id="pmNow">⚡ Pago ahora<small>tienes 15 minutos</small></button>
+      <button type="button" class="pm" id="pmLater">📅 Pago después<small>tú eliges la fecha</small></button>
+    </div>
+    <div id="pmDateWrap" style="display:none">
+      <input type="date" id="fPayDate">
+      <div class="pmquick" id="pmQuick"></div>
+      <div class="hint3">Puedes pagar cualquier día hasta el <b id="pmCapTxt">1 de octubre</b>. Tus números quedan reservados hasta esa fecha.</div>
+    </div>
     <div class="resume" id="formResume"></div>
     <div class="err" id="formErr"></div>
     <div style="height:12px"></div>
@@ -342,7 +364,7 @@
 <div class="modal-bg" id="payModal">
   <div class="modal">
     <div class="ok-title">¡Números apartados! 🎉</div>
-    <p class="ok-sub">Ahora paga por Bre-B y envía el comprobante.</p>
+    <p class="ok-sub" id="paySub">Ahora paga por Bre-B y envía el comprobante.</p>
     <div class="count" id="payCountdown">–:––</div>
     <ol class="steps">
       <li>Paga el total con el <b>QR Bre-B</b> de abajo (o a la llave).</li>
@@ -412,6 +434,29 @@ async function loadRaffle(){
     $('drawDate').innerHTML = '🎰 Sorteo: <b>' + d.toLocaleDateString('es-CO',{day:'2-digit',month:'long',year:'numeric'}) + '</b>';
   }
   startDrawCountdown(raffle.draw_date);
+
+  // configuración de pago diferido (el cliente elige su fecha)
+  if (raffle.defer_until){
+    deferMax = new Date(raffle.defer_until).toLocaleDateString('en-CA',{timeZone:'America/Bogota'});
+    const inp = $('fPayDate');
+    const hoy = new Date().toLocaleDateString('en-CA',{timeZone:'America/Bogota'});
+    inp.min = hoy; inp.max = deferMax;
+    $('pmCapTxt').textContent = new Date(raffle.defer_until).toLocaleDateString('es-CO',{day:'numeric',month:'long',timeZone:'America/Bogota'});
+    const isoBog = d => d.toLocaleDateString('en-CA',{timeZone:'America/Bogota'});
+    const q = $('pmQuick'); q.innerHTML = '';
+    const mk = (label, ds) => {
+      if (ds < hoy || ds > deferMax) return;
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'qm'; b.textContent = label;
+      b.addEventListener('click', () => { inp.value = ds; });
+      q.appendChild(b);
+    };
+    mk('Mañana', isoBog(new Date(Date.now() + 86400000)));
+    mk('En 3 días', isoBog(new Date(Date.now() + 3*86400000)));
+    mk('Hasta el ' + $('pmCapTxt').textContent, deferMax);
+  } else {
+    $('pmLater').style.display = 'none';
+  }
   if (raffle.status === 'DRAWN'){
     let html = '🏆 RIFA FINALIZADA — Número ganador: ' + raffle.winner_number;
     html += '<span class="winner">' + (raffle.winner_name ? '🎉 ' + escapeHtml(raffle.winner_name) : '') + '</span>';
@@ -500,6 +545,18 @@ function updateSelBar(){
   bar.classList.add('show');
 }
 
+/* ---------------- modo de pago (ahora / después) ---------------- */
+let payMode = 'now';
+let deferMax = null;
+function setPayMode(m){
+  payMode = m;
+  $('pmNow').classList.toggle('on', m === 'now');
+  $('pmLater').classList.toggle('on', m === 'later');
+  $('pmDateWrap').style.display = (m === 'later') ? 'block' : 'none';
+}
+$('pmNow').addEventListener('click', () => setPayMode('now'));
+$('pmLater').addEventListener('click', () => setPayMode('later'));
+
 /* ---------------- reserva ---------------- */
 $('btnReserve').addEventListener('click', () => {
   if (!selected.size) return;
@@ -509,6 +566,8 @@ $('btnReserve').addEventListener('click', () => {
     'Cantidad: <b>' + nums.length + '</b><br>' +
     'Total: <b>' + cop(nums.length * raffle.ticket_price) + '</b>';
   $('formErr').textContent = '';
+  setPayMode('now');
+  $('fPayDate').value = '';
   $('formModal').classList.add('show');
 });
 $('btnCloseForm').addEventListener('click', () => $('formModal').classList.remove('show'));
@@ -521,6 +580,17 @@ $('btnConfirm').addEventListener('click', async () => {
   const err = $('formErr');
   if (name.length < 3){ err.textContent = 'Escribe tu nombre completo.'; return; }
   if (phone.replace(/\D/g,'').length < 7){ err.textContent = 'Escribe un WhatsApp válido.'; return; }
+
+  let payDate = null;
+  if (payMode === 'later'){
+    payDate = $('fPayDate').value;
+    const hoy = new Date().toLocaleDateString('en-CA',{timeZone:'America/Bogota'});
+    if (!payDate){ err.textContent = 'Elige la fecha en que vas a pagar.'; return; }
+    if (payDate < hoy || (deferMax && payDate > deferMax)){
+      err.textContent = 'Elige una fecha entre hoy y el ' + ($('pmCapTxt').textContent || 'límite') + '.';
+      return;
+    }
+  }
 
   const btn = $('btnConfirm');
   btn.disabled = true; btn.textContent = 'Apartando…';
@@ -536,6 +606,15 @@ $('btnConfirm').addEventListener('click', async () => {
     } else {
       reservation = res;
       reservation.name = name;
+      reservation.payMode = payMode;
+      reservation.payDate = payDate;
+      if (payMode === 'later' && payDate){
+        try{
+          const r2 = await rpc('raffle_set_pay_date', { p_token: res.token, p_date: payDate });
+          if (r2.ok){ reservation.expires_at = r2.expires_at; }
+          else { reservation.payMode = 'now'; toast(r2.error || 'No se pudo guardar la fecha'); }
+        }catch(e){ reservation.payMode = 'now'; }
+      }
       $('formModal').classList.remove('show');
       selected.clear();
       await loadNumbers();
@@ -550,14 +629,29 @@ $('btnConfirm').addEventListener('click', async () => {
 function showPay(){
   const nums = reservation.numbers.join(', ');
   $('payTotal').textContent = cop(reservation.total);
+  const deferred = reservation.payMode === 'later';
+  let payDateTxt = '';
+  if (deferred){
+    const dl = new Date(reservation.expires_at);
+    payDateTxt = dl.toLocaleDateString('es-CO',{weekday:'long', day:'numeric', month:'long', timeZone:'America/Bogota'}) +
+                 ' · ' + dl.toLocaleTimeString('es-CO',{hour:'numeric', minute:'2-digit', timeZone:'America/Bogota'});
+    if (countdownTimer) clearInterval(countdownTimer);
+    const el = $('payCountdown');
+    el.textContent = '📅 Paga antes del ' + payDateTxt;
+    el.classList.remove('low');
+    $('paySub').textContent = 'Guardamos tu fecha de pago. También puedes pagar ya si prefieres 😉';
+  } else {
+    $('paySub').textContent = 'Ahora paga por Bre-B y envía el comprobante.';
+    startCountdown(new Date(reservation.expires_at));
+  }
   const msg = '¡Hola! Acabo de apartar mis números en la *Rifa Set de Cocina Belwer* 🎁\n\n' +
     '🔢 Números: ' + nums + '\n' +
     '💰 Total: ' + cop(reservation.total) + '\n' +
-    '🙋 A nombre de: ' + reservation.name + '\n\n' +
-    'Te envío el comprobante de pago. ¡Gracias!';
+    '🙋 A nombre de: ' + reservation.name + '\n' +
+    (deferred ? '📅 Pagaré antes del ' + payDateTxt + '\n\n' : '\n') +
+    (deferred ? 'En estos días envío el comprobante de pago. ¡Gracias!' : 'Te envío el comprobante de pago. ¡Gracias!');
   $('waBtn').href = 'https://wa.me/' + WA_CONFIRM + '?text=' + encodeURIComponent(msg);
   $('ticketLink').href = 'carton.html?t=' + reservation.token;
-  startCountdown(new Date(reservation.expires_at));
   $('payModal').classList.add('show');
 }
 

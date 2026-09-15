@@ -182,7 +182,7 @@ function render(d){
         <div class="qrbox"><img src="qr-pago.png" alt="QR de pago Bre-B — Paula Mondul"></div>
         <div class="llave">Llave Bre-B: <b>324 241 4073</b><br>Paula Mondul</div>
         <a class="btn wa" id="waBtn" target="_blank" rel="noopener">📲 Enviar comprobante por WhatsApp</a>
-        <div class="note">${farDeadline ? 'Paula dejó tus números apartados con fecha límite de pago. Paga antes de esa fecha y envía el comprobante — al confirmarlo, este cartón se actualizará a <b>PAGADO</b> ✅' : 'Cuando Paula confirme tu pago, este cartón se actualizará automáticamente a <b>PAGADO</b> ✅'}</div>
+        <div class="note">${farDeadline ? 'Tus números quedaron apartados con fecha límite de pago. Paga antes de esa fecha y envía el comprobante — al confirmarlo, este cartón se actualizará a <b>PAGADO</b> ✅' : 'Cuando Paula confirme tu pago, este cartón se actualizará automáticamente a <b>PAGADO</b> ✅'}</div>
       </div>`;
   } else if (d.status === 'PAID'){
     body = `
