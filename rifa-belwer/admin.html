@@ -495,8 +495,10 @@ function openNum(n){
       <button class="btn warn block" id="nmFree">↩️ Liberar este número</button>`;
   } else {
     acts = `
+      <button class="btn warn block" id="nmToRes">📌 Volver a apartado (pago pendiente)</button>
+      <div style="height:8px"></div>
       <button class="btn danger block" id="nmFree">↩️ Liberar (marcar disponible)</button>
-      <div class="hint">Ojo: si el número estaba vendido, se borra del registro del comprador.</div>`;
+      <div class="hint">"Volver a apartado" mantiene al comprador y deja el número reservado hasta la fecha límite. "Liberar" borra el registro del comprador.</div>`;
   }
   $('nmActions').innerHTML = acts;
   $('numModal').classList.add('show');
@@ -534,6 +536,15 @@ function openNum(n){
     freeBtn.disabled = true;
     const res = await admin('set_number', { number: n, status: 'AVAILABLE' });
     if (res.ok){ toast('Número liberado'); close(); await refresh(); } else { toast(res.error); freeBtn.disabled = false; }
+  };
+  const toResBtn = $('nmToRes');
+  if (toResBtn) toResBtn.onclick = async () => {
+    if (!confirm('¿Devolver el número ' + n + ' a APARTADO (pago pendiente)? El comprador se mantiene.')) return;
+    toResBtn.disabled = true;
+    const r = await fetch(SUPA_URL + '/rest/v1/rpc/raffle_admin_to_reserved', { method:'POST', headers,
+      body: JSON.stringify({ p_key: KEY, p_slug: SLUG, p_number: n }) });
+    const res = await r.json();
+    if (res.ok){ toast('📌 Número en apartado otra vez'); close(); await refresh(); } else { toast(res.error || 'Error'); toResBtn.disabled = false; }
   };
 }
 
