@@ -164,17 +164,25 @@ function render(d){
     drawRow = '<div class="totrow"><span class="m">Sorteo</span><span>🎰 ' + dtxt + '</span></div>';
   }
 
+  const msLeft = d.expires_at ? (new Date(d.expires_at) - new Date()) : 0;
+  const farDeadline = d.status === 'RESERVED' && msLeft > 36*3600000;
+  let deadlineLong = '';
+  if (farDeadline){
+    const dl = new Date(d.expires_at);
+    deadlineLong = dl.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Bogota'}) + ' · ' + dl.toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit',timeZone:'America/Bogota'});
+  }
+
   let body = '';
 
   if (d.status === 'RESERVED'){
     body = `
-      <div class="count" id="cd">⏳ –:––</div>
+      <div class="count" id="cd">${farDeadline ? '📅 Paga antes del ' + deadlineLong : '⏳ –:––'}</div>
       <div class="pay-zone">
         <h3>Completa tu pago por Bre-B</h3>
         <div class="qrbox"><img src="qr-pago.png" alt="QR de pago Bre-B — Paula Mondul"></div>
         <div class="llave">Llave Bre-B: <b>324 241 4073</b><br>Paula Mondul</div>
         <a class="btn wa" id="waBtn" target="_blank" rel="noopener">📲 Enviar comprobante por WhatsApp</a>
-        <div class="note">Cuando Paula confirme tu pago, este cartón se actualizará automáticamente a <b>PAGADO</b> ✅</div>
+        <div class="note">${farDeadline ? 'Paula dejó tus números apartados con fecha límite de pago. Paga antes de esa fecha y envía el comprobante — al confirmarlo, este cartón se actualizará a <b>PAGADO</b> ✅' : 'Cuando Paula confirme tu pago, este cartón se actualizará automáticamente a <b>PAGADO</b> ✅'}</div>
       </div>`;
   } else if (d.status === 'PAID'){
     body = `
@@ -231,7 +239,7 @@ function render(d){
     <button class="btn ghost" id="shareBtn">🔗 Compartir este cartón</button>`;
 
   if (d.status === 'RESERVED'){
-    startCountdown(new Date(d.expires_at));
+    if (!farDeadline) startCountdown(new Date(d.expires_at));
     const msg = '¡Hola! Te comparto mi comprobante de pago de la *Rifa Set de Cocina Belwer* 🎁\n\n' +
       '🔢 Números: ' + nums.join(', ') + '\n' +
       '💰 Total: ' + cop(d.total) + '\n' +

@@ -271,6 +271,26 @@
   </div>
 </div>
 
+<!-- modal fecha de pago -->
+<div class="m-bg" id="dateModal">
+  <div class="m">
+    <h3>📅 Fecha límite de pago</h3>
+    <div class="muted" id="dmInfo" style="margin-bottom:10px;"></div>
+    <label>Pagar antes de</label>
+    <input type="datetime-local" id="dmInput">
+    <div class="row" style="gap:6px;margin-top:10px;">
+      <button class="btn ghost small" id="dm1d">+1 día</button>
+      <button class="btn ghost small" id="dm3d">+3 días</button>
+      <button class="btn ghost small" id="dmSep30">30 sep</button>
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn ok block" id="dmSave">Guardar fecha de pago</button>
+    <div style="height:8px"></div>
+    <button class="btn ghost block" id="dmNow">⚡ Pago inmediato (15 min)</button>
+    <button class="btn ghost block" id="dmClose" style="margin-top:8px">Cancelar</button>
+  </div>
+</div>
+
 <script>
 const SUPA_URL = 'https://hdlktcmhtcqldlmiyzwr.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkbGt0Y21odGNxbGRsbWl5endyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzMjUzNTgsImV4cCI6MjEwNDkwMTM1OH0.kjHEfh-IPiI8HKiOVYt04G6MglLi8cz8o8chbxWLJWE';
@@ -294,9 +314,13 @@ function waLink(phone, text){
   if (p.length === 10 && p.startsWith('3')) p = '57' + p;
   return 'https://wa.me/' + p + '?text=' + encodeURIComponent(text);
 }
-function mins(iso){
+function deadlineTxt(iso){
   const ms = new Date(iso) - new Date();
   if (ms <= 0) return '⌛ vencido';
+  if (ms > 36*3600000){
+    const d = new Date(iso);
+    return '📅 ' + d.toLocaleDateString('es-CO',{day:'2-digit',month:'short'}) + ' · ' + d.toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit'});
+  }
   const m = Math.floor(ms/60000), s = Math.floor((ms%60000)/1000);
   return '⏳ ' + m + ':' + String(s).padStart(2,'0');
 }
@@ -385,7 +409,7 @@ function renderReservations(){
     <div class="res-item ${expiring?'expiring':''}">
       <div class="res-head">
         <span class="res-name">${esc(r.buyer_name)}</span>
-        <span class="pill res">${mins(r.expires_at)}</span>
+        <span class="pill res">${deadlineTxt(r.expires_at)}</span>
       </div>
       <div class="res-nums">${numsTxt}</div>
       <div class="res-meta">
@@ -395,6 +419,7 @@ function renderReservations(){
       <div class="actions">
         <button class="btn ok small" data-act="paid" data-id="${r.id}">✓ Confirmar pago</button>
         <button class="btn warn small" data-act="release" data-id="${r.id}">Liberar</button>
+        <button class="btn ghost small" data-act="date" data-id="${r.id}">📅 Fecha de pago</button>
         <button class="btn ghost small" data-act="link" data-token="${r.token}">🔗 Link cartón</button>
         <a class="btn wa small" href="${waLink(r.buyer_phone, waMsg)}" target="_blank" rel="noopener">📲 WhatsApp</a>
       </div>
@@ -405,6 +430,7 @@ function renderReservations(){
 $('resList').addEventListener('click', async e => {
   const b = e.target.closest('button'); if (!b) return;
   const act = b.dataset.act;
+  if (act === 'date'){ openDateModal(b.dataset.id); return; }
   if (act === 'link'){
     const url = new URL('carton.html?t=' + b.dataset.token, location.href).href;
     copyText(url); return;
@@ -499,6 +525,47 @@ function openNum(n){
     if (res.ok){ toast('Número liberado'); close(); await refresh(); } else { toast(res.error); freeBtn.disabled = false; }
   };
 }
+
+/* ---------- fecha de pago (extender reserva) ---------- */
+let dmId = null;
+function toLocalInput(date){
+  const p2 = n => String(n).padStart(2,'0');
+  return date.getFullYear() + '-' + p2(date.getMonth()+1) + '-' + p2(date.getDate()) + 'T' + p2(date.getHours()) + ':' + p2(date.getMinutes());
+}
+function openDateModal(id){
+  const r = (DATA.reservations || []).find(x => x.id === id);
+  if (!r) return;
+  dmId = id;
+  $('dmInfo').innerHTML = '<b>' + esc(r.buyer_name) + '</b> · números ' + ((r.numbers||[]).join(', ') || '—');
+  $('dmInput').value = toLocalInput(new Date(r.expires_at));
+  const minsv = (DATA.raffle && DATA.raffle.reservation_minutes) || 15;
+  $('dmNow').textContent = '⚡ Pago inmediato (' + minsv + ' min)';
+  $('dateModal').classList.add('show');
+}
+$('dm1d').addEventListener('click', () => { const d = new Date(); d.setDate(d.getDate()+1); d.setHours(23,59,0,0); $('dmInput').value = toLocalInput(d); });
+$('dm3d').addEventListener('click', () => { const d = new Date(); d.setDate(d.getDate()+3); d.setHours(23,59,0,0); $('dmInput').value = toLocalInput(d); });
+$('dmSep30').addEventListener('click', () => { $('dmInput').value = '2026-09-30T23:59'; });
+$('dmClose').addEventListener('click', () => $('dateModal').classList.remove('show'));
+$('dateModal').addEventListener('click', e => { if (e.target === $('dateModal')) $('dateModal').classList.remove('show'); });
+async function callDeadline(body){
+  const r = await fetch(SUPA_URL + '/rest/v1/rpc/raffle_admin_set_deadline', { method:'POST', headers, body: JSON.stringify(body) });
+  return r.json();
+}
+$('dmSave').addEventListener('click', async () => {
+  const v = $('dmInput').value;
+  if (!v){ toast('Elige una fecha y hora'); return; }
+  $('dmSave').disabled = true;
+  const res = await callDeadline({ p_key: KEY, p_reservation_id: dmId, p_deadline: new Date(v).toISOString() });
+  $('dmSave').disabled = false;
+  if (res.ok){ toast('📅 Fecha de pago guardada'); $('dateModal').classList.remove('show'); await refresh(); }
+  else toast(res.error || 'Error');
+});
+$('dmNow').addEventListener('click', async () => {
+  const minsv = (DATA.raffle && DATA.raffle.reservation_minutes) || 15;
+  const res = await callDeadline({ p_key: KEY, p_reservation_id: dmId, p_minutes: minsv });
+  if (res.ok){ toast('⚡ Pago inmediato activado'); $('dateModal').classList.remove('show'); await refresh(); }
+  else toast(res.error || 'Error');
+});
 
 /* ---------- historial ---------- */
 function renderHist(){
