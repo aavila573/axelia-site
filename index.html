@@ -824,6 +824,21 @@
         else { alert('Hubo un error. Escríbenos por WhatsApp.'); }
       })
       .catch(function() { alert('Hubo un error de conexión. Escríbenos por WhatsApp.'); });
+    // Captura adicional al mini-CRM (n8n -> leads.csv), no interrumpe el envío principal
+    var lead = {
+      nombre: data.get('nombre') || '',
+      email: data.get('email') || '',
+      whatsapp: data.get('whatsapp') || '',
+      rubro: data.get('rubro') || '',
+      dolor: data.get('dolor') || '',
+      origen: data.get('origen') || '',
+      mensaje: data.get('mensaje') || ''
+    };
+    fetch('https://n8n.axelia.tech/webhook/captura-leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead)
+    }).catch(function() {});
   });
 })();
 </script>
