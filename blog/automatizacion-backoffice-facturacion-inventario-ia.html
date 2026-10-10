@@ -46,7 +46,7 @@
   .logo { font-size:1.5rem; font-weight:800; background:linear-gradient(135deg,#6c5ce7,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .logo a { text-decoration:none; color:inherit; }
   .nav-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-family:'Inter',-apple-system,sans-serif; }
-  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;}
+  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;background:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-weight:600;margin:0;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;background:#6c5ce7;}
   .container { max-width:750px; margin:0 auto; padding:3rem 1.5rem; }
   h1 { font-size:2rem; font-weight:800; line-height:1.3; margin-bottom:1rem; font-family:'Inter',-apple-system,sans-serif; background:linear-gradient(135deg,#fff,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   h2 { font-size:1.4rem; margin:2rem 0 0.8rem; font-family:'Inter',-apple-system,sans-serif; color:#fff; }
@@ -61,6 +61,8 @@
   ul, ol { margin:1rem 0 1rem 1.5rem; }
   li { margin-bottom:0.5rem; }
   footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--text2); font-size:0.8rem; font-family:'Inter',-apple-system,sans-serif; }
+  footer a { color:var(--text2); text-decoration:none; }
+  footer a:hover { color:var(--text); }
   @media (max-width:768px){ h1{font-size:1.5rem;} .container{padding:2rem 1rem;} p{font-size:1rem;} }
 
 :focus-visible { outline: 2px solid var(--accent2, #7c5cff); outline-offset: 2px; }
@@ -128,7 +130,7 @@
     <a href="/blog/">Blog</a>
     <a href="/calculadora.html" style="color:var(--green);">ROI</a>
     <a href="/disena.html">Diseña</a>
-    <a href="/#contacto" class="btn">Agendar Diagnóstico</a>
+    <a href="../index.html#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
 </nav>
 <div class="container" id="main">
@@ -147,9 +149,9 @@
     <li>📧 Enviar recordatorios de pago</li>
   </ul>
 
-  <h2>El costo real del back-office manual</h2>
+  <h2>El costo del back-office manual (ejemplo ilustrativo)</h2>
   <table>
-    <tr><th>Tarea</th><th>Horas/semana</th><th>Costo mensual</th></tr>
+    <tr><th>Tarea</th><th>Horas/semana (ejemplo)</th><th>Costo mensual (estimación)</th></tr>
     <tr><td>Facturación manual</td><td>8h</td><td>$400.000</td></tr>
     <tr><td>Actualizar inventario</td><td>5h</td><td>$250.000</td></tr>
     <tr><td>Reportes de ventas</td><td>4h</td><td>$200.000</td></tr>
@@ -185,15 +187,15 @@
 
   <h2>¿Cuánto cuesta automatizar el back-office?</h2>
   <p>Una automatización de back-office con 2-3 procesos internos empieza en <strong>$4.000.000 COP</strong>. Incluye desarrollo, integración con tus sistemas, capacitación al equipo y 60 días de soporte.</p>
-  <p>Con un ahorro mensual de $1.100.000 COP, la inversión se recupera en <strong>menos de 4 meses</strong>.</p>
+  <p>Con el ahorro mensual del ejemplo anterior ($1.100.000 COP), la inversión se recupera en <strong>menos de 4 meses</strong>.</p>
 
-  <h2>El caso real de una distribuidora en Barranquilla</h2>
-  <p>Una distribuidora de insumos con 15 empleados automatizó facturación e inventario con AxelIA. En 3 meses:</p>
+  <h2>Ejemplo ilustrativo: una distribuidora en Barranquilla</h2>
+  <p>Supón una distribuidora de insumos con 15 empleados que automatiza facturación e inventario con AxelIA. En un escenario así, a los 3 meses podría verse:</p>
   <ul>
-    <li>⏱️ 22 horas semanales liberadas</li>
-    <li>📉 90% menos errores en facturación</li>
-    <li>📈 15% más ventas (por seguimiento automático de cotizaciones)</li>
-    <li>😊 El equipo dejó de hacer trabajo mecánico</li>
+    <li>⏱️ 22 horas semanales liberadas (según la estimación de la tabla anterior)</li>
+    <li>📉 Menos errores de digitación en facturación</li>
+    <li>📈 Más ventas por seguimiento automático de cotizaciones</li>
+    <li>😊 El equipo deja de hacer trabajo mecánico</li>
   </ul>
 
   <p>La automatización del back-office no es un lujo. Es la diferencia entre trabajar <strong>en</strong> tu negocio y trabajar <strong>para</strong> tu negocio.</p>
@@ -203,7 +205,7 @@
   <p style="margin-top:3rem; text-align:center;">———</p>
   <div style="text-align:center;padding:2rem 1.5rem;background:var(--card,#16161f);border-top:1px solid var(--border,#222230);margin-top:2rem;">
   <h2 style="font-size:1.5rem;margin-bottom:0.5rem;color:var(--text,#e0e0e8);">Agenda tu diagnóstico gratuito</h2>
-  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">30 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
+  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">45 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
   <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20vengo%20del%20blog%20y%20quiero%20un%20diagn%C3%B3stico." class="btn" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent,#6c5ce7);color:#fff;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;">Agendar por WhatsApp</a>
   </div>
 </div>

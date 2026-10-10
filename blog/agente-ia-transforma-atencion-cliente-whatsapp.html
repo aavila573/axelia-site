@@ -46,7 +46,7 @@
   .logo { font-size:1.5rem; font-weight:800; background:linear-gradient(135deg,#6c5ce7,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .logo a { text-decoration:none; color:inherit; }
   .nav-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-family:'Inter',-apple-system,sans-serif; }
-  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;}
+  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;background:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-weight:600;margin:0;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;background:#6c5ce7;}
   .container { max-width:750px; margin:0 auto; padding:3rem 1.5rem; }
   h1 { font-size:2rem; font-weight:800; line-height:1.3; margin-bottom:1rem; font-family:'Inter',-apple-system,sans-serif; background:linear-gradient(135deg,#fff,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   h2 { font-size:1.4rem; margin:2rem 0 0.8rem; font-family:'Inter',-apple-system,sans-serif; color:#fff; }
@@ -58,7 +58,9 @@
   .before h3 { color:#ff6b6b; }
   .after h3 { color:#00d2a0; }
   .btn { display:inline-block; background:var(--accent); color:#fff; padding:1rem 2rem; border-radius:8px; text-decoration:none; font-weight:600; font-family:'Inter',-apple-system,sans-serif; margin:1rem 0; }
-  footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--text2); font-size:0.8rem; font-family:'Inter',-apple-system,sans-serif); }
+  footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--text2); font-size:0.8rem; font-family:'Inter',-apple-system,sans-serif; }
+  footer a { color:var(--text2); text-decoration:none; }
+  footer a:hover { color:var(--text); }
   @media (max-width:768px){ h1{font-size:1.5rem;} .before-after{grid-template-columns:1fr;} }
 
 :focus-visible { outline: 2px solid var(--accent2, #7c5cff); outline-offset: 2px; }
@@ -126,7 +128,7 @@
     <a href="/blog/">Blog</a>
     <a href="/calculadora.html" style="color:var(--green);">ROI</a>
     <a href="/disena.html">Diseña</a>
-    <a href="/#contacto" class="btn">Agendar Diagnóstico</a>
+    <a href="../index.html#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
 </nav>
 <div class="container" id="main">
@@ -136,7 +138,7 @@
   <p>WhatsApp es el canal de atención más usado en Colombia. Más que el teléfono. Más que el email. Más que Instagram. Y la mayoría de PYMES lo atienden exactamente igual que hace 10 años: manualmente.</p>
   <p>Esto es lo que cambia cuando pones un agente de IA al frente.</p>
 
-  <p style="background:var(--card);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:8px;font-size:0.85rem;color:var(--text2);font-family:'Inter',-apple-system,sans-serif;">⚠️ <strong>Nota:</strong> Los tiempos de respuesta y cifras de mejora son proyecciones basadas en implementaciones típicas. Los resultados reales varían según el volumen de consultas, integraciones y sector.</p>
+  <p style="background:var(--card);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:8px;font-size:0.85rem;color:var(--text2);font-family:'Inter',-apple-system,sans-serif;">⚠️ <strong>Nota:</strong> Los tiempos de respuesta y cifras de mejora son proyecciones basadas en implementaciones típicas. Los resultados concretos varían según el volumen de consultas, integraciones y sector.</p>
 
   <h2>El antes y el después de automatizar WhatsApp</h2>
 
@@ -149,14 +151,14 @@
     <div class="after">
       <h3>✅ DESPUÉS</h3>
       <p>Cliente escribe a las 8 PM.<br>IA responde en <strong>3 segundos.</strong><br>Cliente feliz, venta cerrada.</p>
-      <p>0 personas dedicadas a responder.<br>0 errores en precios.<br>100% de leads seguidos.</p>
+      <p>0 personas dedicadas a responder.<br>Precios consistentes.<br>Seguimiento automático de leads.</p>
     </div>
   </div>
 
   <h2>¿Qué puede hacer un agente de IA en WhatsApp?</h2>
 
   <table>
-    <tr><th>Función</th><th>Ejemplo real</th></tr>
+    <tr><th>Función</th><th>Ejemplo</th></tr>
     <tr><td>📞 Responder consultas frecuentes</td><td>"¿Cuánto vale el servicio X?"</td></tr>
     <tr><td>📄 Cotizar al instante</td><td>"Para 10 empleados, el plan Pro cuesta $5.5M"</td></tr>
     <tr><td>📅 Agendar citas o reservas</td><td>"Te agendo el jueves a las 3 PM. ¿Confirmas?"</td></tr>
@@ -178,17 +180,18 @@
   </table>
 
   <h2>¿Cuánto tiempo toma implementarlo?</h2>
-  <p>En AxelIA: <strong>7-14 días</strong>. La primera semana entrenamos el agente con tus datos reales: preguntas frecuentes, precios, catálogo, tono de voz. La segunda semana lo ponemos en producción con soporte.</p>
+  <p>En AxelIA: <strong>7-14 días</strong>. La primera semana entrenamos el agente con tus datos: preguntas frecuentes, precios, catálogo, tono de voz. La segunda semana lo ponemos en producción con soporte.</p>
 
   <h2>¿Qué pasa cuando una consulta es muy compleja?</h2>
   <p>El agente lo detecta y transfiere automáticamente a una persona de tu equipo. Tú decides el umbral: ¿cuándo interviene un humano? ¿Para qué tipo de consultas? El agente hace el filtro, tu equipo cierra.</p>
 
-  <h2>Resultados típicos en el primer mes</h2>
+  <h2>Ejemplo ilustrativo: qué puede pasar en el primer mes</h2>
+  <p>Supuesto: una PYME que hoy responde en horas, con 3 personas dedicadas al WhatsApp, pasa a un agente que responde en segundos. En ese escenario:</p>
   <ul>
-    <li>⏱️ <strong>90% menos tiempo</strong> de respuesta (de horas a segundos)</li>
-    <li>📈 <strong>+40% conversión</strong> en consultas por WhatsApp</li>
-    <li>😊 <strong>+60% satisfacción</strong> del cliente (respuesta inmediata)</li>
-    <li>💰 <strong>1-2 empleados</strong> liberados de tareas repetitivas</li>
+    <li>⏱️ Tiempo de respuesta: de horas a segundos</li>
+    <li>📈 Más consultas convertidas en ventas (estimación: +40%)</li>
+    <li>😊 Mejor satisfacción por la respuesta inmediata (estimación: +60%)</li>
+    <li>💰 1-2 personas liberadas de tareas repetitivas</li>
   </ul>
 
   <a href="https://wa.me/573024063534" class="btn">📱 Quiero probarlo en mi negocio</a>
@@ -198,7 +201,7 @@
 </div>
 <div style="text-align:center;padding:2rem 1.5rem;background:var(--card,#16161f);border-top:1px solid var(--border,#222230);margin-top:2rem;">
   <h2 style="font-size:1.5rem;margin-bottom:0.5rem;color:var(--text,#e0e0e8);">Agenda tu diagnóstico gratuito</h2>
-  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">30 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
+  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">45 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
   <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20vengo%20del%20blog%20y%20quiero%20un%20diagn%C3%B3stico." class="btn" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent,#6c5ce7);color:#fff;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;">Agendar por WhatsApp</a>
 </div>
 <footer>© 2026 AxelIA — axelia.tech · <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener">💬 WhatsApp</a></footer>

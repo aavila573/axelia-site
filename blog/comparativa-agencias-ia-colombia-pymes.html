@@ -46,7 +46,7 @@
   .logo { font-size:1.5rem; font-weight:800; background:linear-gradient(135deg,#6c5ce7,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .logo a { text-decoration:none; color:inherit; }
   .nav-links a { color:var(--text2); text-decoration:none; font-size:0.9rem; font-family:'Inter',-apple-system,sans-serif; }
-  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;}
+  .nav-links a.btn,.nav-links a.btn:link,.nav-links a.btn:visited{color:#fff;background:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-weight:600;margin:0;}.nav-links a.btn:hover,.nav-links a.btn:focus{color:#fff;opacity:0.9;background:#6c5ce7;}
   .container { max-width:750px; margin:0 auto; padding:3rem 1.5rem; }
   h1 { font-size:2rem; font-weight:800; line-height:1.3; margin-bottom:1rem; font-family:'Inter',-apple-system,sans-serif; background:linear-gradient(135deg,#fff,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   h2 { font-size:1.4rem; margin:2rem 0 0.8rem; font-family:'Inter',-apple-system,sans-serif; color:#fff; }
@@ -61,6 +61,8 @@
   ul { margin:1rem 0 1rem 1.5rem; }
   li { margin-bottom:0.5rem; }
   footer { text-align:center; padding:2rem; border-top:1px solid var(--border); color:var(--text2); font-size:0.8rem; font-family:'Inter',-apple-system,sans-serif; }
+  footer a { color:var(--text2); text-decoration:none; }
+  footer a:hover { color:var(--text); }
   @media (max-width:768px){ h1{font-size:1.5rem;} .container{padding:2rem 1rem;} p{font-size:1rem;} }
 
 :focus-visible { outline: 2px solid var(--accent2, #7c5cff); outline-offset: 2px; }
@@ -128,7 +130,7 @@
     <a href="/blog/">Blog</a>
     <a href="/calculadora.html" style="color:var(--green);">ROI</a>
     <a href="/disena.html">Diseña</a>
-    <a href="/#contacto" class="btn">Agendar Diagnóstico</a>
+    <a href="../index.html#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
 </nav>
 <div class="container" id="main">
@@ -153,18 +155,19 @@
 
   <table>
     <tr><th>Agencia</th><th>Precio desde</th><th>Especialidad</th><th>Enfoque PYME</th></tr>
-    <tr><td><strong>AxelIA</strong></td><td class="win">$1.500.000</td><td>100% agentes IA</td><td class="win">✅ Sí</td></tr>
-    <tr><td>Mentora Colombia</td><td>$1.890.000</td><td>Marketing digital + IA</td><td>✅</td></tr>
-    <tr><td>CIMAVERSO</td><td>$950.000</td><td>Automatización + SST</td><td>✅</td></tr>
-    <tr><td>Ventiva.ai</td><td>$390.000/mes</td><td>CRM + automatización</td><td>❌ (empresarial)</td></tr>
-    <tr><td>Consultoras freelance</td><td>$500.000</td><td>Generalista</td><td>⚠️ Variable</td></tr>
+    <tr><td><strong>AxelIA</strong></td><td class="win">$1.500.000</td><td>Foco en agentes IA</td><td class="win">✅ Sí</td></tr>
+    <tr><td>Agencia de marketing digital + IA</td><td>desde $1.890.000*</td><td>Marketing digital + IA</td><td>✅</td></tr>
+    <tr><td>Agencia de automatización + SST</td><td>desde $950.000*</td><td>Automatización + SST</td><td>✅</td></tr>
+    <tr><td>Plataforma CRM + automatización</td><td>desde $390.000/mes*</td><td>CRM + automatización</td><td>❌ (empresarial)</td></tr>
+    <tr><td>Consultores freelance</td><td>desde $500.000*</td><td>Generalista</td><td>⚠️ Variable</td></tr>
   </table>
+  <p style="font-size:0.85rem;color:var(--text2);">* Precios de referencia tomados de información pública (agosto 2026). No los verificamos con cada proveedor: confírmalos antes de decidir.</p>
 
   <h2>¿En qué se diferencia AxelIA?</h2>
 
   <div class="highlight">
-    <h3>🎯 100% especializados en IA</h3>
-    <p>No hacemos diseño web. No vendemos pauta digital. No damos cursos de liderazgo. Solo automatización con agentes de IA. Eso significa que cada peso de tu inversión va directo a lo que necesitas.</p>
+    <h3>🎯 Especializados en automatización con IA</h3>
+    <p>No vendemos pauta digital ni cursos genéricos: nuestro foco son los agentes de IA. Eso significa que cada peso de tu inversión va directo a lo que necesitas.</p>
   </div>
 
   <div class="highlight">
@@ -174,7 +177,7 @@
 
   <div class="highlight">
     <h3>⏱️ 7-14 días de implementación</h3>
-    <p>No 3 meses. No 6 meses. La mayoría de nuestros proyectos están en producción en 2 semanas. Si necesitas resultados rápidos, somos la opción.</p>
+    <p>No 3 meses. No 6 meses. Nuestra meta es tener la primera versión funcionando en 7-14 días. Si necesitas empezar rápido, somos la opción.</p>
   </div>
 
   <div class="highlight">
@@ -183,14 +186,14 @@
   </div>
 
   <h2>¿Y las agencias grandes?</h2>
-  <p>Consultoras como Accenture o Globant ofrecen transformación digital con IA. Pero sus proyectos empiezan en $100.000+ USD y duran 6-12 meses. No están diseñadas para PYMES de 10-200 empleados. Son excelentes para lo que hacen, pero tú no eres su cliente objetivo.</p>
+  <p>Las consultoras globales ofrecen transformación digital con IA, pero sus proyectos suelen ser de gran escala: presupuestos en decenas de miles de dólares y plazos de varios meses. No están diseñadas para PYMES de 10-200 empleados. Son excelentes para lo que hacen, pero tú no eres su cliente objetivo.</p>
 
   <h2>¿Y hacerlo con un freelance?</h2>
-  <p>Un desarrollador freelance puede costar $500.000 - $2.000.000 COP por proyecto. El riesgo: dependes de una sola persona, sin garantía, sin soporte post-entrega. Si se va, te quedas solo. Con una agencia tienes respaldo, documentación y continuidad.</p>
+  <p>Un desarrollador freelance puede costar entre $500.000 y $2.000.000 COP por proyecto (rango orientativo; varía según alcance y experiencia). El riesgo: dependes de una sola persona, sin garantía, sin soporte post-entrega. Si se va, te quedas solo. Con una agencia tienes respaldo, documentación y continuidad.</p>
 
   <h2>La decisión en 3 preguntas</h2>
   <ol>
-    <li><strong>¿Es 100% IA o hacen de todo un poco?</strong> → La especialización importa.</li>
+    <li><strong>¿Están enfocados en IA o hacen de todo un poco?</strong> → La especialización importa.</li>
     <li><strong>¿Los precios son públicos?</strong> → La transparencia importa.</li>
     <li><strong>¿Cuánto tardan en implementar?</strong> → El tiempo importa.</li>
   </ol>
@@ -204,7 +207,7 @@
 </div>
 <div style="text-align:center;padding:2rem 1.5rem;background:var(--card,#16161f);border-top:1px solid var(--border,#222230);margin-top:2rem;">
   <h2 style="font-size:1.5rem;margin-bottom:0.5rem;color:var(--text,#e0e0e8);">Agenda tu diagnóstico gratuito</h2>
-  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">30 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
+  <p style="color:var(--text2,#8888a0);margin-bottom:1rem;">45 minutos sin costo. Revisamos tu negocio y te decimos qué puedes automatizar.</p>
   <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20vengo%20del%20blog%20y%20quiero%20un%20diagn%C3%B3stico." class="btn" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent,#6c5ce7);color:#fff;padding:1rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;">Agendar por WhatsApp</a>
 </div>
 <footer>© 2026 AxelIA — axelia.tech · <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener">💬 WhatsApp</a></footer>
