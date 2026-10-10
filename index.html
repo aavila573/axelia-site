@@ -278,11 +278,12 @@
 
  /* ── Responsive ── */
  @media (max-width: 768px) {
-  .hero h1 { font-size: 2rem; }
-  .stats { gap: 1.5rem; }
-  .stat .num { font-size: 1.3rem; }
-  section { padding: 3rem 1rem; }
-  .nav-links { display: none; }
+   .hero h1 { font-size: 2rem; }
+   .hero { padding-bottom: 5rem; }
+   .stats { gap: 1.5rem; }
+   .stat .num { font-size: 1.3rem; }
+   section { padding: 3rem 1rem; }
+   .nav-links { display: none; }
  }
 
  section[id] { scroll-margin-top: 80px; }
@@ -315,7 +316,10 @@
 .hero-mockup .msg.in{background:#1f2c34;color:#e9edef;align-self:flex-start;border-bottom-left-radius:2px;}
 .hero-mockup .msg.out{background:#005c4b;color:#e9edef;align-self:flex-end;border-bottom-right-radius:2px;}
 .hero-mockup .msg .time{font-size:.6rem;color:#c4ccd0;margin-top:2px;text-align:right;}
-@media(max-width:768px){.hero-mockup{max-width:300px;}}
+@media(max-width:768px){.hero-mockup{max-width:300px;margin-right:56px;}}
+/* DEV-2026-010: margin-right desplaza el mockup a la izquierda, creando separacion x
+   constante de 25px respecto al boton flotante WA (48px @ right:15px) en todo viewport movil.
+   No recorta el mockup: el contenido reflowa dentro del ancho disponible. */
 
 /* ── DEV-2026-008: Menu movil + boton flotante WA ── */
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:101;}
