@@ -116,6 +116,22 @@
   text-align: center; padding: 6rem 2rem 4rem;
   background: radial-gradient(ellipse at center, rgba(108,92,231,0.08) 0%, transparent 70%);
  }
+ .hero-inner {
+  display: flex; align-items: center; gap: 3rem; max-width: 1100px; margin: 0 auto;
+ }
+ .hero-text { flex: 1 1 60%; text-align: left; }
+ .hero-text .badge { margin-bottom: 1.5rem; }
+ .hero-text h1 { margin: 0 auto 1rem 0; }
+ .hero-text p { margin: 0 auto 2rem 0; }
+ .hero-text .hero-cta { justify-content: flex-start; }
+ .hero-visual { flex: 0 0 340px; display: flex; justify-content: center; }
+ @media(max-width:768px) {
+  .hero-inner { flex-direction: column; gap: 0; }
+  .hero-text { text-align: center; }
+  .hero-text .hero-cta { justify-content: center; }
+  .hero-text h1, .hero-text p { margin-left: auto; margin-right: auto; }
+  .hero-visual { flex: 0 0 auto; }
+ }
  .hero .badge {
   display: inline-block; padding: 0.3rem 0.8rem;
   border: 1px solid var(--border); border-radius: 20px;
@@ -289,16 +305,16 @@
 
 /* ── Hero WhatsApp Mockup (Demo) ── */
 .hero-mockup{max-width:340px;margin:2.5rem auto 0;background:#0b141a;border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative;}
-.hero-mockup .demo-tag{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.12);color:#8696a0;font-size:.65rem;padding:2px 8px;border-radius:8px;z-index:2;font-weight:600;letter-spacing:.05em;}
+.hero-mockup .demo-tag{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.12);color:#c4ccd0;font-size:.65rem;padding:2px 8px;border-radius:8px;z-index:2;font-weight:600;letter-spacing:.05em;}
 .hero-mockup .chat-header{background:#1f2c34;padding:.7rem 1rem;display:flex;align-items:center;gap:.6rem;}
 .hero-mockup .chat-header .avatar{width:32px;height:32px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0;}
 .hero-mockup .chat-header .name{font-size:.85rem;color:#e9edef;font-weight:600;}
-.hero-mockup .chat-header .status{font-size:.7rem;color:#8696a0;}
+.hero-mockup .chat-header .status{font-size:.7rem;color:#c4ccd0;}
 .hero-mockup .chat-body{padding:.8rem;display:flex;flex-direction:column;gap:.5rem;min-height:180px;}
 .hero-mockup .msg{max-width:80%;padding:.5rem .8rem;border-radius:8px;font-size:.8rem;line-height:1.4;}
 .hero-mockup .msg.in{background:#1f2c34;color:#e9edef;align-self:flex-start;border-bottom-left-radius:2px;}
 .hero-mockup .msg.out{background:#005c4b;color:#e9edef;align-self:flex-end;border-bottom-right-radius:2px;}
-.hero-mockup .msg .time{font-size:.6rem;color:#8696a0;margin-top:2px;text-align:right;}
+.hero-mockup .msg .time{font-size:.6rem;color:#c4ccd0;margin-top:2px;text-align:right;}
 @media(max-width:768px){.hero-mockup{max-width:300px;}}
 
 /* ── DEV-2026-008: Menu movil + boton flotante WA ── */
@@ -369,7 +385,7 @@
 <nav aria-label="Navegacion principal">
  <span class="logo">AxelIA</span>
  <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-menu">
   <a href="#servicios">El Equipo</a>
   <a href="#rubros">Por Rubro</a>
   <a href="#precios">Precios</a>
@@ -384,31 +400,37 @@
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
- <span class="badge">🤖 Tu equipo de empleados digitales · 24/7</span>
- <h1>Tu equipo de empleados digitales, trabajando 24/7</h1>
- <p>No vendemos un chatbot. Te construimos un <strong>equipo de agentes de IA</strong>: uno atiende y vende, otro te posiciona en Google, otro crea tu contenido, otro maneja tu publicidad. Tú solo das la orden.</p>
- <p style="font-size:0.95rem; color:var(--green); margin:-0.5rem 0 1.5rem; font-weight:600;">⚡ Implementado en 7-14 días, no en meses.</p>
- <div class="hero-cta">
-  <a href="#precios" class="btn">Ver Precios</a>
-  <a href="calculadora.html" class="btn btn-outline">📊 Calcula tu Ahorro</a>
- </div>
- <!-- P1-3: Mockup visual de conversacion WhatsApp (demo ilustrativa, no testimonio real) -->
- <div class="hero-mockup" role="img" aria-label="Demostracion ilustrativa de conversacion de WhatsApp entre un cliente y el agente de IA de AxelIA">
-  <span class="demo-tag">DEMO</span>
-  <div class="chat-header">
-   <div class="avatar">S</div>
-   <div>
-    <div class="name">Sofia · Ventas AxelIA</div>
-    <div class="status">en línea</div>
+ <div class="hero-inner">
+  <div class="hero-text">
+   <span class="badge">🤖 Tu equipo de empleados digitales · 24/7</span>
+   <h1>Tu equipo de empleados digitales, trabajando 24/7</h1>
+   <p>No vendemos un chatbot. Te construimos un <strong>equipo de agentes de IA</strong>: uno atiende y vende, otro te posiciona en Google, otro crea tu contenido, otro maneja tu publicidad. Tú solo das la orden.</p>
+   <p style="font-size:0.95rem; color:var(--green); margin:-0.5rem 0 1.5rem; font-weight:600;">⚡ Implementado en 7-14 días, no en meses.</p>
+   <div class="hero-cta">
+    <a href="#precios" class="btn">Ver Precios</a>
+    <a href="calculadora.html" class="btn btn-outline">📊 Calcula tu Ahorro</a>
    </div>
   </div>
-  <div class="chat-body">
-   <div class="msg in">Hola, ¿tornillos 3/16 de 1 pulgada?<div class="time">9:01 PM</div></div>
-   <div class="msg out">¡Claro! 250 unidades. ¿Los envío hoy o pasa a recoger?<div class="time">9:01 PM</div></div>
-   <div class="msg in">Envío a Galapa, ¿aceitan Nequi?<div class="time">9:02 PM</div></div>
-   <div class="msg out">Sí, le paso link de pago. ¿Le agendo un diagnóstico gratis para automatizar su pedidos?<div class="time">9:02 PM</div></div>
-   <div class="msg in">Dale, el viernes entonces<div class="time">9:03 PM</div></div>
-   <div class="msg out">Anotado: viernes 10am. Le envío recordatorio el día anterior 👋<div class="time">9:03 PM</div></div>
+  <div class="hero-visual">
+   <!-- P1-3: Mockup visual de conversacion WhatsApp (demo ilustrativa, no testimonio real) -->
+   <div class="hero-mockup" role="img" aria-label="Demostracion ilustrativa de conversacion de WhatsApp entre un cliente y el agente de IA de AxelIA">
+    <span class="demo-tag">DEMO</span>
+    <div class="chat-header">
+     <div class="avatar">S</div>
+     <div>
+      <div class="name">Sofia · Ventas AxelIA</div>
+      <div class="status">en línea</div>
+     </div>
+    </div>
+    <div class="chat-body">
+     <div class="msg in">Hola, ¿tornillos 3/16 de 1 pulgada?<div class="time">9:01 PM</div></div>
+     <div class="msg out">¡Claro! 250 unidades. ¿Los envío hoy o pasa a recoger?<div class="time">9:01 PM</div></div>
+     <div class="msg in">Envío a Galapa, ¿aceitan Nequi?<div class="time">9:02 PM</div></div>
+     <div class="msg out">Sí, le paso link de pago. ¿Le agendo un diagnóstico gratis para automatizar su pedidos?<div class="time">9:02 PM</div></div>
+     <div class="msg in">Dale, el viernes entonces<div class="time">9:03 PM</div></div>
+     <div class="msg out">Anotado: viernes 10am. Le envío recordatorio el día anterior 👋<div class="time">9:03 PM</div></div>
+    </div>
+   </div>
   </div>
  </div>
 </section>
@@ -809,7 +831,7 @@
  <div class="social-links">
   <a href="https://instagram.com/axel_ia25" target="_blank">📷 Instagram</a>
   <a href="https://facebook.com/axelia25" target="_blank">📘 Facebook</a>
-  <a href="https://wa.me/573024063534" target="_blank">💬 WhatsApp</a>
+  <a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratuito" target="_blank">💬 WhatsApp</a>
  </div>
  <strong>AxelIA</strong> — Agentes de IA para PYMES Colombianas<br>
  © 2026 AxelIA. Todos los derechos reservados.
