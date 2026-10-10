@@ -183,6 +183,8 @@
  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
  .nav-links a { color: var(--text2); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
  .nav-links a:hover { color: var(--text); }
+ .nav-links a.btn, .nav-links a.btn:link, .nav-links a.btn:visited { color: #fff; }
+ .nav-links a.btn:hover, .nav-links a.btn:focus { color: #fff; }
  .btn { background: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: .2s; border: none; cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
  .btn:hover { background: #6c5ce7; transform: translateY(-1px); }
  .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
@@ -190,8 +192,20 @@
 
  /* ── Hero ── */
  .hero {
-  text-align: center; padding: 6rem 2rem 4rem;
+  display: flex; align-items: center; gap: 3rem;
+  padding: 6rem 2rem 4rem; max-width: 1100px; margin: 0 auto;
   background: radial-gradient(ellipse at center, rgba(108,92,231,0.08) 0%, transparent 70%);
+ }
+ .hero-text { flex: 1; text-align: center; }
+ .hero-mockup { flex: 0 0 280px; display: flex; justify-content: center; }
+ .hero-mockup img {
+  max-width: 260px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+ }
+ .hero-mockup .mockup-fallback {
+  width: 260px; height: 520px; border-radius: 16px;
+  background: linear-gradient(135deg, var(--card), var(--bg2));
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  color: var(--text2); font-size: 0.8rem; text-align: center; padding: 1rem;
  }
  .hero .badge {
   display: inline-block; padding: 0.3rem 0.8rem;
@@ -199,7 +213,7 @@
   font-size: 0.8rem; color: var(--accent2); margin-bottom: 1.5rem;
  }
  .hero h1 {
-  font-size: 3.2rem; font-weight: 800; line-height: 1.15;
+  font-size: clamp(1.5rem, 4.5vw, 3.2rem); font-weight: 800; line-height: 1.15;
   background: linear-gradient(135deg, #fff 30%, #a78bfa);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   max-width: 700px; margin: 0 auto 1rem;
@@ -372,8 +386,12 @@
 
  /* ── Responsive ── */
  @media (max-width: 768px) {
-   .hero h1 { font-size: 2rem; }
-   .hero { padding-bottom: 5rem; }
+   .hero { flex-direction: column; padding: 4rem 1rem 3rem; gap: 2rem; }
+   .hero h1 { font-size: 1.5rem; }
+   .hero-mockup { flex: none; }
+   .hero-mockup img, .hero-mockup .mockup-fallback { max-width: 200px; width: 200px; height: auto; }
+   .hero-mockup .mockup-fallback { height: 400px; }
+   .hero { padding-bottom: 3rem; }
    section { padding: 3rem 1rem; }
    .nav-links { display: none; }
    .hamburger { display: flex; }
@@ -410,12 +428,18 @@
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
- <span class="badge">AxelIA Diseña</span>
- <h1>Diseñamos experiencias digitales únicas para tus momentos, tus ideas y tu negocio</h1>
- <p>Invitaciones web, tableros para rifas autorizadas, páginas web y piezas gráficas: todo diseñado para ti, sin plantillas de relleno.</p>
- <div class="hero-cta">
-  <a href="https://wa.me/573024063534?text=Hola%2C%20quiero%20cotizar%20un%20dise%C3%B1o%20con%20AxelIA%20Dise%C3%B1a" class="btn">Cuéntanos tu idea</a>
-  <a href="#portafolio" class="btn btn-outline">Ver ejemplos</a>
+ <div class="hero-text">
+  <span class="badge">AxelIA Diseña</span>
+  <h1>Diseñamos experiencias digitales únicas para tus momentos, tus ideas y tu negocio</h1>
+  <p>Invitaciones web, tableros para rifas autorizadas, páginas web y piezas gráficas: todo diseñado para ti, sin plantillas de relleno.</p>
+  <div class="hero-cta">
+   <a href="https://wa.me/573024063534?text=Hola%2C%20quiero%20cotizar%20un%20dise%C3%B1o%20con%20AxelIA%20Dise%C3%B1a" class="btn">Cuéntanos tu idea</a>
+   <a href="#portafolio" class="btn btn-outline">Ver ejemplos</a>
+  </div>
+ </div>
+ <div class="hero-mockup">
+  <img src="disena/mockups/mockup-invitacion.png" alt="Vista previa de invitación web de XV años en celular" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div class="mockup-fallback" style="display:none;">Mockup disponible próximamente</div>
  </div>
 </section>
 
@@ -543,7 +567,8 @@
  <div class="portfolio-grid">
 
   <div class="portfolio-card">
-   <img src="disena/demo-invitacion/img/hero.jpg" alt="Invitación web de XV años — proyecto de demostración de AxelIA Diseña">
+   <img src="disena/mockups/mockup-invitacion.png" alt="Invitación web de XV años vista en celular — proyecto de demostración de AxelIA Diseña" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+   <div class="mockup-fallback-card" style="display:none;height:200px;background:var(--bg2);align-items:center;justify-content:center;color:var(--text2);font-size:0.8rem;">Mockup próximamente</div>
    <span class="demo-tag">Proyecto de demostración</span>
    <div class="portfolio-body">
     <h3>Invitación web de XV años</h3>
@@ -555,7 +580,8 @@
   </div>
 
   <div class="portfolio-card">
-   <img src="disena/demo-rifa/img/hero.jpg" alt="Tablero digital para rifa autorizada — proyecto de demostración de AxelIA Diseña">
+   <img src="disena/mockups/mockup-rifa.png" alt="Tablero digital para rifa autorizada vista en celular — proyecto de demostración de AxelIA Diseña" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+   <div class="mockup-fallback-card" style="display:none;height:200px;background:var(--bg2);align-items:center;justify-content:center;color:var(--text2);font-size:0.8rem;">Mockup próximamente</div>
    <span class="demo-tag">Proyecto de demostración</span>
    <div class="portfolio-body">
     <h3>Tablero de rifa autorizada</h3>

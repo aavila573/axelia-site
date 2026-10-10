@@ -4,115 +4,240 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://open.er-api.com https://api.web3forms.com https://n8n.axelia.tech https://www.google-analytics.com https://*.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
-<title>Valentina — Mis XV años | Proyecto de demostración de AxelIA Diseña</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://open.er-api.com https://api.web3forms.com https://n8n.axelia.tech https://www.google-analytics.com https://*.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; media-src 'self'">
+<title>Isabella — Mis XV años | Proyecto de demostración de AxelIA Diseña</title>
 <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
  :root {
-  --bg: #0a0a0f;
-  --bg2: #111118;
-  --card: #16161f;
-  --border: #222230;
-  --text: #e0e0e8;
-  --text2: #8888a0;
-  --accent: #6c5ce7;
-  --accent2: #a78bfa;
-  --green: #00d2a0;
-  --gradient: linear-gradient(135deg, #6c5ce7, #a78bfa);
+  --cream: #faf6f0;
+  --cream2: #f3ebe0;
+  --lila: #c8b6e2;
+  --lila-deep: #9a80c4;
+  --rosa: #e8c4c4;
+  --rosa-deep: #d49a9a;
+  --dorado: #c9a96e;
+  --dorado-deep: #a8894a;
+  --text-dark: #4a4040;
+  --text-mid: #6b6060;
+  --text-light: #8a8080;
+  --white: #ffffff;
  }
  * { margin:0; padding:0; box-sizing:border-box; }
  body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.6;
+  background: var(--cream); color: var(--text-dark); line-height: 1.7;
   overflow-x: hidden;
  }
  img { max-width: 100%; height: auto; }
 
+ /* ── Demo bar (único elemento de AxelIA) ── */
  .demo-bar {
-  background: var(--accent); color: #fff; text-align: center;
+  background: #6c5ce7; color: #fff; text-align: center;
   padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
   position: sticky; top: 0; z-index: 100;
  }
  .back-link {
-  display: inline-block; padding: 1rem 2rem;
-  color: var(--text2); text-decoration: none; font-size: 0.9rem;
+  display: inline-block; padding: 0.75rem 2rem;
+  color: var(--text-light); text-decoration: none; font-size: 0.85rem;
   transition: color .2s;
  }
- .back-link:hover { color: var(--accent2); }
+ .back-link:hover { color: var(--lila-deep); }
 
+ /* ── Hero ── */
  .hero {
   position: relative; text-align: center;
-  min-height: 60vh; display: flex; align-items: center; justify-content: center;
+  min-height: 70vh; display: flex; align-items: center; justify-content: center;
   overflow: hidden;
  }
- .hero img {
+ .hero-bg {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0.4;
+  object-fit: cover;
+ }
+ .hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(250,246,240,0.75), rgba(232,196,196,0.65));
  }
  .hero-content { position: relative; z-index: 1; padding: 3rem 2rem; max-width: 700px; margin: 0 auto; }
- .hero-content .celebrante { font-size: 1.1rem; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+ .hero-content .eyebrow {
+  font-size: 0.95rem; color: var(--dorado-deep); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500;
+ }
  .hero-content h1 {
-  font-size: 3rem; font-weight: 800; line-height: 1.2;
-  background: linear-gradient(135deg, #fff 30%, #a78bfa);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: 'Great Vibes', cursive;
+  font-size: 4.5rem; font-weight: 400; line-height: 1.1;
+  color: var(--lila-deep);
+  margin-bottom: 0.5rem;
+ }
+ .hero-content .sub {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--text-mid); margin-bottom: 1.5rem;
+  font-style: italic;
+ }
+ .hero-decoration {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
   margin-bottom: 1rem;
  }
- .hero-content .sub { font-size: 1.2rem; color: var(--text); margin-bottom: 2rem; }
+ .hero-decoration .line { width: 60px; height: 1px; background: var(--dorado); }
+ .hero-decoration .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dorado); }
 
- .details {
-  max-width: 600px; margin: 0 auto; padding: 3rem 2rem;
+ /* ── Countdown ── */
+ .countdown {
+  display: flex; justify-content: center; gap: 1.5rem;
+  margin: 1.5rem 0;
+ }
+ .countdown-unit {
+  text-align: center;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--rosa);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  min-width: 70px;
+ }
+ .countdown-unit .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; color: var(--lila-deep);
+  display: block; line-height: 1;
+ }
+ .countdown-unit .lbl {
+  font-size: 0.7rem; color: var(--text-light); text-transform: uppercase;
+  letter-spacing: 0.05em; margin-top: 0.3rem;
+ }
+
+ /* ── Música ── */
+ .music-toggle {
+  position: fixed; top: 3rem; right: 1.5rem; z-index: 50;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--white); border: 1.5px solid var(--rosa);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform .2s, border-color .2s;
+ }
+ .music-toggle:hover { transform: scale(1.05); border-color: var(--lila); }
+ .music-toggle svg { width: 20px; height: 20px; color: var(--lila-deep); }
+ .music-toggle.playing svg { animation: spin 3s linear infinite; }
+ @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+ /* ── Sección de detalles ── */
+ .section { padding: 3rem 2rem; max-width: 700px; margin: 0 auto; }
+ .section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 600; color: var(--lila-deep);
+  text-align: center; margin-bottom: 0.5rem;
+ }
+ .section-divider {
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  margin-bottom: 2rem;
+ }
+ .section-divider .line { width: 50px; height: 1px; background: var(--dorado); }
+ .section-divider .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dorado); }
+
+ .detail-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
  }
  .detail-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; text-align: center;
+  background: var(--white); border: 1px solid var(--cream2);
+  border-radius: 16px; padding: 2rem 1.5rem; text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
  }
- .detail-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent2); }
- .detail-card .label { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
- .detail-card .value { font-size: 1.1rem; color: var(--text); font-weight: 600; }
- .detail-card .dress { font-size: 1rem; color: var(--text); }
+ .detail-card .icon { color: var(--dorado); margin-bottom: 0.8rem; }
+ .detail-card .label {
+  font-size: 0.75rem; color: var(--text-light); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 0.4rem;
+ }
+ .detail-card .value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; color: var(--text-dark); font-weight: 600;
+ }
+ .detail-card .dress { font-size: 0.95rem; color: var(--text-mid); font-style: italic; }
 
- .actions {
-  text-align: center; padding: 1rem 2rem 3rem; max-width: 600px; margin: 0 auto;
+ /* ── Galería ── */
+ .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+ .gallery-item {
+  border-radius: 12px; overflow: hidden; aspect-ratio: 1;
+  border: 3px solid var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.06);
  }
+ .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+ /* ── Formulario RSVP ── */
+ .rsvp-form {
+  background: var(--white); border: 1px solid var(--cream2);
+  border-radius: 16px; padding: 2rem; max-width: 500px; margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+ }
+ .rsvp-form label { display: block; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 0.3rem; font-weight: 500; }
+ .rsvp-form input, .rsvp-form select {
+  width: 100%; padding: 0.7rem 1rem; border: 1.5px solid var(--cream2);
+  border-radius: 8px; font-size: 1rem; color: var(--text-dark);
+  background: var(--cream); margin-bottom: 1rem; font-family: inherit;
+ }
+ .rsvp-form input:focus, .rsvp-form select:focus {
+  outline: none; border-color: var(--lila);
+ }
+ .rsvp-form button {
+  width: 100%; padding: 0.9rem; border: none; border-radius: 8px;
+  background: var(--lila-deep); color: #fff; font-size: 1rem;
+  font-weight: 600; cursor: pointer; font-family: inherit;
+  min-height: 44px; transition: background .2s;
+ }
+ .rsvp-form button:hover { background: var(--lila); }
+ .rsvp-success {
+  text-align: center; padding: 1.5rem; color: var(--lila-deep);
+  font-size: 1.1rem; font-family: 'Playfair Display', serif;
+ }
+ .rsvp-success .check { font-size: 2rem; margin-bottom: 0.5rem; }
+
+ /* ── Botones ── */
+ .actions { text-align: center; padding: 1rem 2rem 3rem; max-width: 600px; margin: 0 auto; }
  .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none;
+  padding: 0.8rem 1.5rem; border-radius: 10px; text-decoration: none;
   font-weight: 600; font-size: 0.95rem; transition: .2s;
   min-height: 44px; margin: 0.5rem;
  }
- .btn-primary { background: var(--accent); color: #fff; }
- .btn-primary:hover { background: #5a4ed1; transform: translateY(-1px); }
+ .btn-primary { background: var(--lila-deep); color: #fff; }
+ .btn-primary:hover { background: var(--lila); transform: translateY(-1px); }
  .btn-wa { background: #075e55; color: #fff; }
  .btn-wa:hover { background: #054d45; transform: translateY(-1px); }
- .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
- .btn-outline:hover { border-color: var(--accent); }
+ .btn-outline { background: transparent; border: 1.5px solid var(--rosa); color: var(--text-dark); }
+ .btn-outline:hover { border-color: var(--lila); background: var(--white); }
 
+ /* ── Nota demo ── */
  .demo-note {
   text-align: center; padding: 2rem; max-width: 600px; margin: 0 auto;
-  color: var(--text2); font-size: 0.85rem; font-style: italic;
+  color: var(--text-light); font-size: 0.85rem; font-style: italic;
  }
  .demo-note .badge {
-  display: inline-block; background: var(--accent); color: #fff;
+  display: inline-block; background: #6c5ce7; color: #fff;
   padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;
   font-weight: 600; font-style: normal; margin-bottom: 0.8rem;
  }
 
  footer {
-  text-align: center; padding: 2rem; border-top: 1px solid var(--border);
-  color: var(--text2); font-size: 0.8rem;
+  text-align: center; padding: 2rem; border-top: 1px solid var(--cream2);
+  color: var(--text-light); font-size: 0.8rem;
  }
- footer a { color: var(--text2); text-decoration: none; }
- footer a:hover { color: var(--accent2); }
+ footer a { color: var(--text-light); text-decoration: none; }
+ footer a:hover { color: var(--lila-deep); }
 
+ /* ── Responsive ── */
  @media (max-width: 768px) {
-   .hero-content h1 { font-size: 2.2rem; }
-   .hero-content .sub { font-size: 1rem; }
-   .details { padding: 2rem 1rem; }
+  .hero-content h1 { font-size: 3rem; }
+  .hero-content .sub { font-size: 1.1rem; }
+  .detail-cards { grid-template-columns: 1fr; }
+  .section { padding: 2rem 1rem; }
  }
 
  @media (max-width: 640px) {
   .actions { display: flex; flex-direction: column; gap: 0.75rem; }
   .actions .btn { width: 100%; margin: 0; }
+  .gallery { grid-template-columns: 1fr; }
+  .countdown { gap: 0.8rem; }
+  .countdown-unit { min-width: 58px; padding: 0.6rem 0.5rem; }
+  .countdown-unit .num { font-size: 1.5rem; }
+  .hero-content h1 { font-size: 2.5rem; }
  }
 </style>
 </head>
@@ -122,43 +247,121 @@
 
 <a href="../../disena.html" class="back-link">&larr; Volver a AxelIA Diseña</a>
 
+<!-- Botón de música -->
+<button class="music-toggle" id="musicToggle" aria-label="Reproducir música" aria-pressed="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+</button>
+<audio id="bgMusic" src="audio/musica.wav" preload="none"></audio>
+
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
- <img src="img/hero.jpg" alt="Invitación web de XV años — proyecto de demostración de AxelIA Diseña">
+ <img src="img/galeria-1.jpg" alt="Fondo decorativo de la invitación de XV años" class="hero-bg">
+ <div class="hero-overlay"></div>
  <div class="hero-content">
-  <p class="celebrante">Valentina</p>
-  <h1>Mis XV años</h1>
+  <div class="hero-decoration"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+  <p class="eyebrow">Mis XV años</p>
+  <h1>Isabella</h1>
   <p class="sub">Te espero para celebrar juntos</p>
+  <div class="hero-decoration"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+ </div>
+</section>
+
+<!-- ═══════ COUNTDOWN ═══════ -->
+<section class="section" style="padding-top:2rem;">
+ <div class="countdown" id="countdown">
+  <div class="countdown-unit"><span class="num" id="cd-days">—</span><span class="lbl">Días</span></div>
+  <div class="countdown-unit"><span class="num" id="cd-hours">—</span><span class="lbl">Horas</span></div>
+  <div class="countdown-unit"><span class="num" id="cd-mins">—</span><span class="lbl">Min</span></div>
+  <div class="countdown-unit"><span class="num" id="cd-secs">—</span><span class="lbl">Seg</span></div>
  </div>
 </section>
 
 <!-- ═══════ DETALLES ═══════ -->
-<section class="details">
- <div class="detail-card">
-  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></div>
-  <p class="label">Fecha y hora</p>
-  <p class="value">Sábado 15 de mayo de 2027</p>
-  <p class="value">8:00 p.m.</p>
+<section class="section">
+ <h2 class="section-title">Detalles del evento</h2>
+ <div class="section-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+ <div class="detail-cards">
+  <div class="detail-card">
+   <div class="icon">
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/>
+    </svg>
+   </div>
+   <p class="label">Fecha y hora</p>
+   <p class="value">Sábado 15 de mayo de 2027</p>
+   <p class="value">8:00 p.m.</p>
+  </div>
+  <div class="detail-card">
+   <div class="icon">
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+   </div>
+   <p class="label">Lugar</p>
+   <p class="value">Salón Los Almendros</p>
+   <p class="value">Barranquilla</p>
+  </div>
+  <div class="detail-card">
+   <div class="icon">
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"/>
+    </svg>
+   </div>
+   <p class="label">Vestuario</p>
+   <p class="dress">Formal (tonos pastel)</p>
+  </div>
  </div>
+</section>
 
- <div class="detail-card">
-  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-  <p class="label">Lugar</p>
-  <p class="value">Salón Jardín Los Corales</p>
-  <p class="value">Calle 84 # 42-10, Barranquilla</p>
+<!-- ═══════ GALERÍA ═══════ -->
+<section class="section">
+ <h2 class="section-title">Galería</h2>
+ <div class="section-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+ <div class="gallery">
+  <div class="gallery-item"><img src="img/galeria-1.jpg" alt="Foto 1 de la galería de Isabella"></div>
+  <div class="gallery-item"><img src="img/galeria-2.jpg" alt="Foto 2 de la galería de Isabella"></div>
+  <div class="gallery-item"><img src="img/galeria-3.jpg" alt="Foto 3 de la galería de Isabella"></div>
+  <div class="gallery-item"><img src="img/galeria-4.jpg" alt="Foto 4 de la galería de Isabella"></div>
  </div>
+</section>
 
- <div class="detail-card">
-  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"/></svg></div>
-  <p class="label">Vestuario</p>
-  <p class="dress">Formal (tonos pastel)</p>
+<!-- ═══════ CONFIRMACIÓN (RSVP demo) ═══════ -->
+<section class="section">
+ <h2 class="section-title">Confirma tu asistencia</h2>
+ <div class="section-divider"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+ <form class="rsvp-form" id="rsvpForm" novalidate>
+  <div>
+   <label for="rsvp-name">Nombre</label>
+   <input type="text" id="rsvp-name" name="nombre" placeholder="Tu nombre" required>
+  </div>
+  <div>
+   <label for="rsvp-attend">¿Asistirás?</label>
+   <select id="rsvp-attend" name="asistira" required>
+    <option value="">Selecciona...</option>
+    <option value="si">Sí, ahí estaré</option>
+    <option value="no">No podré asistir</option>
+   </select>
+  </div>
+  <div>
+   <label for="rsvp-guests">Acompañantes</label>
+   <input type="number" id="rsvp-guests" name="acompanantes" min="0" max="5" value="0">
+  </div>
+  <button type="submit">Confirmar</button>
+ </form>
+ <div class="rsvp-success" id="rsvpSuccess" style="display:none;">
+  <div class="check">
+   <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  </div>
+  <p>¡Gracias! Esto es una demo: tu respuesta no se envía.</p>
  </div>
 </section>
 
 <!-- ═══════ ACCIONES ═══════ -->
 <section class="actions">
- <a href="https://www.google.com/maps/search/?api=1&query=Barranquilla%2C%20Colombia" class="btn btn-outline" target="_blank" rel="noopener">Ver ubicación</a>
- <a href="https://wa.me/573024063534?text=Hola%2C%20quiero%20una%20invitaci%C3%B3n%20como%20la%20de%20la%20demo" class="btn btn-wa" target="_blank" rel="noopener">Confirmar asistencia</a>
+ <a href="https://www.google.com/maps/search/?api=1&query=Salon%20Los%20Almendros%2C%20Barranquilla%2C%20Colombia" class="btn btn-outline" target="_blank" rel="noopener">Ver ubicación</a>
+ <a href="https://wa.me/573024063534?text=Hola%2C%20quiero%20una%20invitaci%C3%B3n%20como%20la%20de%20la%20demo" class="btn btn-wa" target="_blank" rel="noopener">Quiero una así</a>
 </section>
 
 <!-- ═══════ NOTA ═══════ -->
@@ -170,6 +373,72 @@
 <footer>
  <a href="../../disena.html">&larr; Volver a AxelIA Diseña</a>
 </footer>
+
+<script>
+// ── Countdown ──
+(function() {
+  var target = new Date('2027-05-15T20:00:00-05:00').getTime();
+  var elDays = document.getElementById('cd-days');
+  var elHours = document.getElementById('cd-hours');
+  var elMins = document.getElementById('cd-mins');
+  var elSecs = document.getElementById('cd-secs');
+
+  function update() {
+    var now = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      elDays.textContent = '0'; elHours.textContent = '0';
+      elMins.textContent = '0'; elSecs.textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    elDays.textContent = d;
+    elHours.textContent = String(h).padStart(2,'0');
+    elMins.textContent = String(m).padStart(2,'0');
+    elSecs.textContent = String(s).padStart(2,'0');
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+// ── Música toggle ──
+(function() {
+  var audio = document.getElementById('bgMusic');
+  var btn = document.getElementById('musicToggle');
+  var playing = false;
+  btn.addEventListener('click', function() {
+    if (!playing) {
+      audio.play().then(function() {
+        playing = true;
+        btn.classList.add('playing');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.setAttribute('aria-label', 'Pausar música');
+      }).catch(function(){});
+    } else {
+      audio.pause();
+      playing = false;
+      btn.classList.remove('playing');
+      btn.setAttribute('aria-pressed', 'false');
+      btn.setAttribute('aria-label', 'Reproducir música');
+    }
+  });
+})();
+
+// ── RSVP demo ──
+(function() {
+  var form = document.getElementById('rsvpForm');
+  var success = document.getElementById('rsvpSuccess');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+})();
+</script>
 
 </body>
 </html>
