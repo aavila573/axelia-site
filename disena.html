@@ -197,14 +197,15 @@
   background: radial-gradient(ellipse at center, rgba(108,92,231,0.08) 0%, transparent 70%);
  }
  .hero-text { flex: 1; text-align: center; }
- .hero-mockup { flex: 0 0 280px; display: flex; justify-content: center; }
+ .hero-mockup { flex: 0 0 40%; display: flex; justify-content: center; align-items: center; }
  .hero-mockup img {
-  max-width: 260px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  max-width: 100%; border-radius: 20px;
+  box-shadow: 0 16px 64px rgba(108,92,231,0.12), 0 8px 32px rgba(0,0,0,0.15);
  }
  .hero-mockup .mockup-fallback {
-  width: 260px; height: 520px; border-radius: 16px;
+  max-width: 100%; height: 520px; border-radius: 20px;
   background: linear-gradient(135deg, var(--card), var(--bg2));
-  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   color: var(--text2); font-size: 0.8rem; text-align: center; padding: 1rem;
  }
  .hero .badge {
@@ -322,8 +323,9 @@
  .package-card:hover { border-color: var(--accent); transform: translateY(-4px); }
  .package-card.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(108,92,231,0.08) 0%, var(--card) 40%); }
  .package-card h3 { font-size: 1.3rem; margin-bottom: 0.3rem; }
- .package-card .price { font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }
+ .package-card .price { font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; white-space: nowrap; }
  .package-card .price small { font-size: 1rem; color: var(--text2); font-weight: 400; }
+ .package-card .price.price-cta { font-size: 1.05rem; font-weight: 600; color: var(--text2); white-space: normal; }
  .package-card .desc { color: var(--text2); font-size: 0.9rem; margin-bottom: 1rem; }
  .package-card .condition { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.4rem; display: flex; align-items: flex-start; gap: 0.5rem; }
  .package-card .condition::before { content: "\2022"; color: var(--accent2); flex-shrink: 0; }
@@ -389,8 +391,8 @@
    .hero { flex-direction: column; padding: 4rem 1rem 3rem; gap: 2rem; }
    .hero h1 { font-size: 1.5rem; }
    .hero-mockup { flex: none; }
-   .hero-mockup img, .hero-mockup .mockup-fallback { max-width: 200px; width: 200px; height: auto; }
-   .hero-mockup .mockup-fallback { height: 400px; }
+   .hero-mockup img { max-width: 70%; width: 70%; height: auto; }
+   .hero-mockup .mockup-fallback { width: 70%; height: 400px; }
    .hero { padding-bottom: 3rem; }
    section { padding: 3rem 1rem; }
    .nav-links { display: none; }
@@ -401,8 +403,12 @@
    .wa-float svg { width: 26px; height: 26px; }
    .services-grid { grid-template-columns: 1fr; }
    .package-grid { grid-template-columns: 1fr; }
- }
-</style>
+   }
+
+   @media (max-width: 480px) {
+   .wa-float { bottom: 88px; }
+   }
+   </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -573,7 +579,8 @@
    <div class="portfolio-body">
     <h3>Invitación web de XV años</h3>
     <p class="resuelve">Una invitación que se comparte por WhatsApp y abre como página, con todos los datos del evento y un botón para confirmar.</p>
-    <p class="funciones">Diseño personalizado · fecha, hora, lugar y código de vestuario · botón de mapa y botón de WhatsApp para confirmar · adaptada a celular · URL propia para compartir</p>
+    <p class="funciones">Cuenta regresiva · música de fondo · galería de fotos · confirmación de asistencia · mapa · adaptada a celular</p>
+    <p class="nota">Esta demo muestra el paquete Personalizado.</p>
     <p class="nota">Los nombres, fechas y fotos de esta demo son ficticios.</p>
     <a href="disena/demo-invitacion/" class="btn">Ver demo</a>
    </div>
@@ -643,13 +650,13 @@
 
   <div class="package-card">
    <h3>Personalizado</h3>
-   <div class="price">Cotiza tu proyecto</div>
+   <div class="price price-cta">Cotiza tu proyecto</div>
    <p class="desc">Invitaciones con cuenta regresiva, música, galería o RSVP; tableros con registro de participantes; paquetes de varias piezas. Incluye 2 rondas de cambios.</p>
   </div>
 
   <div class="package-card">
    <h3>Profesional</h3>
-   <div class="price">Cotiza tu proyecto</div>
+   <div class="price price-cta">Cotiza tu proyecto</div>
    <p class="desc">Landings con formularios e integraciones y proyectos web a tu medida, con propuesta escrita, cronograma y pago 50/50.</p>
   </div>
 

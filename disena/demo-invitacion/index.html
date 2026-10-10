@@ -19,7 +19,7 @@
   --rosa: #e8c4c4;
   --rosa-deep: #d49a9a;
   --dorado: #c9a96e;
-  --dorado-deep: #a8894a;
+  --dorado-deep: #80622c;
   --text-dark: #4a4040;
   --text-mid: #6b6060;
   --text-light: #8a8080;
@@ -59,6 +59,8 @@
  .hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(250,246,240,0.75), rgba(232,196,196,0.65));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
  }
  .hero-content { position: relative; z-index: 1; padding: 3rem 2rem; max-width: 700px; margin: 0 auto; }
  .hero-content .eyebrow {
@@ -233,7 +235,7 @@
  @media (max-width: 640px) {
   .actions { display: flex; flex-direction: column; gap: 0.75rem; }
   .actions .btn { width: 100%; margin: 0; }
-  .gallery { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
   .countdown { gap: 0.8rem; }
   .countdown-unit { min-width: 58px; padding: 0.6rem 0.5rem; }
   .countdown-unit .num { font-size: 1.5rem; }
