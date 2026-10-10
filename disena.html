@@ -319,6 +319,7 @@
  .package-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: 16px; padding: 2rem; transition: .2s; position: relative;
+  min-width: 0; max-width: 100%;
  }
  .package-card:hover { border-color: var(--accent); transform: translateY(-4px); }
  .package-card.featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(108,92,231,0.08) 0%, var(--card) 40%); }
@@ -407,6 +408,7 @@
 
    @media (max-width: 480px) {
    .wa-float { bottom: 88px; }
+   .package-card .price { font-size: 1.5rem; white-space: normal; }
    }
    </style>
 </head>
