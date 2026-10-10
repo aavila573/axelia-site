@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Valentina — Mis XV años | Proyecto de demostración de AxelIA Diseña</title>
+<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<style>
+ :root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --card: #16161f;
+  --border: #222230;
+  --text: #e0e0e8;
+  --text2: #8888a0;
+  --accent: #6c5ce7;
+  --accent2: #a78bfa;
+  --green: #00d2a0;
+  --gradient: linear-gradient(135deg, #6c5ce7, #a78bfa);
+ }
+ * { margin:0; padding:0; box-sizing:border-box; }
+ body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  overflow-x: hidden;
+ }
+ img { max-width: 100%; height: auto; }
+
+ .demo-bar {
+  background: var(--accent); color: #fff; text-align: center;
+  padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
+  position: sticky; top: 0; z-index: 100;
+ }
+ .back-link {
+  display: inline-block; padding: 1rem 2rem;
+  color: var(--text2); text-decoration: none; font-size: 0.9rem;
+  transition: color .2s;
+ }
+ .back-link:hover { color: var(--accent2); }
+
+ .hero {
+  position: relative; text-align: center;
+  min-height: 60vh; display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+ }
+ .hero img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.4;
+ }
+ .hero-content { position: relative; z-index: 1; padding: 3rem 2rem; max-width: 700px; margin: 0 auto; }
+ .hero-content .celebrante { font-size: 1.1rem; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+ .hero-content h1 {
+  font-size: 3rem; font-weight: 800; line-height: 1.2;
+  background: linear-gradient(135deg, #fff 30%, #a78bfa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+ }
+ .hero-content .sub { font-size: 1.2rem; color: var(--text); margin-bottom: 2rem; }
+
+ .details {
+  max-width: 600px; margin: 0 auto; padding: 3rem 2rem;
+ }
+ .detail-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; text-align: center;
+ }
+ .detail-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent2); }
+ .detail-card .label { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+ .detail-card .value { font-size: 1.1rem; color: var(--text); font-weight: 600; }
+ .detail-card .dress { font-size: 1rem; color: var(--text); }
+
+ .actions {
+  text-align: center; padding: 1rem 2rem 3rem; max-width: 600px; margin: 0 auto;
+ }
+ .btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none;
+  font-weight: 600; font-size: 0.95rem; transition: .2s;
+  min-height: 44px; margin: 0.5rem;
+ }
+ .btn-primary { background: var(--accent); color: #fff; }
+ .btn-primary:hover { background: #5a4ed1; transform: translateY(-1px); }
+ .btn-wa { background: #075e55; color: #fff; }
+ .btn-wa:hover { background: #054d45; transform: translateY(-1px); }
+ .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+ .btn-outline:hover { border-color: var(--accent); }
+
+ .demo-note {
+  text-align: center; padding: 2rem; max-width: 600px; margin: 0 auto;
+  color: var(--text2); font-size: 0.85rem; font-style: italic;
+ }
+ .demo-note .badge {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;
+  font-weight: 600; font-style: normal; margin-bottom: 0.8rem;
+ }
+
+ footer {
+  text-align: center; padding: 2rem; border-top: 1px solid var(--border);
+  color: var(--text2); font-size: 0.8rem;
+ }
+ footer a { color: var(--text2); text-decoration: none; }
+ footer a:hover { color: var(--accent2); }
+
+ @media (max-width: 768px) {
+   .hero-content h1 { font-size: 2.2rem; }
+   .hero-content .sub { font-size: 1rem; }
+   .details { padding: 2rem 1rem; }
+ }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">Proyecto de demostración</div>
+
+<a href="../../disena.html" class="back-link">&larr; Volver a AxelIA Diseña</a>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+ <img src="img/hero.jpg" alt="Invitación web de XV años — proyecto de demostración de AxelIA Diseña">
+ <div class="hero-content">
+  <p class="celebrante">Valentina</p>
+  <h1>Mis XV años</h1>
+  <p class="sub">Te esperamos para celebrar mis XV años</p>
+ </div>
+</section>
+
+<!-- ═══════ DETALLES ═══════ -->
+<section class="details">
+ <div class="detail-card">
+  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></div>
+  <p class="label">Fecha y hora</p>
+  <p class="value">Sábado 15 de mayo de 2027</p>
+  <p class="value">8:00 p.m.</p>
+ </div>
+
+ <div class="detail-card">
+  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+  <p class="label">Lugar</p>
+  <p class="value">Salón Jardín Los Corales</p>
+  <p class="value">Calle 84 # 42-10, Barranquilla</p>
+ </div>
+
+ <div class="detail-card">
+  <div class="icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"/></svg></div>
+  <p class="label">Vestuario</p>
+  <p class="dress">Formal (tonos pastel)</p>
+ </div>
+</section>
+
+<!-- ═══════ ACCIONES ═══════ -->
+<section class="actions">
+ <a href="https://www.google.com/maps/search/?api=1&query=Barranquilla%2C%20Colombia" class="btn btn-outline" target="_blank" rel="noopener">Ver ubicación</a>
+ <a href="https://wa.me/573024063534?text=Hola%2C%20quiero%20una%20invitaci%C3%B3n%20como%20la%20de%20la%20demo" class="btn btn-wa" target="_blank" rel="noopener">Confirmar asistencia</a>
+</section>
+
+<!-- ═══════ NOTA ═══════ -->
+<div class="demo-note">
+ <span class="badge">Proyecto de demostración</span>
+ <p>Proyecto de demostración de AxelIA Diseña. Nombres, fechas, lugares y fotos ficticios.</p>
+</div>
+
+<footer>
+ <a href="../../disena.html">&larr; Volver a AxelIA Diseña</a>
+</footer>
+
+</body>
+</html>

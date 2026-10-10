@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Rifa solidaria — Fundación Manos Amigas | Proyecto de demostración de AxelIA Diseña</title>
+<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<style>
+ :root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --card: #16161f;
+  --border: #222230;
+  --text: #e0e0e8;
+  --text2: #8888a0;
+  --accent: #6c5ce7;
+  --accent2: #a78bfa;
+  --green: #00d2a0;
+  --gradient: linear-gradient(135deg, #6c5ce7, #a78bfa);
+  /* Rifa states — white text on all, >=4.5:1 contrast verified */
+  --rifa-disp: #116644;   /* available  — ratio 6.97:1 */
+  --rifa-resv: #884400;   /* reserved   — ratio 7.27:1 */
+  --rifa-sold: #882233;   /* sold       — ratio 9.08:1 */
+ }
+ * { margin:0; padding:0; box-sizing:border-box; }
+ body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  overflow-x: hidden;
+ }
+ img { max-width: 100%; height: auto; }
+
+ .demo-bar {
+  background: var(--accent); color: #fff; text-align: center;
+  padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
+  position: sticky; top: 0; z-index: 100;
+ }
+ .back-link {
+  display: inline-block; padding: 1rem 2rem;
+  color: var(--text2); text-decoration: none; font-size: 0.9rem;
+  transition: color .2s;
+ }
+ .back-link:hover { color: var(--accent2); }
+
+ /* ── Hero ── */
+ .hero {
+  position: relative; text-align: center;
+  padding: 4rem 2rem; overflow: hidden;
+ }
+ .hero img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.3;
+ }
+ .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+ .hero-content h1 {
+  font-size: 2.5rem; font-weight: 800; line-height: 1.2;
+  background: linear-gradient(135deg, #fff 30%, #a78bfa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+ }
+ .hero-content .org { font-size: 1.1rem; color: var(--accent2); margin-bottom: 1.5rem; }
+ .hero-content .prize {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem; display: inline-block;
+  margin-bottom: 1rem;
+ }
+ .hero-content .prize .label { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+ .hero-content .prize .value { font-size: 1.2rem; color: var(--text); font-weight: 600; }
+
+ /* ── Info grid ── */
+ .info-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; max-width: 800px; margin: 0 auto; padding: 0 2rem 2rem;
+ }
+ .info-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.2rem; text-align: center;
+ }
+ .info-card .label { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+ .info-card .value { font-size: 1rem; color: var(--text); font-weight: 600; }
+
+ /* ── Tablero ── */
+ .tablero-section { max-width: 800px; margin: 0 auto; padding: 2rem; }
+ .tablero-section h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1rem; }
+ .leyenda {
+  display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+ }
+ .leyenda-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text); }
+ .leyenda-swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
+ .leyenda-swatch.disp { background: var(--rifa-disp); }
+ .leyenda-swatch.resv { background: var(--rifa-resv); }
+ .leyenda-swatch.sold { background: var(--rifa-sold); }
+
+ .tablero {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 4px; max-width: 600px; margin: 0 auto;
+ }
+ .celda {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600; border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.05); color: #ffffff;
+  text-decoration: none; transition: transform .15s;
+ }
+ .celda:hover { transform: scale(1.1); z-index: 1; }
+ .celda.disp { background: var(--rifa-disp); }
+ .celda.resv { background: var(--rifa-resv); }
+ .celda.sold { background: var(--rifa-sold); }
+
+ /* ── Reglamento ── */
+ .reglamento {
+  max-width: 700px; margin: 0 auto; padding: 2rem;
+ }
+ .reglamento h2 { text-align: center; font-size: 1.5rem; margin-bottom: 1rem; }
+ .reglamento p { color: var(--text2); font-size: 0.9rem; margin-bottom: 0.5rem; text-align: center; }
+
+ /* ── Legal block ── */
+ .legal-block {
+  background: rgba(108,92,231,0.06);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px; padding: 1.5rem 2rem;
+  max-width: 700px; margin: 0 auto 2rem;
+ }
+ .legal-block p { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.8rem; }
+ .legal-block ol { padding-left: 1.5rem; }
+ .legal-block ol li { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.4rem; }
+
+ /* ── Nota ── */
+ .demo-note {
+  text-align: center; padding: 2rem; max-width: 600px; margin: 0 auto;
+  color: var(--text2); font-size: 0.85rem; font-style: italic;
+ }
+ .demo-note .badge {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;
+  font-weight: 600; font-style: normal; margin-bottom: 0.8rem;
+ }
+
+ footer {
+  text-align: center; padding: 2rem; border-top: 1px solid var(--border);
+  color: var(--text2); font-size: 0.8rem;
+ }
+ footer a { color: var(--text2); text-decoration: none; }
+ footer a:hover { color: var(--accent2); }
+
+ /* ── Responsive ── */
+ @media (max-width: 768px) {
+   .hero-content h1 { font-size: 1.8rem; }
+   .tablero { gap: 2px; }
+   .celda { font-size: 0.65rem; }
+   .leyenda { gap: 1rem; }
+ }
+ @media (max-width: 390px) {
+   .tablero { max-width: 100%; }
+   .celda { font-size: 0.55rem; }
+ }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">Proyecto de demostración</div>
+
+<a href="../../disena.html" class="back-link">&larr; Volver a AxelIA Diseña</a>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+ <img src="img/hero.jpg" alt="Tablero de rifa solidaria — proyecto de demostración de AxelIA Diseña">
+ <div class="hero-content">
+  <h1>Rifa solidaria</h1>
+  <p class="org">Fundación Manos Amigas</p>
+  <div class="prize">
+   <p class="label">Premio</p>
+   <p class="value">Cena para dos en un restaurante de Barranquilla</p>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════ INFO ═══════ -->
+<div class="info-grid">
+ <div class="info-card">
+  <p class="label">Valor de la boleta</p>
+  <p class="value">$10.000 COP</p>
+ </div>
+ <div class="info-card">
+  <p class="label">Fecha del sorteo</p>
+  <p class="value">Domingo 30 de mayo de 2027</p>
+ </div>
+ <div class="info-card">
+  <p class="label">Lotería oficial</p>
+  <p class="value">Lotería del Atlántico</p>
+ </div>
+</div>
+
+<!-- ═══════ TABLERO ═══════ -->
+<section class="tablero-section">
+ <h2>Tablero de números</h2>
+ <div class="leyenda">
+  <div class="leyenda-item"><span class="leyenda-swatch disp"></span> Disponible</div>
+  <div class="leyenda-item"><span class="leyenda-swatch resv"></span> Reservado</div>
+  <div class="leyenda-item"><span class="leyenda-swatch sold"></span> Vendido</div>
+ </div>
+ <div class="tablero">
+  <a class="celda disp" href="#" onclick="return false">01</a>
+  <a class="celda disp" href="#" onclick="return false">02</a>
+  <a class="celda sold" href="#" onclick="return false">03</a>
+  <a class="celda disp" href="#" onclick="return false">04</a>
+  <a class="celda resv" href="#" onclick="return false">05</a>
+  <a class="celda disp" href="#" onclick="return false">06</a>
+  <a class="celda disp" href="#" onclick="return false">07</a>
+  <a class="celda resv" href="#" onclick="return false">08</a>
+  <a class="celda disp" href="#" onclick="return false">09</a>
+  <a class="celda resv" href="#" onclick="return false">10</a>
+  <a class="celda resv" href="#" onclick="return false">11</a>
+  <a class="celda disp" href="#" onclick="return false">12</a>
+  <a class="celda disp" href="#" onclick="return false">13</a>
+  <a class="celda disp" href="#" onclick="return false">14</a>
+  <a class="celda resv" href="#" onclick="return false">15</a>
+  <a class="celda disp" href="#" onclick="return false">16</a>
+  <a class="celda disp" href="#" onclick="return false">17</a>
+  <a class="celda sold" href="#" onclick="return false">18</a>
+  <a class="celda resv" href="#" onclick="return false">19</a>
+  <a class="celda disp" href="#" onclick="return false">20</a>
+  <a class="celda disp" href="#" onclick="return false">21</a>
+  <a class="celda disp" href="#" onclick="return false">22</a>
+  <a class="celda disp" href="#" onclick="return false">23</a>
+  <a class="celda sold" href="#" onclick="return false">24</a>
+  <a class="celda resv" href="#" onclick="return false">25</a>
+  <a class="celda disp" href="#" onclick="return false">26</a>
+  <a class="celda resv" href="#" onclick="return false">27</a>
+  <a class="celda disp" href="#" onclick="return false">28</a>
+  <a class="celda sold" href="#" onclick="return false">29</a>
+  <a class="celda disp" href="#" onclick="return false">30</a>
+  <a class="celda disp" href="#" onclick="return false">31</a>
+  <a class="celda disp" href="#" onclick="return false">32</a>
+  <a class="celda disp" href="#" onclick="return false">33</a>
+  <a class="celda resv" href="#" onclick="return false">34</a>
+  <a class="celda resv" href="#" onclick="return false">35</a>
+  <a class="celda disp" href="#" onclick="return false">36</a>
+  <a class="celda sold" href="#" onclick="return false">37</a>
+  <a class="celda disp" href="#" onclick="return false">38</a>
+  <a class="celda sold" href="#" onclick="return false">39</a>
+  <a class="celda disp" href="#" onclick="return false">40</a>
+  <a class="celda disp" href="#" onclick="return false">41</a>
+  <a class="celda disp" href="#" onclick="return false">42</a>
+  <a class="celda disp" href="#" onclick="return false">43</a>
+  <a class="celda disp" href="#" onclick="return false">44</a>
+  <a class="celda disp" href="#" onclick="return false">45</a>
+  <a class="celda resv" href="#" onclick="return false">46</a>
+  <a class="celda resv" href="#" onclick="return false">47</a>
+  <a class="celda resv" href="#" onclick="return false">48</a>
+  <a class="celda disp" href="#" onclick="return false">49</a>
+  <a class="celda disp" href="#" onclick="return false">50</a>
+  <a class="celda sold" href="#" onclick="return false">51</a>
+  <a class="celda disp" href="#" onclick="return false">52</a>
+  <a class="celda disp" href="#" onclick="return false">53</a>
+  <a class="celda disp" href="#" onclick="return false">54</a>
+  <a class="celda disp" href="#" onclick="return false">55</a>
+  <a class="celda disp" href="#" onclick="return false">56</a>
+  <a class="celda disp" href="#" onclick="return false">57</a>
+  <a class="celda resv" href="#" onclick="return false">58</a>
+  <a class="celda disp" href="#" onclick="return false">59</a>
+  <a class="celda resv" href="#" onclick="return false">60</a>
+  <a class="celda disp" href="#" onclick="return false">61</a>
+  <a class="celda disp" href="#" onclick="return false">62</a>
+  <a class="celda disp" href="#" onclick="return false">63</a>
+  <a class="celda resv" href="#" onclick="return false">64</a>
+  <a class="celda resv" href="#" onclick="return false">65</a>
+  <a class="celda disp" href="#" onclick="return false">66</a>
+  <a class="celda resv" href="#" onclick="return false">67</a>
+  <a class="celda disp" href="#" onclick="return false">68</a>
+  <a class="celda sold" href="#" onclick="return false">69</a>
+  <a class="celda disp" href="#" onclick="return false">70</a>
+  <a class="celda disp" href="#" onclick="return false">71</a>
+  <a class="celda sold" href="#" onclick="return false">72</a>
+  <a class="celda disp" href="#" onclick="return false">73</a>
+  <a class="celda sold" href="#" onclick="return false">74</a>
+  <a class="celda disp" href="#" onclick="return false">75</a>
+  <a class="celda sold" href="#" onclick="return false">76</a>
+  <a class="celda disp" href="#" onclick="return false">77</a>
+  <a class="celda resv" href="#" onclick="return false">78</a>
+  <a class="celda resv" href="#" onclick="return false">79</a>
+  <a class="celda resv" href="#" onclick="return false">80</a>
+  <a class="celda resv" href="#" onclick="return false">81</a>
+  <a class="celda disp" href="#" onclick="return false">82</a>
+  <a class="celda disp" href="#" onclick="return false">83</a>
+  <a class="celda sold" href="#" onclick="return false">84</a>
+  <a class="celda sold" href="#" onclick="return false">85</a>
+  <a class="celda disp" href="#" onclick="return false">86</a>
+  <a class="celda disp" href="#" onclick="return false">87</a>
+  <a class="celda resv" href="#" onclick="return false">88</a>
+  <a class="celda disp" href="#" onclick="return false">89</a>
+  <a class="celda resv" href="#" onclick="return false">90</a>
+  <a class="celda sold" href="#" onclick="return false">91</a>
+  <a class="celda disp" href="#" onclick="return false">92</a>
+  <a class="celda disp" href="#" onclick="return false">93</a>
+  <a class="celda disp" href="#" onclick="return false">94</a>
+  <a class="celda disp" href="#" onclick="return false">95</a>
+  <a class="celda disp" href="#" onclick="return false">96</a>
+  <a class="celda sold" href="#" onclick="return false">97</a>
+  <a class="celda disp" href="#" onclick="return false">98</a>
+  <a class="celda disp" href="#" onclick="return false">99</a>
+  <a class="celda resv" href="#" onclick="return false">100</a>
+ </div>
+</section>
+
+<!-- ═══════ REGLAMENTO ═══════ -->
+<section class="reglamento">
+ <h2>Reglamento</h2>
+ <p>Cada boleta equivale a un número. Gana quien coincida con las dos últimas cifras de la lotería oficial. El sorteo se realiza en la fecha indicada.</p>
+</section>
+
+<!-- ═══════ CONDICIONES LEGALES ═══════ -->
+<div class="legal-block">
+ <p>En Colombia, la rifa es un juego de suerte y azar y solo puede operarla quien cuente con autorización de la autoridad competente (Ley 643 de 2001).</p>
+ <p>AxelIA no organiza rifas, no vende boletas, no recibe dinero ni realiza sorteos. Diseñamos la página del tablero para el organizador, que es el responsable de la autorización.</p>
+ <ol>
+  <li>El organizador declara que cuenta con la autorización de la autoridad competente y su número de autorización se publica en el tablero.</li>
+  <li>El ganador se define con el resultado de una lotería oficial en una fecha fija.</li>
+  <li>El organizador recibe y confirma los pagos; AxelIA no maneja dinero.</li>
+  <li>No se publican nombres completos ni teléfonos de participantes; el tablero muestra solo el estado de cada número.</li>
+ </ol>
+</div>
+
+<!-- ═══════ NOTA ═══════ -->
+<div class="demo-note">
+ <span class="badge">Proyecto de demostración</span>
+ <p>Proyecto de demostración de AxelIA Diseña. Organizador, premio y números ficticios. No contiene datos de pago reales.</p>
+</div>
+
+<footer>
+ <a href="../../disena.html">&larr; Volver a AxelIA Diseña</a>
+</footer>
+
+</body>
+</html>
