@@ -286,6 +286,38 @@
 :focus-visible { outline: 2px solid var(--accent2, #7c5cff); outline-offset: 2px; }
 .skip-link { position: absolute; top: -100px; left: 0; background: var(--accent, #6c5ce7); color: #fff; padding: 0.8rem 1.5rem; z-index: 1000; text-decoration: none; font-weight: 600; border-radius: 0 0 8px 0; transition: top .2s; }
 .skip-link:focus { top: 0; }
+
+/* ── Hero WhatsApp Mockup (Demo) ── */
+.hero-mockup{max-width:340px;margin:2.5rem auto 0;background:#0b141a;border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative;}
+.hero-mockup .demo-tag{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.12);color:#8696a0;font-size:.65rem;padding:2px 8px;border-radius:8px;z-index:2;font-weight:600;letter-spacing:.05em;}
+.hero-mockup .chat-header{background:#1f2c34;padding:.7rem 1rem;display:flex;align-items:center;gap:.6rem;}
+.hero-mockup .chat-header .avatar{width:32px;height:32px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0;}
+.hero-mockup .chat-header .name{font-size:.85rem;color:#e9edef;font-weight:600;}
+.hero-mockup .chat-header .status{font-size:.7rem;color:#8696a0;}
+.hero-mockup .chat-body{padding:.8rem;display:flex;flex-direction:column;gap:.5rem;min-height:180px;}
+.hero-mockup .msg{max-width:80%;padding:.5rem .8rem;border-radius:8px;font-size:.8rem;line-height:1.4;}
+.hero-mockup .msg.in{background:#1f2c34;color:#e9edef;align-self:flex-start;border-bottom-left-radius:2px;}
+.hero-mockup .msg.out{background:#005c4b;color:#e9edef;align-self:flex-end;border-bottom-right-radius:2px;}
+.hero-mockup .msg .time{font-size:.6rem;color:#8696a0;margin-top:2px;text-align:right;}
+@media(max-width:768px){.hero-mockup{max-width:300px;}}
+
+/* ── DEV-2026-008: Menu movil + boton flotante WA ── */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:101;}
+.hamburger span{display:block;width:24px;height:3px;background:var(--text,#e0e0e8);border-radius:2px;transition:.3s;}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.wa-float{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:transform .2s;text-decoration:none;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:30px;height:30px;fill:#fff;}
+@media(max-width:768px){
+  .hamburger{display:flex;}
+  .nav-links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg2,#111118);padding:1rem 2rem;gap:1rem;border-bottom:1px solid var(--border,#222230);}
+  .nav-links.open{display:flex!important;}
+  .wa-float{bottom:15px;right:15px;width:48px;height:48px;}
+  .wa-float svg{width:26px;height:26px;}
+}
+/* ── Fin DEV-2026-008 ── */
 </style>
 <script type="application/ld+json">
 {
@@ -336,7 +368,8 @@
 <!-- ═══════ NAV ═══════ -->
 <nav aria-label="Navegacion principal">
  <span class="logo">AxelIA</span>
- <div class="nav-links">
+ <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+  <div class="nav-links">
   <a href="#servicios">El Equipo</a>
   <a href="#rubros">Por Rubro</a>
   <a href="#precios">Precios</a>
@@ -358,6 +391,25 @@
  <div class="hero-cta">
   <a href="#precios" class="btn">Ver Precios</a>
   <a href="calculadora.html" class="btn btn-outline">📊 Calcula tu Ahorro</a>
+ </div>
+ <!-- P1-3: Mockup visual de conversacion WhatsApp (demo ilustrativa, no testimonio real) -->
+ <div class="hero-mockup" role="img" aria-label="Demostracion ilustrativa de conversacion de WhatsApp entre un cliente y el agente de IA de AxelIA">
+  <span class="demo-tag">DEMO</span>
+  <div class="chat-header">
+   <div class="avatar">S</div>
+   <div>
+    <div class="name">Sofia · Ventas AxelIA</div>
+    <div class="status">en línea</div>
+   </div>
+  </div>
+  <div class="chat-body">
+   <div class="msg in">Hola, ¿tornillos 3/16 de 1 pulgada?<div class="time">9:01 PM</div></div>
+   <div class="msg out">¡Claro! 250 unidades. ¿Los envío hoy o pasa a recoger?<div class="time">9:01 PM</div></div>
+   <div class="msg in">Envío a Galapa, ¿aceitan Nequi?<div class="time">9:02 PM</div></div>
+   <div class="msg out">Sí, le paso link de pago. ¿Le agendo un diagnóstico gratis para automatizar su pedidos?<div class="time">9:02 PM</div></div>
+   <div class="msg in">Dale, el viernes entonces<div class="time">9:03 PM</div></div>
+   <div class="msg out">Anotado: viernes 10am. Le envío recordatorio el día anterior 👋<div class="time">9:03 PM</div></div>
+  </div>
  </div>
 </section>
 
@@ -497,7 +549,7 @@
     <li>Implementación en 7-14 días</li>
     <li>30 días de soporte</li>
    </ul>
-   <a href="#contacto" class="btn">Lo Quiero</a>
+   <a href="#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
 
   <!-- Pack Pro (Destacado) -->
@@ -517,7 +569,7 @@
     <li>Implementación en 14-28 días</li>
     <li>60 días de soporte</li>
    </ul>
-   <a href="#contacto" class="btn">Lo Quiero</a>
+   <a href="#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
 
   <!-- Pack Empresarial -->
@@ -537,7 +589,7 @@
     <li>Implementación en 30-60 días</li>
     <li>90 días de soporte</li>
    </ul>
-   <a href="#contacto" class="btn">Lo Quiero</a>
+   <a href="#contacto" class="btn">Agendar Diagnóstico</a>
   </div>
  </div>
 
@@ -665,6 +717,35 @@
  </div>
 </section>
 
+<!-- P1-2: Prueba social honesta — trust cards con datos verificables.
+     Sin testimonios inventados. Se activan cuando haya primer cliente real con autorización. -->
+<section id="confianza">
+ <h2 class="section-title">Por qué puedes confiar</h2>
+ <p class="section-sub">Sin maquillaje. Esto es lo que tenemos y lo que no.</p>
+ <div class="diff-grid">
+  <div class="diff-card">
+   <span class="num" style="font-size:1.5rem;">📍</span>
+   <h3>Empresa registrada en Colombia</h3>
+   <p>Basados en Barranquilla. RUT y cámara de comercio. No somos un perfil anónimo de internet.</p>
+  </div>
+  <div class="diff-card">
+   <span class="num" style="font-size:1.5rem;">💰</span>
+   <h3>Precios públicos desde el día 1</h3>
+   <p>Publicamos lo que cobramos en COP. Si no te convence, no hay nada que negociar en secreto.</p>
+  </div>
+  <div class="diff-card">
+   <span class="num" style="font-size:1.5rem;">⚡</span>
+   <h3>Primera versión en 7-14 días</h3>
+   <p>O te devolvemos el dinero de la cuota de ese mes. Lo decimos por escrito y lo cumplimos.</p>
+  </div>
+  <div class="diff-card">
+   <span class="num" style="font-size:1.5rem;">🔓</span>
+   <h3>Sin lock-in</h3>
+   <p>Tus datos son tuyos. Si decides irte, te entregamos todo exportable. Sin rehenes.</p>
+  </div>
+ </div>
+</section>
+
 <!-- TESTIMONIOS: activar cuando haya primer cliente. Reemplazar placeholders con cita real + autorización.
 <section id="testimonios">
  <h2 class="section-title">Lo que dicen nuestros clientes</h2>
@@ -680,21 +761,19 @@
  <h2 class="section-title">¿Listo para contratar tu equipo digital?</h2>
  <p class="section-sub">Agenda un diagnóstico gratuito de 45 minutos. <strong>Sales con 3 ideas accionables, las apliques con nosotros o no.</strong></p>
  <div style="max-width:640px; margin:0 auto; text-align:left;">
-  <!-- WEB3FORMS: reemplazar ACCESS_KEY_AQUI por el access key real (web3forms.com -> ingresar email -> recibir key por correo). -->
+  <!-- WEB3FORMS: access key referenciado por variable de entorno en deploy, valor hardcodeado solo en gh-pages. -->
+  <!-- P2-3: Form reducido a 4 campos + honeypot anti-spam + Habeas Data -->
   <form id="lead-form" action="https://api.web3forms.com/submit" method="POST" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem;">
    <input type="hidden" name="access_key" value="d8e6a179-73b8-46e1-873f-12dd1e575014">
-   <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true">
+   <!-- Honeypot anti-spam: campo oculto. Bots lo llenan, humanos no lo ven. -->
+   <input type="checkbox" name="botcheck" style="display:none;" aria-hidden="true" tabindex="-1" autocomplete="off">
    <div class="form-group">
     <label for="f-nombre">Nombre *</label>
     <input id="f-nombre" type="text" name="nombre" required placeholder="Tu nombre">
    </div>
    <div class="form-group">
-    <label for="f-whatsapp">WhatsApp / Teléfono *</label>
+    <label for="f-whatsapp">WhatsApp *</label>
     <input id="f-whatsapp" type="tel" name="whatsapp" required placeholder="+57 300 000 0000">
-   </div>
-   <div class="form-group">
-    <label for="f-email">Email *</label>
-    <input id="f-email" type="email" name="email" required placeholder="tu@correo.com">
    </div>
    <div class="form-group">
     <label for="f-rubro">Rubro *</label>
@@ -709,29 +788,8 @@
     </select>
    </div>
    <div class="form-group">
-    <label for="f-dolor">¿Qué te duele más? *</label>
-    <select id="f-dolor" name="dolor" required>
-     <option value="" disabled selected>Selecciona tu mayor dolor</option>
-     <option>Pierdo ventas por no responder a tiempo</option>
-     <option>El papeleo y el back-office me consumen</option>
-     <option>No tengo control ni reportes claros</option>
-     <option>Mi equipo no sabe usar la IA</option>
-    </select>
-   </div>
-   <div class="form-group">
-    <label for="f-origen">¿Cómo nos conociste?</label>
-    <select id="f-origen" name="origen">
-     <option value="" disabled selected>Selecciona una opción</option>
-     <option>Google</option>
-     <option>Instagram</option>
-     <option>LinkedIn</option>
-     <option>Recomendación</option>
-     <option>Otro</option>
-    </select>
-   </div>
-   <div class="form-group">
-    <label for="f-mensaje">¿Qué te gustaría automatizar? (opcional)</label>
-    <textarea id="f-mensaje" name="mensaje" rows="3" placeholder="Ej: atención por WhatsApp, aparecer en Google, redes sociales..."></textarea>
+    <label for="f-mensaje">¿Qué te duele hoy? (opcional)</label>
+    <textarea id="f-mensaje" name="mensaje" rows="3" placeholder="Ej: pierdo ventas por no responder a tiempo, mucho papeleo, no aparezco en Google..."></textarea>
    </div>
    <div class="form-group" style="display:flex; gap:8px; align-items:flex-start;">
     <input type="checkbox" id="f-datos" name="datos" required style="width:auto; margin-top:4px;">
@@ -834,11 +892,8 @@
     // Captura adicional al mini-CRM (n8n -> leads.csv), no interrumpe el envío principal
     var lead = {
       nombre: data.get('nombre') || '',
-      email: data.get('email') || '',
       whatsapp: data.get('whatsapp') || '',
       rubro: data.get('rubro') || '',
-      dolor: data.get('dolor') || '',
-      origen: data.get('origen') || '',
       mensaje: data.get('mensaje') || ''
     };
     fetch('https://n8n.axelia.tech/webhook/captura-leads', {
@@ -851,5 +906,9 @@
 </script>
 
 <script src="/axelia-chat.js" defer></script>
+<a href="https://wa.me/573024063534?text=Hola%20AxelIA%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratuito" class="wa-float" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+(function(){var h=document.querySelector('.hamburger');if(!h)return;var n=document.querySelector('.nav-links');if(!n)return;h.addEventListener('click',function(){var e=n.classList.toggle('open');h.setAttribute('aria-expanded',e);});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
+</script>
 </body>
  </html>
