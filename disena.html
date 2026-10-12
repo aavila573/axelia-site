@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://open.er-api.com https://api.web3forms.com https://n8n.axelia.tech https://www.google-analytics.com https://*.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://chat.axelia.tech; connect-src 'self' https://open.er-api.com https://api.web3forms.com https://n8n.axelia.tech https://www.google-analytics.com https://*.google-analytics.com https://chat.axelia.tech; img-src 'self' data: https://chat.axelia.tech; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-src https://chat.axelia.tech; form-action 'self' https://api.web3forms.com">
 <title>Invitaciones y diseño digital Barranquilla | AxelIA Diseña</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="favicon.png">
@@ -743,6 +743,8 @@
 <script>
 (function(){var h=document.querySelector('.hamburger');if(!h)return;var n=document.querySelector('.nav-links');if(!n)return;h.addEventListener('click',function(){var e=n.classList.toggle('open');h.setAttribute('aria-expanded',e);});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
 </script>
-<script src="/axelia-chat.js" defer></script>
+<script>
+(function(d,t){var BASE_URL="https://chat.axelia.tech";var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src=BASE_URL+"/packs/js/sdk.js";g.defer=true;g.async=true;s.parentNode.insertBefore(g,s);g.onload=function(){window.chatwootSDK.run({websiteToken:"EbcgGEaZqb2k3oM9324jLcL1",baseUrl:BASE_URL});};})(document,"script");
+</script>
 </body>
 </html>
