@@ -7,6 +7,7 @@
 <title>Automatización con IA para PYMES: Agentes 24/7 de Ventas, SEO y Atención | AxelIA</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="favicon.png">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/inter-400-latin.woff2">
 <link rel="canonical" href="https://axelia.tech/">
 
 <!-- Google Analytics -->
@@ -85,6 +86,28 @@
 
  * { margin:0; padding:0; box-sizing:border-box; }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/inter-400-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/inter-600-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('assets/fonts/inter-800-latin.woff2') format('woff2');
+}
+
  body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
@@ -108,10 +131,11 @@
  .nav-links a:hover { color: var(--text); }
  .nav-links a.btn, .nav-links a.btn:link, .nav-links a.btn:visited { color: #fff; }
  .nav-links a.btn:hover, .nav-links a.btn:focus { color: #fff; }
- .btn { background: var(--accent); color: #fff; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: .2s; border: none; cursor: pointer; }
- .btn:hover { background: #6c5ce7; transform: translateY(-1px); }
+ .btn { background: linear-gradient(135deg, #6c5ce7, #8a75f0); color: #fff; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: .2s; border: none; cursor: pointer; box-shadow: 0 4px 14px -4px rgba(108,92,231,.5); }
+ .btn:hover { filter: brightness(1.08); box-shadow: 0 6px 20px -6px rgba(108,92,231,.6); transform: translateY(-1px); }
+ .btn:active { filter: none; transform: translateY(0) scale(.98); box-shadow: 0 2px 8px -2px rgba(108,92,231,.4); }
  .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
- .btn-outline:hover { border-color: var(--accent); background: transparent; }
+ .btn-outline:hover { border-color: var(--accent); background: rgba(108,92,231,.12); }
 
  /* ── Hero ── */
  .hero {
@@ -383,6 +407,12 @@
  /* ── Footer social tap target ── */
  .social-links a { min-width:44px; min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
 /* ── Fin DEV-2026-008 ── */
+/* ── DEV-2026-021: reveal on-scroll ── */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -1022,6 +1052,38 @@
 
 <script>
 (function(){var h=document.querySelector('.hamburger');if(!h)return;var n=document.querySelector('.nav-links');if(!n)return;h.addEventListener('click',function(){var e=n.classList.toggle('open');h.setAttribute('aria-expanded',e);});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');h.setAttribute('aria-expanded','false');});});})();
+</script>
+<script>
+// DEV-2026-021: reveal on-scroll (mejora progresiva; sin JS el contenido queda visible)
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SEL = '.hero,.section-title,.service-card,.service-card-detail,.pricing-card,.package-card,.portfolio-card,.diff-card,.step-card';
+  var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+  els.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement ? el.parentElement.children : [];
+    var i = Array.prototype.indexOf.call(sibs, el);
+    if (i > 0) el.style.transitionDelay = (Math.min(i, 8) * 60) + 'ms';
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-visible');
+      io.unobserve(e.target);
+      var t = e.target;
+      var cleanup = function(ev){
+        if (ev && ev.target !== t) return;
+        if (ev && ev.propertyName !== 'transform' && ev.propertyName !== 'opacity') return;
+        t.classList.remove('reveal', 'is-visible');
+        t.style.transitionDelay = '';
+        t.removeEventListener('transitionend', cleanup);
+      };
+      t.addEventListener('transitionend', cleanup);
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el){ io.observe(el); });
+})();
 </script>
 </body>
  </html>
