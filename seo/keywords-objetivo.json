@@ -1,0 +1,289 @@
+[
+  {
+    "url": "https://axelia.tech/",
+    "keyword": "agentes ia pymes colombia",
+    "prioridad": 1,
+    "tipo_pagina": "home",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/",
+    "keyword": "automatizacion ia empresas",
+    "prioridad": 2,
+    "tipo_pagina": "home",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/",
+    "keyword": "blog inteligencia artificial empresas",
+    "prioridad": 1,
+    "tipo_pagina": "blog_index",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/5-senales-pyme-necesita-automatizacion-ia.html",
+    "keyword": "senales pyme necesita automatizacion ia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/5-senales-pyme-necesita-automatizacion-ia.html",
+    "keyword": "automatizacion pyme ia colombia",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agente-ia-transforma-atencion-cliente-whatsapp.html",
+    "keyword": "agente ia atencion cliente whatsapp",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agente-ia-transforma-atencion-cliente-whatsapp.html",
+    "keyword": "ia whatsapp atencion empresas",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-clinicas.html",
+    "keyword": "agentes ia para clinicas",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-clinicas.html",
+    "keyword": "ia salud clinicas automatizacion",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-hoteles.html",
+    "keyword": "agentes ia para hoteles",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-hoteles.html",
+    "keyword": "ia hosteleria hotel automatizacion",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-restaurantes.html",
+    "keyword": "agentes ia para restaurantes",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-para-restaurantes.html",
+    "keyword": "ia restaurantes automatizacion pedidos",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-vs-contratar-empleado.html",
+    "keyword": "agentes ia vs contratar empleado",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/agentes-ia-vs-contratar-empleado.html",
+    "keyword": "ia vs empleado costo",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/asistentes-virtuales-para-ventas-colombia.html",
+    "keyword": "asistentes virtuales ventas colombia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/asistentes-virtuales-para-ventas-colombia.html",
+    "keyword": "asistente virtual ia ventas",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/automatizacion-backoffice-facturacion-inventario-ia.html",
+    "keyword": "automatizacion backoffice facturacion inventario ia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/automatizacion-backoffice-facturacion-inventario-ia.html",
+    "keyword": "ia facturacion inventario pyme",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/chatbot-vs-equipo-agentes-ia.html",
+    "keyword": "chatbot vs agentes ia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/chatbot-vs-equipo-agentes-ia.html",
+    "keyword": "diferencia chatbot agente ia",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/chatbot-whatsapp-empresas-colombia.html",
+    "keyword": "chatbot whatsapp empresas colombia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/chatbot-whatsapp-empresas-colombia.html",
+    "keyword": "bot whatsapp business ia",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/comparativa-agencias-ia-colombia-pymes.html",
+    "keyword": "agencias ia colombia pymes comparativa",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/comparativa-agencias-ia-colombia-pymes.html",
+    "keyword": "mejor agencia ia colombia",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/cuanto-cuesta-automatizar-pyme-ia-colombia.html",
+    "keyword": "cuanto cuesta automatizar pyme ia colombia",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/cuanto-cuesta-automatizar-pyme-ia-colombia.html",
+    "keyword": "precio automatizacion ia pyme",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/ecosistema-agentes-ia-por-rubro.html",
+    "keyword": "ecosistema agentes ia por rubro",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/ecosistema-agentes-ia-por-rubro.html",
+    "keyword": "agentes ia sectores industria",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/ecosistema-agentes-vs-chatgpt.html",
+    "keyword": "agentes ia vs chatgpt",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/ecosistema-agentes-vs-chatgpt.html",
+    "keyword": "diferencia agentes ia chatgpt",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/que-es-geo-visibilidad-ia-pymes.html",
+    "keyword": "geo visibilidad ia pymes",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/que-es-geo-visibilidad-ia-pymes.html",
+    "keyword": "generative engine optimization",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/roi-automatizacion-ia-pyme.html",
+    "keyword": "roi automatizacion ia pyme",
+    "prioridad": 1,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/blog/roi-automatizacion-ia-pyme.html",
+    "keyword": "retorno inversion ia pyme",
+    "prioridad": 2,
+    "tipo_pagina": "blog",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/calculadora.html",
+    "keyword": "calculadora automatizacion ia",
+    "prioridad": 1,
+    "tipo_pagina": "otra",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/calculadora.html",
+    "keyword": "calcular costo ia pyme",
+    "prioridad": 2,
+    "tipo_pagina": "otra",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/casos-de-uso.html",
+    "keyword": "casos de uso ia empresas",
+    "prioridad": 1,
+    "tipo_pagina": "otra",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/casos-de-uso.html",
+    "keyword": "ejemplos automatizacion ia pymes",
+    "prioridad": 2,
+    "tipo_pagina": "otra",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/disena.html",
+    "keyword": "disenar agente ia axelia",
+    "prioridad": 1,
+    "tipo_pagina": "disena",
+    "rubro": "general"
+  },
+  {
+    "url": "https://axelia.tech/privacidad.html",
+    "keyword": "politica privacidad axelia tech",
+    "prioridad": 1,
+    "tipo_pagina": "otra",
+    "rubro": "general"
+  }
+]
